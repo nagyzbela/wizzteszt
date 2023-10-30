@@ -1,0 +1,17 @@
+{
+	"name": "dbt-DataFactory",
+	"properties": {
+		"globalParameters": {
+			"dbt_command": {
+				"type": "string",
+				"value": "test"
+			}
+		}
+	},
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "933a6374-8550-4935-b05b-a24835799301",
+		"tenantId": "e762ffff-9f27-4ac7-82ab-0f184fb02923"
+	}
+}

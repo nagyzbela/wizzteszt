@@ -1,0 +1,133 @@
+{
+	"name": "dbt Tester",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "the_count",
+					"value": {
+						"value": "@pipeline().parameters.the_input",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('the_count')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "If Condition1",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().table_type,'model')",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Append variable2",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "table_list",
+											"value": {
+												"value": "@item().table_name",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable1_copy1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "final_list",
+					"value": {
+						"value": "@join(variables('table_list'),' ')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"the_input": {
+				"type": "string",
+				"defaultValue": [
+					{
+						"table_name": "table1",
+						"table_type": "model"
+					},
+					{
+						"table_name": "table2",
+						"table_type": "model"
+					},
+					{
+						"table_name": "table3",
+						"table_type": "snapshot"
+					},
+					{
+						"table_name": "table4",
+						"table_type": "snapshot"
+					}
+				]
+			}
+		},
+		"variables": {
+			"the_count": {
+				"type": "Array"
+			},
+			"table_list": {
+				"type": "Array"
+			},
+			"final_list": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-06-16T14:59:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "Storagetrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "test",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/streamtest/blobs/blobs/",
+			"blobPathEndsWith": "execute.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/f41de60c-7d62-404b-94bc-dd7ff9d8d28c/resourceGroups/AndrasResource/providers/Microsoft.Storage/storageAccounts/kovacsastorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

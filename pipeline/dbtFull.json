@@ -1,0 +1,348 @@
+{
+	"name": "dbtFull",
+	"properties": {
+		"activities": [
+			{
+				"name": "lister",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "dbtLister",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"hvr_source_tables": {
+							"value": "@pipeline().parameters.hvr_source_list",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "prepare_object_lists",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lister",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lister').output.pipelineReturnValue.v_list_of_tables",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Check model",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().table_type,'model')",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Append to snapshot list",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "snapshot_list",
+											"value": {
+												"value": "@item().table_name",
+												"type": "Expression"
+											}
+										}
+									},
+									{
+										"name": "Append to sql list",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "snapshot_sql_arr",
+											"value": {
+												"value": "@concat(\n'select ',\nitem().unique_key,\n', count(last_updated) cnt',\n' from ',\nreplace( string(first(first(item().depends_on))), pipeline().parameters.OM_source_name,'') ,' b',\n' where not exists ',\n' (select ',\nitem().unique_key ,',last_updated',\n' from ',\nitem().schema_name ,'.' ,item().table_name,' s where ',\n' s.', item().unique_key, '=b.',item().unique_key,' and s.last_updated=b.last_updated ) group by ',item().unique_key \n)",
+												"type": "Expression"
+											}
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Append to table list",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "table_list",
+											"value": {
+												"value": "@item().table_name",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "run models",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "prepare_object_lists",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "dbtRunner",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"dbt_command": {
+							"value": "@concat(\n'run --select ',\njoin(variables('table_list'),' ')\n)",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Set cnt sql variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "prepare_object_lists",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "snapshot_sql_cnt_max",
+					"value": {
+						"value": "@concat(\r\n'select max(cnt) cnt from(' ,\r\njoin(variables('snapshot_sql_arr'),' union all' ),\r\n') a')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get_max_snapshot_cnt",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Set cnt sql variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@variables('snapshot_sql_cnt_max')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "Azure_Log",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Set max cnt",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get_max_snapshot_cnt",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "snapshot_cnt",
+					"value": {
+						"value": "@coalesce(\nstring(\n    add(activity('get_max_snapshot_cnt').output.value[0].cnt,1)),\n'1')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Load snapshots until",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set max cnt",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(\nint(variables('counter')),\nint(variables('snapshot_cnt'))\n)",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "run snashots",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "dbtRunner",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"dbt_command": {
+										"value": "@concat(\n'snapshot --select ',\njoin(variables('snapshot_list'),' ')\n)",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "increase counter",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "run snashots",
+									"dependencyConditions": [
+										"Completed"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "index_value",
+								"value": {
+									"value": "@string(\nadd(\n    int(variables('counter'))\n    ,1 )\n    )",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set counter",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "increase counter",
+									"dependencyConditions": [
+										"Completed"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "counter",
+								"value": {
+									"value": "@variables('index_value')",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"parameters": {
+			"OM_source_name": {
+				"type": "string",
+				"defaultValue": "source.wizzair."
+			},
+			"hvr_source_list": {
+				"type": "string",
+				"defaultValue": "b_hvr_aims_radar.radar_table1,b_hvr_aims_flight.table1"
+			}
+		},
+		"variables": {
+			"table_name": {
+				"type": "String"
+			},
+			"table_type": {
+				"type": "String"
+			},
+			"table_list": {
+				"type": "Array"
+			},
+			"full_list": {
+				"type": "Array"
+			},
+			"snapshot_list": {
+				"type": "Array"
+			},
+			"snapshot_sql_arr": {
+				"type": "Array"
+			},
+			"snapshot_sql_cnt_max": {
+				"type": "String"
+			},
+			"snapshot_cnt": {
+				"type": "String"
+			},
+			"counter": {
+				"type": "String",
+				"defaultValue": "1"
+			},
+			"index_value": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-07-18T13:25:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

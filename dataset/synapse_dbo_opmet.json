@@ -1,0 +1,17 @@
+{
+	"name": "synapse_dbo_opmet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "opmet"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

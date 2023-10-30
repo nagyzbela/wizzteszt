@@ -1,0 +1,29 @@
+{
+	"name": "test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "variable",
+					"value": "5"
+				}
+			}
+		],
+		"variables": {
+			"variable": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-09-06T12:59:40Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

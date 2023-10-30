@@ -1,0 +1,19 @@
+{
+	"name": "OFP_xml",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OFP_xml",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ofp.xml",
+				"container": "ofp"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,28 @@
+{
+	"name": "dbtDaily Test",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "dbtRunner",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"dbt_command": "test"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2023-05-19T09:40:00Z",
+				"endTime": "2023-06-14T09:40:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

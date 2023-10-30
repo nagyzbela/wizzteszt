@@ -1,0 +1,17 @@
+{
+	"name": "dbo_opmet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "opmet"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

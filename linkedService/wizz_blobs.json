@@ -1,0 +1,12 @@
+{
+	"name": "wizz_blobs",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://kovacsastorage.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}

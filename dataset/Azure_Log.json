@@ -1,0 +1,45 @@
+{
+	"name": "Azure_Log",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "uid",
+				"type": "varchar"
+			},
+			{
+				"name": "load_date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "command",
+				"type": "nvarchar"
+			},
+			{
+				"name": "duration",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 5
+			},
+			{
+				"name": "status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "result_details",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dev",
+			"table": "dbt_logs"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

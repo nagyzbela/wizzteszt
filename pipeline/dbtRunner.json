@@ -1,0 +1,310 @@
+{
+	"name": "dbtRunner",
+	"properties": {
+		"activities": [
+			{
+				"name": "send_dbt_command",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "set_request_uid",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@variables('dbt_URL')",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@json(\nconcat(\n'{\"jsonrpc\":\"2.0\",\"method\":\"cli_args\",\"id\":\"'\n,variables('request_uid'),\n'\",\"params\":{\"cli\":\"'\n,pipeline().parameters.dbt_command,'\"}}'\n))        \n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "set_request_token",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "send_dbt_command",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "request_token",
+					"value": {
+						"value": "@activity('send_dbt_command').output.result.request_token",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "wait_for_results",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "set_request_token",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@not(\nequals(\nvariables('result_state'),\n'running'\n))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "poll_dbt_results",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "set_new_request_uid",
+									"dependencyConditions": [
+										"Completed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": {
+									"value": "@variables('dbt_URL')",
+									"type": "Expression"
+								},
+								"method": "POST",
+								"body": {
+									"value": "@json(\nconcat(  \n'{\"jsonrpc\": \"2.0\",\"method\": \"poll\",\"id\": \"',\nvariables('request_uid'),\n'\",\"params\": {\"request_token\": \"',\nvariables('request_token'),\n'\",\"logs\": \"true\",\"logs_start\": 0}}\"}'\n))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "get_result_copy",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "poll_dbt_results",
+									"dependencyConditions": [
+										"Completed"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "result_state",
+								"value": {
+									"value": "@activity('poll_dbt_results').output.result.state",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Wait",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						},
+						{
+							"name": "set_new_request_uid",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Wait",
+									"dependencyConditions": [
+										"Completed"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "request_uid",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			},
+			{
+				"name": "set_request_uid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "request_uid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Log results",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "wait_for_results",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"additionalColumns": [
+							{
+								"name": "request_token",
+								"value": {
+									"value": "@variables('request_token')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "load_result",
+								"value": {
+									"value": "@variables('result_state')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "dbt_command",
+								"value": {
+									"value": "@pipeline().parameters.dbt_command",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "dbt_result_details",
+								"value": {
+									"value": "@string(activity('poll_dbt_results').output.result.results)",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "elapsed",
+								"value": {
+									"value": "@activity('poll_dbt_results').output.result.elapsed",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "dbt_end_time",
+								"value": {
+									"value": "@activity('poll_dbt_results').output.result.end",
+									"type": "Expression"
+								}
+							}
+						],
+						"sqlReaderQuery": "select top 1 * from dev.dbt_logs",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"value": "@json(\n'{\n    \"type\": \"TabularTranslator\",\n    \"mappings\": [\n        {\n            \"source\": {\n                \"name\": \"request_token\"\n            },\n            \"sink\": {\n                \"name\": \"uid\"                \n            }\n        },\n        {\n            \"source\": {\n                \"name\": \"dbt_end_time\"\n            },\n            \"sink\": {\n                \"name\": \"load_date\"\n            }\n        },\n        {\n            \"source\": {\n                \"name\": \"dbt_command\"\n            },\n            \"sink\": {\n                \"name\": \"command\"\n            }\n        },\n        {\n            \"source\": {\n                \"name\": \"elapsed\"\n            },\n            \"sink\": {\n                \"name\": \"duration\"\n            }\n        },\n        {\n            \"source\": {\n                \"name\": \"load_result\"\n            },\n            \"sink\": {\n                \"name\": \"status\"\n            }\n        },\n        {\n            \"source\": {\n                \"name\": \"dbt_result_details\"\n            },\n            \"sink\": {\n                \"name\": \"result_details\"\n            }\n        }\n    ]\n}\n')",
+						"type": "Expression"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Azure_Log",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Azure_Log",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"dbt_command": {
+				"type": "string",
+				"defaultValue": "test"
+			}
+		},
+		"variables": {
+			"request_token": {
+				"type": "String"
+			},
+			"dbt_URL": {
+				"type": "String",
+				"defaultValue": "http://dbt.doktorgyongy.hu:8081/jsonrpc"
+			},
+			"result_state": {
+				"type": "String"
+			},
+			"request_uid": {
+				"type": "String"
+			},
+			"result_details": {
+				"type": "Array"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-06-16T16:05:40Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

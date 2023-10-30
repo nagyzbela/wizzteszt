@@ -1,0 +1,30 @@
+{
+	"name": "wizz_lido_notam",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "wizz_blobs",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "NOTAM.txt",
+				"folderPath": "LIDO",
+				"container": "wizz"
+			},
+			"columnDelimiter": "\t",
+			"escapeChar": "\"",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": ">NOTAMPARSE<162|ICAO|UNKNOWN|NEW|UNKNOWN|LI  |1|A|23|  4536|     0|   |MR|XX|1687816800|1687838400|00|LIMC|-1|    -1|/2023/LI/1/A/LI_1_A_004536.NTM|1687767814.0000024607.002780|A4536/23 NOTAMN",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

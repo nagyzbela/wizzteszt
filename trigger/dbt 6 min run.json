@@ -1,0 +1,28 @@
+{
+	"name": "dbt 6 min run",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "dbtRunner",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"dbt_command": "run"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 6,
+				"startTime": "2023-06-13T09:34:00Z",
+				"endTime": "2023-06-14T09:34:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

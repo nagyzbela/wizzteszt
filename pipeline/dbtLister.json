@@ -1,0 +1,176 @@
+{
+	"name": "dbtLister",
+	"properties": {
+		"activities": [
+			{
+				"name": "send_dbt_command",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "set_request_uid",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@variables('dbt_URL')",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@json(\n    concat('{\"jsonrpc\":\"2.0\",\"method\":\"list\",\"id\":\"',\n    variables('request_uid'),'\",\n    \"params\":\n    { \"resource_types\": [\"model\",\"snapshot\"],\n    \"select\":[',\n    '\"source:',\n    replace(pipeline().parameters.hvr_source_tables,',','+\",\"source:')\n    ,'+\"]\n    }}'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "set_request_uid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "request_uid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get_results",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "send_dbt_command",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "result_state",
+					"value": {
+						"value": "@activity('send_dbt_command').output.result.output",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "get_results",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('result_state')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Appen to list",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "list_of_tables",
+								"value": {
+									"value": "@json(concat(\n    '{\n        \"table_name\":\"',item().name,'\",',\n        '\"table_type\":\"',item().resource_type,'\",',\n        if( \n            equals(item().resource_type,'snapshot'),\n            concat('\"unique_key\":\"',item().config.unique_key,'\",\"schema_name\":\"',item().config.target_schema,'\",'),\n            concat('\"unique_key\":[',item().config.unique_key,'],\"schema_name\":\"',item().config.schema,'\",')\n            ),\n        '\"depends_on\":[',item().depends_on.nodes,']',\n        '}'\n        ))\n\n",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "output_results",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "v_list_of_tables",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('list_of_tables')"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"parameters": {
+			"hvr_source_tables": {
+				"type": "string",
+				"defaultValue": "b_hvr_aims_flight.table1,b_hvr_aims_radar.radar_table1"
+			}
+		},
+		"variables": {
+			"request_token": {
+				"type": "String"
+			},
+			"dbt_URL": {
+				"type": "String",
+				"defaultValue": "http://dbt.doktorgyongy.hu:8081/jsonrpc"
+			},
+			"result_state": {
+				"type": "Array"
+			},
+			"request_uid": {
+				"type": "String"
+			},
+			"result_details": {
+				"type": "String"
+			},
+			"list_of_tables": {
+				"type": "Array"
+			},
+			"table_list": {
+				"type": "Array"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-06-29T13:16:03Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

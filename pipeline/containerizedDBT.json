@@ -1,0 +1,32 @@
+{
+	"name": "containerizedDBT",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/f41de60c-7d62-404b-94bc-dd7ff9d8d28c/resourceGroups/AndrasResource/providers/Microsoft.ContainerInstance/containerGroups/dbtcoins2/start?api-version=2021-09-01",
+					"method": "POST",
+					"body": "\"\"",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com/"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-07T14:26:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
