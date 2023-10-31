@@ -5,6 +5,8 @@
 			{
 				"name": "Copy_WeightHeader_Remark",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.11:00:00",
