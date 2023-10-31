@@ -136,6 +136,266 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "OFP_WeightHeader",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['DryOperatingWeight']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DryOperatingWeightEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['DryOperatingWeight']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "DryOperatingWeightEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['Load']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LoadEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['Load']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LoadEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ZeroFuelWeightEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ZeroFuelWeightEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['StructuralLimit']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ZeroFuelWeightStructuralLimitUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['StructuralLimit']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ZeroFuelWeightStructuralLimitValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TakeOffWeightEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TakeOffWeightEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['OperationalLimit']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TakeOffWeightOperationalLimitUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['OperationalLimit']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TakeOffWeightOperationalLimitValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['StructuralLimit']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TakeOffWeightStructuralLimitUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['StructuralLimit']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TakeOffWeightStructuralLimitValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LandingWeightEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LandingWeightEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['OperationalLimit']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LandingWeightOperationalLimitUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['OperationalLimit']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LandingWeightOperationalLimitValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['StructuralLimit']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LandingWeightStructuralLimitUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['StructuralLimit']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LandingWeightStructuralLimitValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSynapseAnalyticsTable1",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []

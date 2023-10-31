@@ -1,0 +1,427 @@
+{
+	"name": "AzureSynapseAnalyticsTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FlightPlanId",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DryOperatingWeightEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DryOperatingWeightActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DryOperatingWeightActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DryOperatingWeightDurationValue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DryOperatingWeightDurationCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "DryOperatingWeightDurationCorrectedValue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LoadEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LoadEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LoadActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LoadActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LoadDurationValue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LoadDurationCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadDurationCorrectedValue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ZeroFuelWeightEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightOperationalLimitUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightOperationalLimitValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightOperationalLimitCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightOperationalLimitCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightOperationalLimitCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightStructuralLimitUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightStructuralLimitValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightStructuralLimitCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightStructuralLimitCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "ZeroFuelWeightStructuralLimitCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ZeroFuelWeightReason",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightOperationalLimitUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightOperationalLimitValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightOperationalLimitCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightOperationalLimitCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightOperationalLimitCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightStructuralLimitUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightStructuralLimitValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightStructuralLimitCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightStructuralLimitCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TakeOffWeightStructuralLimitCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TakeOffWeightReason",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightOperationalLimitUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightOperationalLimitValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightOperationalLimitCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightOperationalLimitCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightOperationalLimitCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightStructuralLimitUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightStructuralLimitValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightStructuralLimitCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightStructuralLimitCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LandingWeightStructuralLimitCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LandingWeightReason",
+				"type": "varchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfLido",
+			"table": "OFP_WeightHeader"
+		}
+	}
+}
