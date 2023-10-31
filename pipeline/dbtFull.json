@@ -262,7 +262,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "index_value3",
+								"variableName": "index_value",
 								"value": {
 									"value": "@string(\nadd(\n    int(variables('counter'))\n    ,1 )\n    )",
 									"type": "Expression"
@@ -337,7 +337,7 @@
 				"type": "String",
 				"defaultValue": "1"
 			},
-			"index_value3": {
+			"index_value": {
 				"type": "String"
 			}
 		},
