@@ -1,0 +1,53 @@
+{
+	"name": "OFP_Waypoint",
+	"properties": {
+		"activities": [
+			{
+				"name": "OFP flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "WaypointRemarks",
+						"type": "DataFlowReference",
+						"parameters": {
+							"TCreatedId": {
+								"value": "@guid()",
+								"type": "Expression"
+							},
+							"TFileName": {
+								"value": "$$FILEPATH",
+								"type": "Expression"
+							},
+							"TLoadDate": {
+								"value": "@utcNow()",
+								"type": "Expression"
+							}
+						}
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "OFP_xml",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "ofp"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
