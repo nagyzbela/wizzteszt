@@ -62,7 +62,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['Airport']['airportName']"
+									"path": "['Airport']['@airportName']"
 								},
 								"sink": {
 									"name": "AirportName",
@@ -71,7 +71,7 @@
 							},
 							{
 								"source": {
-									"path": "['Airport']['airportFunction']"
+									"path": "['Airport']['@airportFunction']"
 								},
 								"sink": {
 									"name": "AirportFunction",
@@ -98,7 +98,7 @@
 							},
 							{
 								"source": {
-									"path": "['Airport']['SuitablePeriod']['from']"
+									"path": "['Airport']['SuitablePeriod']['@from']"
 								},
 								"sink": {
 									"name": "SuitablePeriodFrom",
@@ -107,7 +107,7 @@
 							},
 							{
 								"source": {
-									"path": "['Airport']['SuitablePeriod']['until']"
+									"path": "['Airport']['SuitablePeriod']['@until']"
 								},
 								"sink": {
 									"name": "SuitablePeriodTo",
