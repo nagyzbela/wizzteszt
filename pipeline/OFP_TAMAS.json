@@ -195,7 +195,8 @@
 		],
 		"parameters": {
 			"table_name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "OFP_AirportDataList"
 			}
 		},
 		"annotations": [],
