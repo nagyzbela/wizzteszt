@@ -178,6 +178,23 @@
 									"name": "FlightPlanId",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']"
+								},
+								"sink": {
+									"name": "RequiredHorizontalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']"
+								},
+								"sink": {
+									"name": "RequiredVerticalVisibility"
+								}
 							}
 						],
 						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']",
