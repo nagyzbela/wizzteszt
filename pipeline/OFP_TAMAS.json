@@ -167,6 +167,15 @@
 									"name": "TLoadDate",
 									"type": "DateTime"
 								}
+							},
+							{
+								"source": {
+									"path": "['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
 							}
 						],
 						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']",
