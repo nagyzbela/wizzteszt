@@ -145,33 +145,6 @@
 							},
 							{
 								"source": {
-									"path": "$['TFileName']"
-								},
-								"sink": {
-									"name": "TFileName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['TCreatedId']"
-								},
-								"sink": {
-									"name": "TCreatedId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['TLoadDate']"
-								},
-								"sink": {
-									"name": "TLoadDate",
-									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
 									"path": "['FlightPlan']['@flightPlanId']"
 								},
 								"sink": {
@@ -226,7 +199,7 @@
 							},
 							{
 								"source": {
-									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']['unit']"
+									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']['@unit']"
 								},
 								"sink": {
 									"name": "ConsideredHorizontalVisibilityUnit",
@@ -244,11 +217,38 @@
 							},
 							{
 								"source": {
-									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']['unit']"
+									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']['@unit']"
 								},
 								"sink": {
 									"name": "ConsideredVerticalVisibilityUnit",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						],
