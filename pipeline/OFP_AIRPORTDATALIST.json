@@ -50,6 +50,26 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['Remarks']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Remarks']['Remark']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Remarks']['Remark']['Paragraph']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Column_1']"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['AirportICAOCode']"
 								},
 								"sink": {
