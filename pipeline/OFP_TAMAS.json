@@ -125,19 +125,19 @@
 							},
 							{
 								"source": {
-									"path": "['TerminalProcedure']['procedureType']"
+									"path": "['TerminalProcedure']"
 								},
 								"sink": {
-									"name": "TerminalProcedureType",
+									"name": "TerminalProcedure",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['TerminalProcedure']"
+									"path": "['TerminalProcedure']['procedureType']"
 								},
 								"sink": {
-									"name": "TerminalProcedure",
+									"name": "TerminalProcedureType",
 									"type": "String"
 								}
 							},
@@ -169,7 +169,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']"
+						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']",
+						"mapComplexValuesToString": true
 					}
 				},
 				"inputs": [
