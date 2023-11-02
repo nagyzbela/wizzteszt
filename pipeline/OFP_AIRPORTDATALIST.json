@@ -1,5 +1,5 @@
 {
-	"name": "OFP_WEIGHTHEADER_TEST",
+	"name": "OFP_AIRPORTDATALIST",
 	"properties": {
 		"activities": [
 			{
@@ -72,11 +72,19 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
 								}
 							},
 							{
@@ -92,11 +100,19 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
 								}
 							},
 							{
@@ -147,10 +163,6 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['Text']"
-								},
-								"sink": {
-									"name": "Text",
-									"type": "String"
 								}
 							},
 							{
@@ -406,11 +418,19 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
 								}
 							},
 							{
@@ -976,11 +996,19 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
 								}
 							},
 							{
@@ -1131,6 +1159,10 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['AdequateAirports']['AdequateAirport'][0]['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
@@ -1286,11 +1318,19 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
 								}
 							},
 							{
@@ -1396,11 +1436,19 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
 								}
 							},
 							{
@@ -1416,6 +1464,10 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['PlannedRunway']"
+								},
+								"sink": {
+									"name": "PlannedRunway",
+									"type": "String"
 								}
 							},
 							{
@@ -1471,10 +1523,6 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['Text']"
-								},
-								"sink": {
-									"name": "Text",
-									"type": "String"
 								}
 							},
 							{
