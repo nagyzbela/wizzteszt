@@ -55,7 +55,121 @@
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['Airport']['airportName']"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['SuitablePeriod']['from']"
+								},
+								"sink": {
+									"name": "SuitablePeriodFrom",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['SuitablePeriod']['until']"
+								},
+								"sink": {
+									"name": "SuitablePeriodTo",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['PlannedRunway']"
+								},
+								"sink": {
+									"name": "PlannedRunway",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TerminalProcedure']['procedureType']"
+								},
+								"sink": {
+									"name": "TerminalProcedureType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TerminalProcedure']"
+								},
+								"sink": {
+									"name": "TerminalProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']"
+					}
 				},
 				"inputs": [
 					{
