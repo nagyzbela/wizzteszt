@@ -158,7 +158,7 @@
 								},
 								"sink": {
 									"name": "RequiredHorizontalVisibility",
-									"type": "Double"
+									"type": "Decimal"
 								}
 							},
 							{
@@ -176,7 +176,7 @@
 								},
 								"sink": {
 									"name": "RequiredVerticalVisibility",
-									"type": "Double"
+									"type": "Decimal"
 								}
 							},
 							{
@@ -194,7 +194,7 @@
 								},
 								"sink": {
 									"name": "ConsideredHorizontalVisibility",
-									"type": "Double"
+									"type": "Decimal"
 								}
 							},
 							{
@@ -212,7 +212,7 @@
 								},
 								"sink": {
 									"name": "ConsideredVerticalVisibility",
-									"type": "Double"
+									"type": "Decimal"
 								}
 							},
 							{
