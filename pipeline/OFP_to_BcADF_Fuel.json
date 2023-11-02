@@ -940,15 +940,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['RemarkType']"
-								},
-								"sink": {
-									"name": "RemarkType",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['Text']"
 								},
 								"sink": {
@@ -973,9 +964,18 @@
 									"name": "FlightPlanId",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Remarks']['Remark'][0]['@remarkType']"
+								},
+								"sink": {
+									"name": "RemarkType",
+									"type": "String"
+								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['RemarkType']",
 						"mapComplexValuesToString": true
 					}
 				},
