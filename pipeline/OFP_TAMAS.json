@@ -145,15 +145,6 @@
 							},
 							{
 								"source": {
-									"path": "['FlightPlan']['@flightPlanId']"
-								},
-								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']"
 								},
 								"sink": {
@@ -249,6 +240,15 @@
 								"sink": {
 									"name": "TLoadDate",
 									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
 								}
 							}
 						],
