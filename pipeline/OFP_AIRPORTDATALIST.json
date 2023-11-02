@@ -50,15 +50,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Airport']['@airportFunction']"
-								},
-								"sink": {
-									"name": "AirportFunction",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['AirportICAOCode']"
 								},
 								"sink": {
