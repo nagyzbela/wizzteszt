@@ -98,22 +98,22 @@
 							},
 							{
 								"source": {
-									"path": "['Airport']['SuitablePeriod']['@from']"
+									"path": "['SuitablePeriod']['@from']"
 								},
 								"sink": {
 									"name": "SuitablePeriodFrom",
 									"type": "DateTime",
-									"format": "yyyy-MM-ddThh:mm:ssK"
+									"format": ""
 								}
 							},
 							{
 								"source": {
-									"path": "['Airport']['SuitablePeriod']['@until']"
+									"path": "['SuitablePeriod']['@until']"
 								},
 								"sink": {
 									"name": "SuitablePeriodTo",
 									"type": "DateTime",
-									"format": "yyyy-MM-ddThh:mm:ssK"
+									"format": ""
 								}
 							},
 							{
