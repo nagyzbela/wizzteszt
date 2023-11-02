@@ -149,7 +149,7 @@
 								},
 								"sink": {
 									"name": "RequiredHorizontalVisibility",
-									"type": "String"
+									"type": "Double"
 								}
 							},
 							{
@@ -167,7 +167,7 @@
 								},
 								"sink": {
 									"name": "RequiredVerticalVisibility",
-									"type": "String"
+									"type": "Double"
 								}
 							},
 							{
@@ -185,7 +185,7 @@
 								},
 								"sink": {
 									"name": "ConsideredHorizontalVisibility",
-									"type": "String"
+									"type": "Double"
 								}
 							},
 							{
@@ -203,7 +203,7 @@
 								},
 								"sink": {
 									"name": "ConsideredVerticalVisibility",
-									"type": "String"
+									"type": "Double"
 								}
 							},
 							{
