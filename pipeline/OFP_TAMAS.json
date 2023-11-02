@@ -190,10 +190,65 @@
 							},
 							{
 								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']['@unit']"
+								},
+								"sink": {
+									"name": "RequiredHorizontalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']"
 								},
 								"sink": {
-									"name": "RequiredVerticalVisibility"
+									"name": "RequiredVerticalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']['@unit']"
+								},
+								"sink": {
+									"name": "RequiredVerticalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']"
+								},
+								"sink": {
+									"name": "ConsideredHorizontalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']['unit']"
+								},
+								"sink": {
+									"name": "ConsideredHorizontalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']"
+								},
+								"sink": {
+									"name": "ConsideredVerticalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']['unit']"
+								},
+								"sink": {
+									"name": "ConsideredVerticalVisibilityUnit",
+									"type": "String"
 								}
 							}
 						],
