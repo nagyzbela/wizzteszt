@@ -242,7 +242,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "delete \nFROM [BcAdfLido].[notam_tmp]\nwhere \nTCreatedid=@{variables('v_createdid')}",
+								"value": "delete \nFROM [BcAdfLido].[notam_tmp]\nwhere \nTCreatedid='@{variables('v_createdid')}'",
 								"type": "Expression"
 							}
 						}
