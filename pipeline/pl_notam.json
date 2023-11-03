@@ -177,7 +177,8 @@
 									"value": {
 										"value": "@variables('v_createdid')",
 										"type": "Expression"
-									}
+									},
+									"direction": "Input"
 								},
 								{
 									"name": "TLoadDate",
@@ -185,7 +186,8 @@
 									"value": {
 										"value": "@utcNow()",
 										"type": "Expression"
-									}
+									},
+									"direction": "Input"
 								}
 							],
 							"type": "Query",
