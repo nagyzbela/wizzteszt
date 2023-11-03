@@ -122,7 +122,7 @@
 						"referenceName": "synapse_table",
 						"type": "DatasetReference",
 						"parameters": {
-							"schema_name": "dbo",
+							"schema_name": "BcAdfLido",
 							"table_name": "notam_tmp"
 						}
 					}
