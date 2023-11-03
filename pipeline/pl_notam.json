@@ -132,7 +132,7 @@
 		"parameters": {
 			"InputFileName": {
 				"type": "string",
-				"defaultValue": "notam.txt"
+				"defaultValue": "NOTAM.txt"
 			}
 		},
 		"variables": {
