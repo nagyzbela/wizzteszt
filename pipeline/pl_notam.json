@@ -42,7 +42,7 @@
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							}
@@ -175,7 +175,15 @@
 									"name": "CreatedId",
 									"type": "String",
 									"value": {
-										"value": "@guid()",
+										"value": "@variables('v_createdid')",
+										"type": "Expression"
+									}
+								},
+								{
+									"name": "TLoadDate",
+									"type": "Datetime",
+									"value": {
+										"value": "@utcNow()",
 										"type": "Expression"
 									}
 								}
