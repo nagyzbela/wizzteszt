@@ -240,19 +240,11 @@
 				"typeProperties": {
 					"scripts": [
 						{
-							"parameters": [
-								{
-									"name": "CreatedId",
-									"type": "String",
-									"value": {
-										"value": "@variables('v_createdid')",
-										"type": "Expression"
-									},
-									"direction": "Input"
-								}
-							],
 							"type": "Query",
-							"text": "delete \nFROM [BcAdfLido].[notam_tmp]\nwhere \nTCreatedid=@TCreatedid\n"
+							"text": {
+								"value": "delete \nFROM [BcAdfLido].[notam_tmp]\nwhere \nTCreatedid=@{variables('v_createdid')}",
+								"type": "Expression"
+							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
