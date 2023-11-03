@@ -386,7 +386,8 @@
 					{
 						"activity": "Copy data to OFP_FuelHeader",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -527,7 +528,8 @@
 					{
 						"activity": "Copy data to OFP FuelStatistic",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -659,7 +661,8 @@
 					{
 						"activity": "Copy data to OFP TankeringInfo",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -800,7 +803,8 @@
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
@@ -932,7 +936,8 @@
 					{
 						"activity": "Copy data to OFP FuelHeader_Adjustment",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
