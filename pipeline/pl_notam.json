@@ -191,6 +191,8 @@
 			{
 				"name": "clear temp",
 				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "insert temp to notam",
