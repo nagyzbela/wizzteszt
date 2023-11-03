@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Notam to temp",
+				"name": "File to Notam temp",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -129,9 +129,16 @@
 				]
 			},
 			{
-				"name": "insert to notam",
+				"name": "insert temp to notam",
 				"type": "Script",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "File to Notam temp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
