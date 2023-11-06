@@ -61,7 +61,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['ScheduledTimeOfArrival']"
+									"path": "['ScheduledTimeOfArrival']"
 								},
 								"sink": {
 									"name": "ScheduledTimeOfArrival",
@@ -70,7 +70,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['Value']"
+									"path": "['OutTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "OutTimeEstimatedValue",
@@ -79,7 +79,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['Value']"
+									"path": "['OffTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "OffTimeEstimatedValue",
@@ -88,7 +88,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['Value']"
+									"path": "['OnTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "OnTimeEstimatedValue",
@@ -97,7 +97,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['Value']"
+									"path": "['InTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "InTimeEstimatedValue",
@@ -106,7 +106,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['Value']"
+									"path": "['BlockTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "BlockTimeEstimatedValue",
@@ -115,7 +115,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['Value']"
+									"path": "['TaxiOutTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "TaxiOutTimeEstimatedValue",
@@ -124,7 +124,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['Value']"
+									"path": "['FlightTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "FlightTimeEstimatedValue",
@@ -133,7 +133,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['Value']"
+									"path": "['TaxiInTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "TaxiInTimeEstimatedValue",
@@ -177,7 +177,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['AirportDataList']['FlightPlanSummary']"
+						"collectionReference": "$['FlightPlan']['FlightPlanSummary']"
 					}
 				},
 				"inputs": [
