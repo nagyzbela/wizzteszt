@@ -466,6 +466,14 @@
 							},
 							{
 								"source": {
+									"path": "['@analysedFuelText']"
+								},
+								"sink": {
+									"name": "AnalysedFuelText"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelCategory']"
 								},
 								"sink": {
