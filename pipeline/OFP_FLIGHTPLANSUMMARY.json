@@ -1,9 +1,9 @@
 {
-	"name": "OFP_AIRPORTDATALIST",
+	"name": "OFP_FLIGHTPLANSUMMARY",
 	"properties": {
 		"activities": [
 			{
-				"name": "OFP_AirportDataList",
+				"name": "OFP_FlightPlanSummary",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -62,157 +62,83 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['Airport']['@airportName']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['ScheduledTimeOfArrival']"
 								},
 								"sink": {
-									"name": "AirportName",
-									"type": "String"
+									"name": "ScheduledTimeOfArrival",
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"path": "['Airport']['@airportFunction']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "AirportFunction",
-									"type": "String"
+									"name": "OutTimeEstimatedValue",
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"path": "['Airport']['AirportICAOCode']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "AirportICAOCode",
-									"type": "String"
+									"name": "OffTimeEstimatedValue",
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"path": "['Airport']['AirportIATACode']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "AirportIATACode",
-									"type": "String"
+									"name": "OnTimeEstimatedValue",
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"path": "['SuitablePeriod']['@from']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "SuitablePeriodFrom",
-									"type": "DateTime",
-									"format": ""
+									"name": "InTimeEstimatedValue",
+									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"path": "['SuitablePeriod']['@until']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "SuitablePeriodTo",
-									"type": "DateTime",
-									"format": ""
+									"name": "BlockTimeEstimatedValue",
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
-									"path": "['PlannedRunway']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "PlannedRunway",
-									"type": "String"
+									"name": "TaxiOutTimeEstimatedValue",
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
-									"path": "['TerminalProcedure']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "TerminalProcedure",
-									"type": "String"
+									"name": "FlightTimeEstimatedValue",
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
-									"path": "['TerminalProcedure']['procedureType']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
-									"name": "TerminalProcedureType",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']"
-								},
-								"sink": {
-									"name": "RequiredHorizontalVisibility",
-									"type": "Double"
-								}
-							},
-							{
-								"source": {
-									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']['@unit']"
-								},
-								"sink": {
-									"name": "RequiredHorizontalVisibilityUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']"
-								},
-								"sink": {
-									"name": "RequiredVerticalVisibility",
-									"type": "Double"
-								}
-							},
-							{
-								"source": {
-									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']['@unit']"
-								},
-								"sink": {
-									"name": "RequiredVerticalVisibilityUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']"
-								},
-								"sink": {
-									"name": "ConsideredHorizontalVisibility",
-									"type": "Double"
-								}
-							},
-							{
-								"source": {
-									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']['@unit']"
-								},
-								"sink": {
-									"name": "ConsideredHorizontalVisibilityUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']"
-								},
-								"sink": {
-									"name": "ConsideredVerticalVisibility",
-									"type": "Double"
-								}
-							},
-							{
-								"source": {
-									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']['@unit']"
-								},
-								"sink": {
-									"name": "ConsideredVerticalVisibilityUnit",
-									"type": "String"
+									"name": "TaxiInTimeEstimatedValue",
+									"type": "Int32"
 								}
 							},
 							{
@@ -252,8 +178,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']",
-						"mapComplexValuesToString": true
+						"collectionReference": "$['FlightPlan']['AirportDataList']['FlightPlanSummary']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
