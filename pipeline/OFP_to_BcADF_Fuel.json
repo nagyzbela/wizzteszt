@@ -501,7 +501,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue']",
+						"collectionReference": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@analysedFuelText']",
 						"mapComplexValuesToString": false
 					}
 				},
