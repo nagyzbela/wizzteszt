@@ -5,8 +5,6 @@
 			{
 				"name": "Copy_WeightHeader_Remark",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.11:00:00",
@@ -123,7 +121,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['Remarks']['Remark']"
+						"collectionReference": "$['FlightPlan']['WeightHeader']['Remarks']['Remark']"
 					}
 				},
 				"inputs": [
@@ -1051,6 +1049,8 @@
 			{
 				"name": "Copy_Waypoint",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -1083,6 +1083,197 @@
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
+							{
+								"source": {
+									"path": "['Coordinates']['@latitude']"
+								},
+								"sink": {
+									"name": "CoordinatesLatitude",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Coordinates']['@longitude']"
+								},
+								"sink": {
+									"name": "CoordinatesLongitude",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Coordinates']['_value_']"
+								},
+								"sink": {
+									"name": "Coordinates",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airway']['@type']"
+								},
+								"sink": {
+									"name": "AirwayType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airway']['_value_']"
+								},
+								"sink": {
+									"name": "Airway",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SegmentWind']['Direction']['Value']['@type']"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SegmentWind']['Direction']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SegmentWind']['Direction']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['SegmentWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['SegmentWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tropopause']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tropopause']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingGroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingGroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['CumulatedFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "['RemainingFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Function']"
+								}
+							},
+							{
+								"source": {
+									"path": "['@sequenceId']"
+								}
+							},
+							{
+								"source": {
+									"path": "['@waypointId']"
+								}
+							},
+							{
+								"source": {
+									"path": "['@waypointName']"
+								}
+							},
+							{
+								"source": {
+									"path": "['@waypointLongName']"
+								}
+							},
+							{
+								"source": {
+									"path": "['@countryICAOCode']"
+								},
+								"sink": {
+									"name": "CountryICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Waypoints']['lsya:LCBNATIdentifierExtension']['lsya:MNPSAirspaceCrossed']['@value']"
+								}
+							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['M633Header']['@timestamp']"
@@ -1186,21 +1377,6 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['FlightInfo']['@captain']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['Text']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['@sequence']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['@remarkType']"
 								}
 							},
 							{
@@ -1430,41 +1606,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Duration']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportIATACode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportName']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
 								}
 							},
@@ -1600,36 +1741,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@affectedItem']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@deviationReasonChange']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['@deviationReason']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['WeightHeader']['DryOperatingWeight']['EstimatedWeight']['Value']['@unit']"
 								}
 							},
@@ -1740,191 +1851,6 @@
 							},
 							{
 								"source": {
-									"path": "['Coordinates']['@latitude']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Coordinates']['@longitude']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Coordinates']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Airway']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Airway']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['SegmentWind']['Direction']['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "['SegmentWind']['Direction']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['SegmentWind']['Direction']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['SegmentWind']['Speed']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['SegmentWind']['Speed']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tropopause']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tropopause']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['SegmentTrack'][0]['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['SegmentTrack'][0]['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['SegmentTrack'][0]['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['RemainingGroundDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['RemainingGroundDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['CumulatedFlightTime']['EstimatedTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "['RemainingFlightTime']['EstimatedTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['AircraftWeight']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['AircraftWeight']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['MinimumFuelOnBoard']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['MinimumFuelOnBoard']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Function']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@sequenceId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@waypointId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@waypointName']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@waypointLongName']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@countryICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['Waypoints']['lsya:LCBNATIdentifierExtension']['lsya:MNPSAirspaceCrossed']['@value']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FlightPlanSummary']['ScheduledTimeOfArrival']"
 								}
 							},
@@ -2011,6 +1937,201 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['Condition']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['@criticalPositionType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['@sequenceId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ETOPSSummary']['@borderTime']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ETOPSSummary']['@ruleTime']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelCategory']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['NumberOfConsideredFlights']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['Text']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['@sequence']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@priority']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringProfit']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringProfit']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@category']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@computedTime']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['Text']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['@sequence']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['Remarks']['Remark'][0]['@remarkType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportIATACode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportFunction']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@affectedItem']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@deviationReasonChange']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['@deviationReason']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['OutboundTrack'][0]['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['OutboundTrack'][0]['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack'][0]['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack'][0]['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack'][0]['Value']['_value_']"
 								}
 							},
 							{
@@ -2160,32 +2281,12 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['@criticalPositionType']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['@sequenceId']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['AdequateAirports']['AdequateAirport'][0]['AirportICAOCode']"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['AdequateAirports']['AdequateAirport'][0]['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['@borderTime']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['@ruleTime']"
 								}
 							},
 							{
@@ -2480,16 +2581,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelCategory']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['NumberOfConsideredFlights']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@elapsedTime']"
 								}
 							},
@@ -2506,61 +2597,6 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['Text']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['@sequence']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@priority']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringProfit']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringProfit']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@category']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@computedTime']"
 								}
 							}
 						],
