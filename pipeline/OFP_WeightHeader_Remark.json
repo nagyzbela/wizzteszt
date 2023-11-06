@@ -1087,6 +1087,105 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "['@DataType']"
+								},
+								"sink": {
+									"name": "DataType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@AlternateRouteAirportIATACode']"
+								},
+								"sink": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@SequenceId']"
+								},
+								"sink": {
+									"name": "SequenceId",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['@WaypointId']"
+								},
+								"sink": {
+									"name": "WaypointId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@WaypointName']"
+								},
+								"sink": {
+									"name": "WaypointName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@countryICAOCode']"
+								},
+								"sink": {
+									"name": "CountryICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@waypointLongName']"
+								},
+								"sink": {
+									"name": "WaypointLongName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@passed']"
+								},
+								"sink": {
+									"name": "Passed",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['@updateRequested']"
+								},
+								"sink": {
+									"name": "UpdateRequested",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['@creationMethod']"
+								},
+								"sink": {
+									"name": "CreationMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@deleted']"
+								},
+								"sink": {
+									"name": "Deleted",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "['Coordinates']['@latitude']"
 								},
 								"sink": {
@@ -1132,6 +1231,132 @@
 							},
 							{
 								"source": {
+									"path": "['Altitude']['EstimatedAltitude']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['EstimatedAltitude']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['EstimatedAltitude']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['EstimatedAltitude']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['ActualAltitude']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AltitudeActualValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['ActualAltitude']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AltitudeActualUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['ActualAltitude']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AltitudeActualCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['ActualAltitude']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AltitudeActualCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['ActualAltitude']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AltitudeActualCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumSafeAltitude']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumSafeAltitude']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumSafeAltitude']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumSafeAltitude']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumSafeAltitude']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "['SegmentWind']['Direction']['Value']['@type']"
 								},
 								"sink": {
@@ -1159,1446 +1384,1685 @@
 							},
 							{
 								"source": {
-									"path": "['SegmentWind']['Speed']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['SegmentWind']['Speed']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tropopause']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tropopause']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['RemainingGroundDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['RemainingGroundDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['CumulatedFlightTime']['EstimatedTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "['RemainingFlightTime']['EstimatedTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['AircraftWeight']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['AircraftWeight']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['MinimumFuelOnBoard']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['MinimumFuelOnBoard']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Function']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@sequenceId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@waypointId']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@waypointName']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@waypointLongName']"
-								}
-							},
-							{
-								"source": {
-									"path": "['@countryICAOCode']"
+									"path": "['SegmentWind']['Direction']['CorrectedValue']['_value_']"
 								},
 								"sink": {
-									"name": "CountryICAOCode",
+									"name": "SegmentWindDirectionCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['SegmentWind']['Direction']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValueSource",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['Waypoints']['lsya:LCBNATIdentifierExtension']['lsya:MNPSAirspaceCrossed']['@value']"
+									"path": "['SegmentWind']['Direction']['CorrectedValue']['@type']"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValueType",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633Header']['@timestamp']"
+									"path": "['SegmentWind']['Direction']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633Header']['@versionNumber']"
+									"path": "['SegmentWind']['Speed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightIdentifier']"
+									"path": "['SegmentWind']['Speed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['CommercialFlightNumber']"
+									"path": "['SegmentWind']['Speed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['@airlineIATACode']"
+									"path": "['SegmentWind']['Speed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['@number']"
+									"path": "['SegmentWind']['Speed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportICAOCode']"
+									"path": "['SegmentWindComponent']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentWindComponentValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportIATACode']"
+									"path": "['SegmentWindComponent']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentWindComponentUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['@airportFunction']"
+									"path": "['SegmentWindComponent']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentWindComponentCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['@airportName']"
+									"path": "['SegmentWindComponent']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentWindComponentCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['AirportICAOCode']"
+									"path": "['SegmentWindComponent']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "SegmentWindComponentCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['AirportIATACode']"
+									"path": "['SegmentShearRate']['SegmentVerticalWindChange']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['@airportFunction']"
+									"path": "['SegmentShearRate']['SegmentVerticalWindChange']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['@airportName']"
+									"path": "['SegmentShearRate']['SegmentVerticalWindChange']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@flightOriginDate']"
+									"path": "['SegmentShearRate']['SegmentVerticalWindChange']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@scheduledTimeOfDeparture']"
+									"path": "['SegmentShearRate']['SegmentVerticalWindChange']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Aircraft']['AircraftModel']['AircraftICAOType']"
+									"path": "['SegmentShearRate']['AltitudeDifference']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentShearRateAltitudeDifference",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Aircraft']['AircraftModel']['@airlineSpecificSubType']"
+									"path": "['SegmentShearRate']['AltitudeDifference']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentShearRateAltitudeDifferenceUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Aircraft']['@aircraftRegistration']"
+									"path": "['SegmentTemperature']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentTemperatureValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightInfo']['@aTCCallsign']"
+									"path": "['SegmentTemperature']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentTemperatureUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightInfo']['@captain']"
+									"path": "['SegmentTemperature']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentTemperatureCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorName']['@authorType']"
+									"path": "['SegmentTemperature']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentTemperatureCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorName']['_value_']"
+									"path": "['SegmentTemperature']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "SegmentTemperatureCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['PhoneNumber']"
+									"path": "['SegmentISADeviation']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentISADeviationValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['TelexAddress']"
+									"path": "['SegmentISADeviation']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentISADeviationUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['DispatchOffice']"
+									"path": "['SegmentISADeviation']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "SegmentISADeviationCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['PerformanceFactor']"
+									"path": "['SegmentISADeviation']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "SegmentISADeviationCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['Value']['@unit']"
+									"path": "['SegmentISADeviation']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "SegmentISADeviationCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['Value']['_value_']"
+									"path": "['Tropopause']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TropopauseUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
+									"path": "['Tropopause']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TropopauseValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['@unit']"
+									"path": "['Tropopause']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TropopauseCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['_value_']"
+									"path": "['Tropopause']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TropopauseCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
+									"path": "['Tropopause']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TropopauseCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['Value']['_value_']"
+									"path": "['TrueAirSpeed']['EstimatedSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['Value']['@unit']"
+									"path": "['TrueAirSpeed']['EstimatedSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['Value']['_value_']"
+									"path": "['TrueAirSpeed']['EstimatedSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['Value']['@unit']"
+									"path": "['TrueAirSpeed']['EstimatedSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['Value']['_value_']"
+									"path": "['TrueAirSpeed']['EstimatedSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['Value']['@unit']"
+									"path": "['TrueAirSpeed']['ActualSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['Value']['_value_']"
+									"path": "['TrueAirSpeed']['ActualSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['Value']['@unit']"
+									"path": "['TrueAirSpeed']['ActualSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['Value']['_value_']"
+									"path": "['TrueAirSpeed']['ActualSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['CostIndex']['Value']"
+									"path": "['TrueAirSpeed']['ActualSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['@procedure']"
+									"path": "['MachNumber']['EstimatedMachNumber']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "MachNumberEstimatedMachNumberValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['CostIndex']['Value']"
+									"path": "['MachNumber']['EstimatedMachNumber']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "MachNumberEstimatedMachNumberCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['@procedure']"
+									"path": "['MachNumber']['ActualMachNumber']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "MachNumberActualMachNumberValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['CostIndex']['Value']"
+									"path": "['MachNumber']['ActualMachNumber']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "MachNumberActualMachNumberCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['@procedure']"
+									"path": "['IndicatedAirSpeed']['EstimatedSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['RouteDescription']"
+									"path": "['IndicatedAirSpeed']['EstimatedSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['Value']['@unit']"
+									"path": "['IndicatedAirSpeed']['EstimatedSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['Value']['_value_']"
+									"path": "['IndicatedAirSpeed']['EstimatedSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['Value']['@unit']"
+									"path": "['IndicatedAirSpeed']['EstimatedSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['Value']['_value_']"
+									"path": "['IndicatedAirSpeed']['ActualSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GreatCircleDistance']['Value']['@unit']"
+									"path": "['IndicatedAirSpeed']['ActualSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GreatCircleDistance']['Value']['_value_']"
+									"path": "['IndicatedAirSpeed']['ActualSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['@routeName']"
+									"path": "['IndicatedAirSpeed']['ActualSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['@optimization']"
+									"path": "['IndicatedAirSpeed']['ActualSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['lsya:FlightPlanHeaderExtension']['lsya:LCBTaxiFuelFlowExtension']['Value']['@unit']"
+									"path": "['GroundSpeed']['EstimatedSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanHeader']['lsya:FlightPlanHeaderExtension']['lsya:LCBTaxiFuelFlowExtension']['Value']['_value_']"
+									"path": "['GroundSpeed']['EstimatedSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['GroundSpeed']['EstimatedSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['GroundSpeed']['EstimatedSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['Duration']['Value']"
+									"path": "['GroundSpeed']['ActualSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ContingencyFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['GroundSpeed']['ActualSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ContingencyFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['GroundSpeed']['ActualSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ContingencyFuel']['Duration']['Value']"
+									"path": "['GroundSpeed']['ActualSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ContingencyFuel']['ContingencyPolicy']['@policyName']"
+									"path": "['GroundSpeed']['ActualSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+									"path": "['GroundDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GroundDistanceValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+									"path": "['GroundDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GroundDistanceUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['FinalReserve']['Duration']['Value']"
+									"path": "['GroundDistance']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['GroundDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['GroundDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ETOPSFuel']['Duration']['Value']"
+									"path": "['RemainingGroundDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['@unit']"
+									"path": "['RemainingGroundDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['_value_']"
+									"path": "['RemainingGroundDistance']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['@unit']"
+									"path": "['RemainingGroundDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['_value_']"
+									"path": "['RemainingGroundDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['@unit']"
+									"path": "['AirDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AirDistanceValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['_value_']"
+									"path": "['AirDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AirDistanceUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['@unit']"
+									"path": "['AirDistance']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['_value_']"
+									"path": "['AirDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['@reason']"
+									"path": "['AirDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['RemainingAirDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['RemainingAirDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['Duration']['Value']"
+									"path": "['RemainingAirDistance']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['RemainingAirDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['RemainingAirDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['Duration']['Value']"
+									"path": "['TimeFromPreviousWaypoint']['EstimatedTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['TimeFromPreviousWaypoint']['EstimatedTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['TimeFromPreviousWaypoint']['EstimatedTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Duration']['Value']"
+									"path": "['TimeFromPreviousWaypoint']['ActualTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointActualTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['TimeFromPreviousWaypoint']['ActualTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointActualTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['TimeFromPreviousWaypoint']['ActualTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointActualTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['Duration']['Value']"
+									"path": "['TimeOverWaypoint']['EstimatedTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TimeOverWaypointEstimatedTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['DryOperatingWeight']['EstimatedWeight']['Value']['@unit']"
+									"path": "['TimeOverWaypoint']['EstimatedTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TimeOverWaypointEstimatedTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['DryOperatingWeight']['EstimatedWeight']['Value']['_value_']"
+									"path": "['TimeOverWaypoint']['EstimatedTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TimeOverWaypointEstimatedTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['Load']['EstimatedWeight']['Value']['@unit']"
+									"path": "['TimeOverWaypoint']['ActualTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TimeOverWaypointActualTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['Load']['EstimatedWeight']['Value']['_value_']"
+									"path": "['TimeOverWaypoint']['ActualTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TimeOverWaypointActualTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['EstimatedWeight']['Value']['@unit']"
+									"path": "['TimeOverWaypoint']['ActualTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TimeOverWaypointActualTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['EstimatedWeight']['Value']['_value_']"
+									"path": "['CumulatedFlightTime']['EstimatedTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeEstimatedTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['StructuralLimit']['Value']['@unit']"
+									"path": "['CumulatedFlightTime']['EstimatedTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['ZeroFuelWeight']['StructuralLimit']['Value']['_value_']"
+									"path": "['CumulatedFlightTime']['EstimatedTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['EstimatedWeight']['Value']['@unit']"
+									"path": "['CumulatedFlightTime']['ActualTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeActualTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['EstimatedWeight']['Value']['_value_']"
+									"path": "['CumulatedFlightTime']['ActualTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeActualTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['OperationalLimit']['Value']['@unit']"
+									"path": "['CumulatedFlightTime']['ActualTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeActualTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['OperationalLimit']['Value']['_value_']"
+									"path": "['RemainingFlightTime']['EstimatedTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeEstimatedTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['StructuralLimit']['Value']['@unit']"
+									"path": "['RemainingFlightTime']['EstimatedTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeEstimatedTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['TakeoffWeight']['StructuralLimit']['Value']['_value_']"
+									"path": "['RemainingFlightTime']['EstimatedTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeEstimatedTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['EstimatedWeight']['Value']['@unit']"
+									"path": "['RemainingFlightTime']['ActualTime']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeActualTimeValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['EstimatedWeight']['Value']['_value_']"
+									"path": "['RemainingFlightTime']['ActualTime']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeActualTimeCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['OperationalLimit']['Value']['@unit']"
+									"path": "['RemainingFlightTime']['ActualTime']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeActualTimeCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['OperationalLimit']['Value']['_value_']"
+									"path": "['BurnOff']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['StructuralLimit']['Value']['@unit']"
+									"path": "['BurnOff']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['LandingWeight']['StructuralLimit']['Value']['_value_']"
+									"path": "['BurnOff']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['lsya:WeightHeaderExtension']['lsya:LCBTaxiWeightExtension']['lsya:StructuralLimit']['Value']['@unit']"
+									"path": "['BurnOff']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['WeightHeader']['lsya:WeightHeaderExtension']['lsya:LCBTaxiWeightExtension']['lsya:StructuralLimit']['Value']['_value_']"
+									"path": "['BurnOff']['EstimatedWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['ScheduledTimeOfArrival']"
+									"path": "['BurnOff']['ActualWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['Value']"
+									"path": "['BurnOff']['ActualWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['Value']"
+									"path": "['BurnOff']['ActualWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['Value']"
+									"path": "['BurnOff']['ActualWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['Value']"
+									"path": "['BurnOff']['ActualWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['Value']"
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['Value']"
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['Value']"
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['Value']"
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['NonStandardFlightPlanningType']['ETOPS']"
+									"path": "['CumulatedBurnOff']['EstimatedWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['PositionName']"
+									"path": "['CumulatedBurnOff']['ActualWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['Coordinates']['@latitude']"
+									"path": "['CumulatedBurnOff']['ActualWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['Coordinates']['@longitude']"
+									"path": "['CumulatedBurnOff']['ActualWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['Coordinates']['_value_']"
+									"path": "['CumulatedBurnOff']['ActualWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['CriticalTime']['Value']"
+									"path": "['CumulatedBurnOff']['ActualWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['FuelOnBoard']['Value']['@unit']"
+									"path": "['CumulatedBurnOffDifference']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['FuelOnBoard']['Value']['_value_']"
+									"path": "['CumulatedBurnOffDifference']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['Condition']"
+									"path": "['CumulatedBurnOffDifference']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['@criticalPositionType']"
+									"path": "['CumulatedBurnOffDifference']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['@sequenceId']"
+									"path": "['CumulatedBurnOffDifference']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['@borderTime']"
+									"path": "['CalculatedFuelOnBoard']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['@ruleTime']"
+									"path": "['CalculatedFuelOnBoard']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelCategory']"
+									"path": "['CalculatedFuelOnBoard']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['NumberOfConsideredFlights']"
+									"path": "['CalculatedFuelOnBoard']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['Text']"
+									"path": "['CalculatedFuelOnBoard']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['@sequence']"
+									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@priority']"
+									"path": "['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['_value_']"
+									"path": "['FuelOnBoard']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['@unit']"
+									"path": "['FuelOnBoard']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValueUnit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['_value_']"
+									"path": "['FuelOnBoard']['EstimatedWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValueSource",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringProfit']['@unit']"
+									"path": "['FuelOnBoard']['ActualWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TankeringInfo']['TankeringProfit']['_value_']"
+									"path": "['FuelOnBoard']['ActualWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoard']['ActualWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoard']['ActualWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoard']['ActualWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoardDifference']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoardDifference']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoardDifference']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoardDifference']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelOnBoardDifference']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LeakDetection']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LeakDetectionValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['LeakDetection']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LeakDetectionUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LeakDetection']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "LeakDetectionCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['LeakDetection']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "LeakDetectionCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['LeakDetection']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "LeakDetectionCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['EstimatedWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['ActualWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['ActualWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['ActualWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['ActualWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AircraftWeight']['ActualWeight']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MinimumFuelOnBoard']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airspace']['@airspaceICAOCode']"
+								},
+								"sink": {
+									"name": "AirspaceAirspaceICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airspace']['AirspaceName']['_value_']"
+								},
+								"sink": {
+									"name": "AirspaceAirspaceName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airspace']['RadioFrequency']['_value_']"
+								},
+								"sink": {
+									"name": "AirspaceRadioFrequency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GroundSpeed']['EstimatedSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Altitude']['EstimatedAltitude']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedValue",
+									"type": "Single"
 								}
 							},
 							{
 								"source": {
 									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['@category']"
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['@computedTime']"
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['Text']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['Paragraph']['@sequence']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['@remarkType']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Duration']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportIATACode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportName']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@affectedItem']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@deviationReasonChange']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['@deviationReason']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['SegmentTrack'][0]['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['SegmentTrack'][0]['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['SegmentTrack'][0]['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Airport']['AirportICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Airport']['AirportIATACode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Airport']['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['RemainingFlightTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['RemainingAirDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['RemainingAirDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['RemainingGroundDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['RemainingGroundDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Altitude']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Altitude']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['MinimumSafeAltitude']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['MinimumSafeAltitude']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['IcingConditionFuel']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['IcingConditionFuel']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['CriticalFuel']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['CriticalFuel']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['CruiseProcedure']['@procedure']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWind']['Direction']['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWind']['Direction']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWind']['Direction']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWind']['Speed']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWind']['Speed']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWindComponent']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageWindComponent']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageISADeviation']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['AverageISADeviation']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Tracks']['SegmentTrack']['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Tracks']['SegmentTrack']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['SuitableAirport'][0]['Tracks']['SegmentTrack']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['AdequateAirports']['AdequateAirport'][0]['AirportICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['ETOPSSummary']['AdequateAirports']['AdequateAirport'][0]['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Coordinates']['@latitude']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Coordinates']['@longitude']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Coordinates']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Airway']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Airway']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Tropopause']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Tropopause']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['CumulatedFlightTime']['EstimatedTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['RemainingFlightTime']['EstimatedTime']['Value']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['Function']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['@sequenceId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['@waypointId']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['@waypointName']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['@waypointLongName']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Waypoints']['Waypoint'][0]['@countryICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Status']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Airport']['AirportICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Airport']['AirportIATACode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Airport']['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['Airport']['@airportName']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWind']['Direction']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWind']['Direction']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWind']['Speed']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWindComponent']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageWindComponent']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageISADeviation']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AverageISADeviation']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['InitialAltitude']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['InitialAltitude']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['RouteDescription']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['GroundDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['GroundDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AirDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['AirDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['GreatCircleDistance']['Value']['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateRoutes']['AlternateRoute'][0]['RouteInformation']['GreatCircleDistance']['Value']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['AirportICAOCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['AirportIATACode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['@airportFunction']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['Airport']['@airportName']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['PlannedRunway']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['TerminalProcedure']['@procedureType']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['TerminalProcedure']['_value_']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['SuitablePeriod']['@from']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AirportDataList']['AirportData'][0]['SuitablePeriod']['@until']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@elapsedTime']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@analysedFuelText']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['_value_']"
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						],
