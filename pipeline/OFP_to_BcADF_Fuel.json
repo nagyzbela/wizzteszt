@@ -405,15 +405,21 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": ""
+								"value": "$$FILEPATH"
 							},
 							{
 								"name": "TCreatedId",
-								"value": ""
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TLoadDate",
-								"value": ""
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
