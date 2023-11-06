@@ -1114,7 +1114,7 @@
 							},
 							{
 								"source": {
-									"path": "['@AlternateRouteAirportIATACode']"
+									"path": "['@alternateRouteAirportIATACode']"
 								},
 								"sink": {
 									"name": "AlternateRouteAirportIATACode",
