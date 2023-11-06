@@ -430,6 +430,33 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "['@elapsedTime']"
+								},
+								"sink": {
+									"name": "AnalysedFuelElapsedTime",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['@unit']"
+								},
+								"sink": {
+									"name": "AnalysedFuelUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['\\'_value_\\'']"
+								},
+								"sink": {
+									"name": "AnalysedFuelValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelCategory']"
 								},
 								"sink": {
@@ -466,42 +493,30 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@elapsedTime']"
+									"path": "$['TCreatedId']"
 								},
 								"sink": {
-									"name": "AnalysedFuelElapsedTime",
-									"type": "Int32"
+									"name": "TCreatedId"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@unit']"
+									"path": "$['TLoadDate']"
 								},
 								"sink": {
-									"name": "AnalysedFuelUnit",
-									"type": "String"
+									"name": "TLoadDate"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@analysedFuelText']"
+									"path": "$['TFileName']"
 								},
 								"sink": {
-									"name": "AnalysedFuelText",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['_value_']"
-								},
-								"sink": {
-									"name": "AnalysedFuelValue",
-									"type": "Single"
+									"name": "TFileName"
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue'][0]['@analysedFuelText']",
+						"collectionReference": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['AnalysedFuelValue']",
 						"mapComplexValuesToString": false
 					}
 				},
