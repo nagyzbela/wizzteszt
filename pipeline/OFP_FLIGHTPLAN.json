@@ -71,6 +71,15 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['@category']"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['@computedTime']"
 								},
 								"sink": {
@@ -85,6 +94,78 @@
 								"sink": {
 									"name": "CancelsId",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@linkedFlightPlan']"
+								},
+								"sink": {
+									"name": "LinkedFlightPlan",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['HeaderVersionNumber']"
+								},
+								"sink": {
+									"name": "HeaderVersionNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['HeaderTimestamp']"
+								},
+								"sink": {
+									"name": "HeaderTimestamp",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightOriginDate']"
+								},
+								"sink": {
+									"name": "FlightOriginDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@ScheduledTimeOfDeparture']"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						],
