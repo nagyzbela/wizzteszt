@@ -439,24 +439,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['@elapsedTime']"
-								},
-								"sink": {
-									"name": "AnalysedFuelElapsedTime",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"path": "['@elapsedTime']"
-								},
-								"sink": {
-									"name": "AnalysedFuelElapsedTime",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
 									"path": "['@unit']"
 								},
 								"sink": {
