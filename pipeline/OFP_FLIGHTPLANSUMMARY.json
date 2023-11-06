@@ -111,7 +111,7 @@
 								},
 								"sink": {
 									"name": "BlockTimeEstimatedValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -120,7 +120,7 @@
 								},
 								"sink": {
 									"name": "TaxiOutTimeEstimatedValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -129,7 +129,7 @@
 								},
 								"sink": {
 									"name": "FlightTimeEstimatedValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -138,7 +138,7 @@
 								},
 								"sink": {
 									"name": "TaxiInTimeEstimatedValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
