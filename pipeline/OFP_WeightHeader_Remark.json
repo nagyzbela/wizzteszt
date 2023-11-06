@@ -1051,8 +1051,6 @@
 			{
 				"name": "Copy_Waypoint",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -1065,6 +1063,26 @@
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -1105,7 +1123,7 @@
 							},
 							{
 								"source": {
-									"path": "['@SequenceId']"
+									"path": "['@sequenceId']"
 								},
 								"sink": {
 									"name": "SequenceId",
