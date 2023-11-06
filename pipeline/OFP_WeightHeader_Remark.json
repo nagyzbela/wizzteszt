@@ -394,7 +394,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSynapseAnalyticsTable1",
+						"referenceName": "OFP_WeightHeader",
 						"type": "DatasetReference"
 					}
 				]
