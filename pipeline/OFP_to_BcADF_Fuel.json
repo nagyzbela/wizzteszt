@@ -463,7 +463,7 @@
 							},
 							{
 								"source": {
-									"path": "['\\'_value_\\'']"
+									"path": "['_value_']"
 								},
 								"sink": {
 									"name": "AnalysedFuelValue",
