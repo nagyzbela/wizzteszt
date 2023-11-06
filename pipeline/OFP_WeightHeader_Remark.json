@@ -142,6 +142,8 @@
 			{
 				"name": "OFP_WeightHeader",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -187,8 +189,7 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"writeBehavior": "Insert",
-						"sqlWriterUseTableLock": false
+						"writeBehavior": "Insert"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -1003,6 +1004,33 @@
 									"name": "FlightPlanId",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
 							}
 						]
 					}
@@ -1016,6 +1044,52 @@
 				"outputs": [
 					{
 						"referenceName": "OFP_WeightHeader",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "OFP_Waypoint",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OFP_Waypoint",
 						"type": "DatasetReference"
 					}
 				]
