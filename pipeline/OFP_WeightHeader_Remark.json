@@ -1132,7 +1132,7 @@
 							},
 							{
 								"source": {
-									"path": "['@WaypointId']"
+									"path": "['@waypointId']"
 								},
 								"sink": {
 									"name": "WaypointId",
@@ -1141,7 +1141,7 @@
 							},
 							{
 								"source": {
-									"path": "['@WaypointName']"
+									"path": "['@waypointName']"
 								},
 								"sink": {
 									"name": "WaypointName",
