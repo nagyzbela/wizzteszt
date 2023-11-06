@@ -56,7 +56,6 @@
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
-					"enableSkipIncompatibleRow": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -161,7 +160,7 @@
 							},
 							{
 								"source": {
-									"path": "$['TCreatedId']"
+									"path": "$['Column_2']"
 								},
 								"sink": {
 									"name": "TCreatedId",
@@ -178,8 +177,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['AirportDataList']['FlightPlanSummary']",
-						"mapComplexValuesToString": false
+						"collectionReference": "$['FlightPlan']['AirportDataList']['FlightPlanSummary']"
 					}
 				},
 				"inputs": [
@@ -204,8 +202,7 @@
 		],
 		"parameters": {
 			"table_name": {
-				"type": "string",
-				"defaultValue": "OFP_AirportDataList"
+				"type": "string"
 			}
 		},
 		"annotations": [],
