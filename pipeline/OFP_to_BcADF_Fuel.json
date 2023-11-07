@@ -785,11 +785,17 @@
 							},
 							{
 								"name": "TCreatedId",
-								"value": "@guid()"
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TLoadDate",
-								"value": "@utcNow()"
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -806,7 +812,7 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true
+						"writeBehavior": "Insert"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -862,15 +868,6 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['AlternateFuel']['Airport']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Duration']['Value']"
-								},
-								"sink": {
-									"name": "DurationValue",
-									"type": "Int32"
 								}
 							},
 							{
