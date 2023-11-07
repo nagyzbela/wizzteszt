@@ -820,26 +820,22 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
-								},
-								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
+									"path": "$['FlightPlan']['AlternateFuels']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']"
+									"path": "$['FlightPlan']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['EstimatedWeight']"
+									"path": "$['FlightPlan']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['EstimatedWeight']['@unit']"
+									"path": "$['FlightPlan']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "EstimatedWeightUnit",
@@ -848,17 +844,20 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['EstimatedWeight']['_value_']"
+									"path": "$['FlightPlan']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "EstimatedWeightValue"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Duration']"
+									"path": "$['FlightPlan']['AlternateFuels']['Duration']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Duration']['Value']"
+									"path": "$['FlightPlan']['AlternateFuels']['Duration']['Value']"
 								},
 								"sink": {
 									"name": "DurationValue",
@@ -867,7 +866,48 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Airport']"
+									"path": "$['FlightPlan']['AlternateFuels']['Airport']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuels']['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuels']['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuels']['Airport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuels']['Airport']['@airportName']"
+								},
+								"sink": {
+									"name": "AirportName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
 								}
 							},
 							{
