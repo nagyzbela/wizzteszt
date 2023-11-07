@@ -593,11 +593,17 @@
 							},
 							{
 								"name": "TCreatedId",
-								"value": "@guid()"
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TLoadDate",
-								"value": "@utcNow()"
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -636,6 +642,24 @@
 								},
 								"sink": {
 									"name": "TankeringAdvice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@reason']"
+								},
+								"sink": {
+									"name": "TankeringAdviceReason",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@remark']"
+								},
+								"sink": {
+									"name": "TankeringAdviceRemark",
 									"type": "String"
 								}
 							},
@@ -686,7 +710,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TFileName']"
+									"path": "$['TFileName']"
 								},
 								"sink": {
 									"name": "TFileName"
@@ -694,7 +718,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TCreatedId']"
+									"path": "$['TCreatedId']"
 								},
 								"sink": {
 									"name": "TCreatedId"
@@ -702,7 +726,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TLoadDate']"
+									"path": "$['TLoadDate']"
 								},
 								"sink": {
 									"name": "TLoadDate"
