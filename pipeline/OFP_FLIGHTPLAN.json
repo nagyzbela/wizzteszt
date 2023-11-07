@@ -20,7 +20,10 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "$$FILEPATH",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
@@ -301,6 +304,33 @@
 								"sink": {
 									"name": "CancelsId",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						],
