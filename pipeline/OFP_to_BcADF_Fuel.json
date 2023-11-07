@@ -908,8 +908,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader_Adjustment",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
