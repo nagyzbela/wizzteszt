@@ -957,38 +957,33 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true
+						"writeBehavior": "Insert"
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "OFP_xml",
-							"type": "LinkedServiceReference"
-						}
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
 							{
 								"source": {
-									"path": "['Adjustment']"
+									"path": "['@deviationReasonChange']"
 								},
 								"sink": {
-									"name": "Adjustment",
+									"name": "AffectedItemsDeviationReasonChange",
 									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "['Adjustment']['@unit']"
+									"path": "['@unit']"
 								},
 								"sink": {
-									"name": "AdjustmentUnit",
+									"name": "AffectedItemsUnit",
 									"type": "String"
 								}
 							},
@@ -1012,19 +1007,10 @@
 							},
 							{
 								"source": {
-									"path": "['@deviationReasonChange']"
+									"path": "['Adjustment']['@unit']"
 								},
 								"sink": {
-									"name": "AffectedItemsDeviationReasonChange",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "['@unit']"
-								},
-								"sink": {
-									"name": "AffectedItemsUnit",
+									"name": "AdjustmentUnit",
 									"type": "String"
 								}
 							},
