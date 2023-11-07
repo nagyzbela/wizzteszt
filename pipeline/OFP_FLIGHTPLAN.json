@@ -62,47 +62,11 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
+									"path": "$['FlightPlan']['M633Header']['@timestamp']"
 								},
 								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@category']"
-								},
-								"sink": {
-									"name": "Category",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@computedTime']"
-								},
-								"sink": {
-									"name": "ComputedTime",
+									"name": "HeaderTimestamp",
 									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@cancelsId']"
-								},
-								"sink": {
-									"name": "CancelsId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@linkedFlightPlan']"
-								},
-								"sink": {
-									"name": "LinkedFlightPlan",
-									"type": "String"
 								}
 							},
 							{
@@ -116,61 +80,65 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['M633Header']['@timestamp']"
-								},
-								"sink": {
-									"name": "HeaderTimestamp",
-									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@flightOriginDate']"
-								},
-								"sink": {
-									"name": "FlightOriginDate",
-									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@scheduledTimeOfDeparture']"
-								},
-								"sink": {
-									"name": "ScheduledTimeOfDeparture",
-									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightIdentifier']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['TFileName']"
 								},
 								"sink": {
-									"name": "TFileName",
+									"name": "FlightIdentifier",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TCreatedId']"
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['CommercialFlightNumber']"
 								},
 								"sink": {
-									"name": "TCreatedId",
+									"name": "CommercialFlightNumber",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TLoadDate']"
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['@airlineIATACode']"
 								},
 								"sink": {
-									"name": "TLoadDate",
-									"type": "DateTime"
+									"name": "AirlineIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['@number']"
+								},
+								"sink": {
+									"name": "FlightNumber",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "DepartureAirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "DepartureAirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['@airportName']"
+								},
+								"sink": {
+									"name": "DepartureAirportName",
+									"type": "String"
 								}
 							}
 						],
