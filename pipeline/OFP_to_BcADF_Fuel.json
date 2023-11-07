@@ -1105,7 +1105,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['Text']"
+									"path": "['Paragraph']['Text']"
 								},
 								"sink": {
 									"name": "Text",
@@ -1114,7 +1114,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelStatistics']['FuelStatistic']['Remark']['Paragraph']['@sequence']"
+									"path": "['Paragraph']['@sequence']"
 								},
 								"sink": {
 									"name": "Sequence",
@@ -1123,19 +1123,19 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
+									"path": "['Paragraph']['@RemarkType']"
 								},
 								"sink": {
-									"name": "FlightPlanId",
+									"name": "RemarkType",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['Remarks']['Remark'][0]['@remarkType']"
+									"path": "$['FlightPlan']['@flightPlanId']"
 								},
 								"sink": {
-									"name": "RemarkType",
+									"name": "FlightPlanId",
 									"type": "String"
 								}
 							},
@@ -1164,7 +1164,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['RemarkType']",
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']",
 						"mapComplexValuesToString": false
 					}
 				},
