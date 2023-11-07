@@ -1061,6 +1061,26 @@
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
@@ -1075,15 +1095,9 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true
+						"writeBehavior": "Insert"
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "OFP_xml",
-							"type": "LinkedServiceReference"
-						}
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -1121,6 +1135,30 @@
 								"sink": {
 									"name": "RemarkType",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
 								}
 							}
 						],
