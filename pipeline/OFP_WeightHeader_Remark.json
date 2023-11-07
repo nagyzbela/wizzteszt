@@ -1816,7 +1816,7 @@
 							},
 							{
 								"source": {
-									"path": "['MachNumber']['EstimatedMachNumber']['Value']['_value_']"
+									"path": "['MachNumber']['EstimatedMachNumber']['Value']"
 								},
 								"sink": {
 									"name": "MachNumberEstimatedMachNumberValue",
@@ -1825,7 +1825,7 @@
 							},
 							{
 								"source": {
-									"path": "['MachNumber']['EstimatedMachNumber']['CorrectedValue']['_value_']"
+									"path": "['MachNumber']['EstimatedMachNumber']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "MachNumberEstimatedMachNumberCorrectedValue",
@@ -1834,7 +1834,7 @@
 							},
 							{
 								"source": {
-									"path": "['MachNumber']['ActualMachNumber']['Value']['_value_']"
+									"path": "['MachNumber']['ActualMachNumber']['Value']"
 								},
 								"sink": {
 									"name": "MachNumberActualMachNumberValue",
@@ -1843,7 +1843,7 @@
 							},
 							{
 								"source": {
-									"path": "['MachNumber']['ActualMachNumber']['CorrectedValue']['_value_']"
+									"path": "['MachNumber']['ActualMachNumber']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "MachNumberActualMachNumberCorrectedValue",
@@ -2203,11 +2203,11 @@
 							},
 							{
 								"source": {
-									"path": "['TimeFromPreviousWaypoint']['EstimatedTime']['Value']['_value_']"
+									"path": "['TimeFromPreviousWaypoint']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "TimeFromPreviousWaypointEstimatedTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2216,7 +2216,7 @@
 								},
 								"sink": {
 									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2230,11 +2230,11 @@
 							},
 							{
 								"source": {
-									"path": "['TimeFromPreviousWaypoint']['ActualTime']['Value']['_value_']"
+									"path": "['TimeFromPreviousWaypoint']['ActualTime']['Value']"
 								},
 								"sink": {
 									"name": "TimeFromPreviousWaypointActualTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2243,7 +2243,7 @@
 								},
 								"sink": {
 									"name": "TimeFromPreviousWaypointActualTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2257,11 +2257,11 @@
 							},
 							{
 								"source": {
-									"path": "['TimeOverWaypoint']['EstimatedTime']['Value']['_value_']"
+									"path": "['TimeOverWaypoint']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "TimeOverWaypointEstimatedTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2270,7 +2270,7 @@
 								},
 								"sink": {
 									"name": "TimeOverWaypointEstimatedTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2288,7 +2288,7 @@
 								},
 								"sink": {
 									"name": "TimeOverWaypointActualTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2297,7 +2297,7 @@
 								},
 								"sink": {
 									"name": "TimeOverWaypointActualTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2311,11 +2311,11 @@
 							},
 							{
 								"source": {
-									"path": "['CumulatedFlightTime']['EstimatedTime']['Value']['_value_']"
+									"path": "['CumulatedFlightTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "CummulatedFlightTimeEstimatedTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2324,7 +2324,7 @@
 								},
 								"sink": {
 									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2338,11 +2338,11 @@
 							},
 							{
 								"source": {
-									"path": "['CumulatedFlightTime']['ActualTime']['Value']['_value_']"
+									"path": "['CumulatedFlightTime']['ActualTime']['Value']"
 								},
 								"sink": {
 									"name": "CummulatedFlightTimeActualTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2351,7 +2351,7 @@
 								},
 								"sink": {
 									"name": "CummulatedFlightTimeActualTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2365,11 +2365,11 @@
 							},
 							{
 								"source": {
-									"path": "['RemainingFlightTime']['EstimatedTime']['Value']['_value_']"
+									"path": "['RemainingFlightTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "RemainingFlightTimeEstimatedTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2378,7 +2378,7 @@
 								},
 								"sink": {
 									"name": "RemainingFlightTimeEstimatedTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2392,11 +2392,11 @@
 							},
 							{
 								"source": {
-									"path": "['RemainingFlightTime']['ActualTime']['Value']['_value_']"
+									"path": "['RemainingFlightTime']['ActualTime']['Value']"
 								},
 								"sink": {
 									"name": "RemainingFlightTimeActualTimeValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -2405,7 +2405,7 @@
 								},
 								"sink": {
 									"name": "RemainingFlightTimeActualTimeCorrectedValue",
-									"type": "Single"
+									"type": "String"
 								}
 							},
 							{
@@ -3013,7 +3013,7 @@
 							},
 							{
 								"source": {
-									"path": "['Airspace']['AirspaceName']['_value_']"
+									"path": "['Airspace']['AirspaceName']"
 								},
 								"sink": {
 									"name": "AirspaceAirspaceName",
@@ -3022,7 +3022,7 @@
 							},
 							{
 								"source": {
-									"path": "['Airspace']['RadioFrequency']['_value_']"
+									"path": "['Airspace']['RadioFrequency']"
 								},
 								"sink": {
 									"name": "AirspaceRadioFrequency",
