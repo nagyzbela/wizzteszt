@@ -6,6 +6,8 @@
 			{
 				"name": "Copy data to OFP_FuelHeader",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -382,6 +384,8 @@
 			{
 				"name": "Copy data to OFP FuelStatistic",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP_FuelHeader",
@@ -605,20 +609,15 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"allowCopyCommand": true
+						"writeBehavior": "Insert"
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "OFP_xml",
-							"type": "LinkedServiceReference"
-						}
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -684,6 +683,30 @@
 									"name": "FlightPlanId",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
 							}
 						],
 						"collectionReference": "",
@@ -709,6 +732,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader_AlternateFuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -851,6 +876,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader_Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
@@ -984,6 +1011,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Remark",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_Adjustment",
