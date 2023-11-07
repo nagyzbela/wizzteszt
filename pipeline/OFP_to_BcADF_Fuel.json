@@ -866,83 +866,11 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Airport']['AirportICAOCode']"
-								},
-								"sink": {
-									"name": "AirportICAOCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Airport']['AirportIATACode']"
-								},
-								"sink": {
-									"name": "AirportIATACode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Airport']['@airportFunction']"
-								},
-								"sink": {
-									"name": "AirportFunction",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['AlternateFuel']['Airport']['@airportName']"
-								},
-								"sink": {
-									"name": "AirportName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Duration']['Value']"
 								},
 								"sink": {
 									"name": "DurationValue",
 									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportICAOCode']"
-								},
-								"sink": {
-									"name": "AirportICAOCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['AirportIATACode']"
-								},
-								"sink": {
-									"name": "AirportIATACode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportFunction']"
-								},
-								"sink": {
-									"name": "AirportFunction",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['Airport']['@airportName']"
-								},
-								"sink": {
-									"name": "AirportName",
-									"type": "String"
 								}
 							},
 							{
