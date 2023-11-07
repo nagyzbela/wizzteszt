@@ -107,7 +107,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['HeaderVersionNumber']"
+									"path": "$['FlightPlan']['M633Header']['@versionNumber']"
 								},
 								"sink": {
 									"name": "HeaderVersionNumber",
@@ -116,7 +116,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['HeaderTimestamp']"
+									"path": "$['FlightPlan']['M633Header']['@timestamp']"
 								},
 								"sink": {
 									"name": "HeaderTimestamp",
@@ -125,7 +125,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightOriginDate']"
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@flightOriginDate']"
 								},
 								"sink": {
 									"name": "FlightOriginDate",
@@ -134,11 +134,16 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['@ScheduledTimeOfDeparture']"
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@scheduledTimeOfDeparture']"
 								},
 								"sink": {
 									"name": "ScheduledTimeOfDeparture",
 									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightIdentifier']"
 								}
 							},
 							{
