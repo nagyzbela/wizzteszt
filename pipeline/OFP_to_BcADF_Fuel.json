@@ -958,16 +958,12 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
-								},
-								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
+									"path": "['Adjustment']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
+									"path": "['Adjustment']['@unit']"
 								},
 								"sink": {
 									"name": "AdjustmentUnit",
@@ -976,7 +972,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@affectedItem']"
+									"path": "['Adjustment']['@affectedItem']"
 								},
 								"sink": {
 									"name": "AdjustmentAffectedItem",
@@ -985,7 +981,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['_value_']"
+									"path": "['Adjustment']['_value_']"
 								},
 								"sink": {
 									"name": "Adjustment",
@@ -994,16 +990,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@unit']"
-								},
-								"sink": {
-									"name": "AffectedItemsUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@deviationReasonChange']"
+									"path": "['@deviationReasonChange']"
 								},
 								"sink": {
 									"name": "AffectedItemsDeviationReasonChange",
@@ -1012,15 +999,33 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['@deviationReason']"
+									"path": "['@unit']"
+								},
+								"sink": {
+									"name": "AffectedItemsUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['@deviationReason']"
 								},
 								"sink": {
 									"name": "DeviationReason",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['@deviationReason']",
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']",
 						"mapComplexValuesToString": false
 					}
 				},
@@ -1043,6 +1048,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Remark",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_Adjustment",
@@ -1092,6 +1099,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
