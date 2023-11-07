@@ -566,6 +566,8 @@
 			{
 				"name": "Copy data to OFP TankeringInfo",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelStatistic",
@@ -756,8 +758,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader_AlternateFuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -778,6 +778,20 @@
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": "@guid()"
+							},
+							{
+								"name": "TLoadDate",
+								"value": "@utcNow()"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
@@ -794,13 +808,7 @@
 						"type": "SqlDWSink",
 						"allowCopyCommand": true
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "OFP_xml",
-							"type": "LinkedServiceReference"
-						}
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -815,7 +823,17 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['@unit']"
+									"path": "$['FlightPlan']['AlternateFuel']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['EstimatedWeight']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['EstimatedWeight']['@unit']"
 								},
 								"sink": {
 									"name": "EstimatedWeightUnit",
@@ -824,11 +842,62 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel'][0]['EstimatedWeight']['Value']['_value_']"
+									"path": "$['FlightPlan']['AlternateFuel']['EstimatedWeight']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Duration']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Duration']['Value']"
 								},
 								"sink": {
-									"name": "EstimatedWeightValue",
-									"type": "Single"
+									"name": "DurationValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Airport']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Airport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['AlternateFuel']['Airport']['@airportName']"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String"
 								}
 							},
 							{
@@ -874,6 +943,30 @@
 								"sink": {
 									"name": "AirportName",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
 								}
 							}
 						],
