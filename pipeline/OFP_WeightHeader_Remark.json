@@ -3151,7 +3151,8 @@
 					"sink": {
 						"type": "SqlDWSink",
 						"writeBehavior": "Insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
