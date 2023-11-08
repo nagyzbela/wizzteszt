@@ -6,6 +6,8 @@
 			{
 				"name": "Copy data to OFP_FuelHeader",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -42,6 +44,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -420,8 +423,6 @@
 			{
 				"name": "Copy data to OFP FuelStatistic",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP_FuelHeader",
@@ -466,6 +467,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1312,6 +1314,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2221,6 +2224,11 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['NonStandardFlightPlanningType']['ContingencySaving']"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['PositionName']"
 								}
 							},
@@ -2776,6 +2784,11 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@reason']"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['@unit']"
 								}
 							},
@@ -2807,6 +2820,691 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['@computedTime']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TripFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['ContingencyPolicy']['@policyName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportIATACode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportFunction']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['FinalReserve']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ETOPSFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['@reason']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TakeOffFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TaxiFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['BlockFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ArrivalFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Coordinates']['@latitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Coordinates']['@longitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Coordinates']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Airway']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Airway']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Altitude']['EstimatedAltitude']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Altitude']['EstimatedAltitude']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumSafeAltitude']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumSafeAltitude']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MachNumber']['EstimatedMachNumber']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['IndicatedAirSpeed']['EstimatedSpeed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['IndicatedAirSpeed']['EstimatedSpeed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['SegmentTrack']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['SegmentTrack']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['SegmentTrack']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['CumulatedFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['RemainingFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['AircraftWeight']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['AircraftWeight']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Function']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@sequenceId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@waypointId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@waypointName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@waypointLongName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@countryICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Coordinates']['@latitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Coordinates']['@longitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Coordinates']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Airway']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Airway']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['CumulatedFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['RemainingFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Function']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@sequenceId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@waypointId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@waypointName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@waypointLongName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@countryICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['AirportICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['AirportIATACode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['@airportFunction']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['@airportName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Direction']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Direction']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWindComponent']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWindComponent']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageISADeviation']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageISADeviation']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['InitialAltitude']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['InitialAltitude']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['RouteDescription']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AirDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AirDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GreatCircleDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GreatCircleDistance']['Value']['_value_']"
 								}
 							},
 							{
@@ -2906,6 +3604,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3815,6 +4514,11 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['NonStandardFlightPlanningType']['ContingencySaving']"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['ETOPSSummary']['CriticalPositions']['CriticalPosition']['PositionName']"
 								}
 							},
@@ -4370,6 +5074,11 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['TankeringInfo']['TankeringAdvice']['@reason']"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['TankeringInfo']['TankeringWeight']['Value']['@unit']"
 								}
 							},
@@ -4401,6 +5110,691 @@
 							{
 								"source": {
 									"path": "$['FlightPlan']['@computedTime']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TripFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ContingencyFuel']['ContingencyPolicy']['@policyName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportIATACode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportFunction']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['FinalReserve']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ETOPSFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['PossibleExtraFuel']['@reason']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TakeOffFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['TaxiFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['BlockFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['FuelHeader']['ArrivalFuel']['Duration']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Coordinates']['@latitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Coordinates']['@longitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Coordinates']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Airway']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Airway']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Altitude']['EstimatedAltitude']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Altitude']['EstimatedAltitude']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumSafeAltitude']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumSafeAltitude']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MachNumber']['EstimatedMachNumber']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['IndicatedAirSpeed']['EstimatedSpeed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['IndicatedAirSpeed']['EstimatedSpeed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['SegmentTrack']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['SegmentTrack']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Tracks']['SegmentTrack']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['CumulatedFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['RemainingFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['AircraftWeight']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['AircraftWeight']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['Function']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@sequenceId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@waypointId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@waypointName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@waypointLongName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['Waypoints']['Waypoint'][0]['@countryICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Coordinates']['@latitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Coordinates']['@longitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Coordinates']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Airway']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Airway']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Direction']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['SegmentWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tropopause']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['RemainingGroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['CumulatedFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['RemainingFlightTime']['EstimatedTime']['Value']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['CumulatedBurnOff']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['FuelOnBoard']['EstimatedWeight']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['MinimumFuelOnBoard']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['Function']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@sequenceId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@waypointId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@waypointName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@waypointLongName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Waypoints']['Waypoint'][0]['@countryICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['AirportICAOCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['AirportIATACode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['@airportFunction']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['Airport']['@airportName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Direction']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Direction']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWind']['Speed']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWindComponent']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageWindComponent']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageISADeviation']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AverageISADeviation']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['InitialAltitude']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['InitialAltitude']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['RouteDescription']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GroundDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GroundDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AirDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['AirDistance']['Value']['_value_']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GreatCircleDistance']['Value']['@unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['ContingencySavingHeader']['AlternateRoute']['RouteInformation']['GreatCircleDistance']['Value']['_value_']"
 								}
 							},
 							{
