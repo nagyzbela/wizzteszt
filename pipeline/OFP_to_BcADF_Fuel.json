@@ -429,14 +429,14 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
-							"recursive": true,
+							"recursive": false,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
 							"detectDataType": false,
-							"namespaces": true
+							"namespaces": false
 						}
 					},
 					"sink": {
