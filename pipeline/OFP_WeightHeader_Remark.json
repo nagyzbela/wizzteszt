@@ -3439,13 +3439,20 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT [WaypointSequenceId]\n FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
 					},
 					"dataset": {
-						"referenceName": "OFP_Waypoint_Function_Stage",
+						"referenceName": "OFP_xml",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -3675,6 +3682,15 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "['@sequenceId']"
+								},
+								"sink": {
+									"name": "WaypointSequenceId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['@flightPlanId']"
 								},
 								"sink": {
@@ -3702,34 +3718,7 @@
 							},
 							{
 								"source": {
-									"path": "['@sequenceId']"
-								},
-								"sink": {
-									"name": "WaypointSequenceId",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "Value",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "Unit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack']['Value']['@type']"
+									"path": "['Tracks']['OutboundTrack'][0]['Value']['@type']"
 								},
 								"sink": {
 									"name": "Type",
@@ -3738,25 +3727,34 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['_value_']"
+									"path": "['Tracks']['OutboundTrack'][0]['Value']['@unit']"
 								},
 								"sink": {
-									"name": "CorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['@unit']"
-								},
-								"sink": {
-									"name": "CorrectedValueUnit",
+									"name": "Unit",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['@type']"
+									"path": "['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['@type']"
 								},
 								"sink": {
 									"name": "CorrectedValueType",
@@ -3765,7 +3763,16 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['@source']"
+									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "CorrectedValueSource",
