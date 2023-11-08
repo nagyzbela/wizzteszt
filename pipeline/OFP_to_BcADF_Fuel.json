@@ -380,6 +380,22 @@
 								"sink": {
 									"name": "TFileName"
 								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
 							}
 						],
 						"mapComplexValuesToString": false
