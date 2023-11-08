@@ -1,0 +1,61 @@
+{
+	"name": "OFP_Waypoint_Remark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FlightPlanId",
+				"type": "varchar"
+			},
+			{
+				"name": "DataType",
+				"type": "varchar"
+			},
+			{
+				"name": "AlternateRouteAirportIATACode",
+				"type": "varchar"
+			},
+			{
+				"name": "WaypointSequenceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RemarkType",
+				"type": "varchar"
+			},
+			{
+				"name": "Sequence",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Text",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfLido",
+			"table": "OFP_Waypoint_Remark"
+		}
+	}
+}
