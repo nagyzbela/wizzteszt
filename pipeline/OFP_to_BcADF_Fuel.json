@@ -908,6 +908,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader_Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
@@ -1058,7 +1060,7 @@
 							}
 						],
 						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']",
-						"mapComplexValuesToString": false
+						"mapComplexValuesToString": true
 					}
 				},
 				"inputs": [
@@ -1220,6 +1222,170 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"table_name": "OFP_FuelHeader_Remark"
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy data to OFP FuelHeader_Adjustment_copy1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"maxConcurrentConnections": 1,
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"detectDataType": true,
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['@deviationReasonChange']"
+								},
+								"sink": {
+									"name": "AffectedItemsDeviationReasonChange",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['@unit']"
+								},
+								"sink": {
+									"name": "AffectedItemsUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Adjustment']['@affectedItem']"
+								},
+								"sink": {
+									"name": "AdjustmentAffectedItem",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Adjustment']['_value_']"
+								},
+								"sink": {
+									"name": "Adjustment",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['Adjustment']['@unit']"
+								},
+								"sink": {
+									"name": "AdjustmentUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['@deviationReason']"
+								},
+								"sink": {
+									"name": "DeviationReason",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_Adjustment"
 						}
 					}
 				]
