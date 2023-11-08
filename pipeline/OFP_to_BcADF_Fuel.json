@@ -375,26 +375,10 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TFileName']"
+									"path": "$['TFileName']"
 								},
 								"sink": {
 									"name": "TFileName"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TCreatedId']"
-								},
-								"sink": {
-									"name": "TCreatedId"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['TLoadDate']"
-								},
-								"sink": {
-									"name": "TLoadDate"
 								}
 							}
 						],
