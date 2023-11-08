@@ -20,6 +20,26 @@
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
@@ -359,6 +379,30 @@
 								"sink": {
 									"name": "FlightPlanId",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
 								}
 							}
 						],
