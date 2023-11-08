@@ -75,8 +75,16 @@
 									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['_value_']"
 								},
 								"sink": {
-									"name": "TripFuelEstimatedWeightValue",
-									"type": "Single"
+									"name": "TripFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['EstimatedWeight']['Value']['Column_1']"
+								},
+								"sink": {
+									"name": "TripFuel"
 								}
 							},
 							{
@@ -423,6 +431,8 @@
 			{
 				"name": "Copy data to OFP FuelStatistic",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP_FuelHeader",
