@@ -6,8 +6,6 @@
 			{
 				"name": "Copy data to OFP_FuelHeader",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -84,7 +82,7 @@
 								},
 								"sink": {
 									"name": "TripFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -111,7 +109,7 @@
 								},
 								"sink": {
 									"name": "ContingencyFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -147,7 +145,7 @@
 								},
 								"sink": {
 									"name": "FinalReserveDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -174,7 +172,7 @@
 								},
 								"sink": {
 									"name": "ETOPSFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -282,7 +280,7 @@
 								},
 								"sink": {
 									"name": "TakeOffFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -309,7 +307,7 @@
 								},
 								"sink": {
 									"name": "TaxiFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -336,7 +334,7 @@
 								},
 								"sink": {
 									"name": "BlockFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -363,7 +361,7 @@
 								},
 								"sink": {
 									"name": "ArrivalFuelDurationValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
