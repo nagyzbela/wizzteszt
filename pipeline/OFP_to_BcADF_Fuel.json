@@ -685,8 +685,6 @@
 			{
 				"name": "Copy data to OFP FuelStatistic",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP_FuelHeader",
@@ -868,8 +866,6 @@
 			{
 				"name": "Copy data to OFP TankeringInfo",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelStatistic",
@@ -1060,8 +1056,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader_AlternateFuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -1263,8 +1257,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader_Adjustment",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
@@ -1437,8 +1429,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader Remark",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_Adjustment",
