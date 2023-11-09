@@ -3718,7 +3718,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['@type']"
+									"path": "['Tracks']['OutboundTrack']['Value']['@type']"
 								},
 								"sink": {
 									"name": "Type",
@@ -3727,7 +3727,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['@unit']"
+									"path": "['Tracks']['OutboundTrack']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "Unit",
@@ -3736,7 +3736,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['Value']['_value_']"
+									"path": "['Tracks']['OutboundTrack']"
 								},
 								"sink": {
 									"name": "Value",
@@ -3745,7 +3745,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['_value_']"
+									"path": "['Tracks']['OutboundTrack']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "CorrectedValue",
@@ -3754,7 +3754,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['@type']"
+									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['@type']"
 								},
 								"sink": {
 									"name": "CorrectedValueType",
@@ -3763,7 +3763,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['@unit']"
+									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "CorrectedValueUnit",
@@ -3772,7 +3772,7 @@
 							},
 							{
 								"source": {
-									"path": "['Tracks']['OutboundTrack'][0]['CorrectedValue']['@source']"
+									"path": "['Tracks']['OutboundTrack']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "CorrectedValueSource",
