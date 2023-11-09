@@ -17,6 +17,26 @@
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -505,6 +525,222 @@
 								"sink": {
 									"name": "CTOTCorrectedSource",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine1Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['Value']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine1Value",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine1CorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine1CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine1CorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine2Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['Value']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine2Value",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine2CorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine2CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine2CorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine3Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['Value']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine3Value",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine3CorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine3CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine3CorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine4Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['Value']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine4Value",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine4CorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine4CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FuelUsedEngine4CorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						]
