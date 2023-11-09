@@ -79,7 +79,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['EstimatedWeight']['Corrected]['Value']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['TripFuel']['EstimatedWeight']['Corrected']['Value']['source']"
 								},
 								"sink": {
 									"name": "TripFuelEstimatedWeightCorrectedValueSource",
@@ -1152,16 +1152,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Corrected']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "EstimatedWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Corrected'][['Value']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "EstimatedWeightCorrectedValue",
@@ -1170,10 +1161,19 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Corrected']['Value']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "EstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueUnit",
 									"type": "String"
 								}
 							},
@@ -1188,7 +1188,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Corrected]['Value']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "DurationCorrectedValueSource",
@@ -1197,7 +1197,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Corrected]['value']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "DurationCorrectedValue",
@@ -1229,6 +1229,14 @@
 								"sink": {
 									"name": "AirportName",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['Sequence']"
+								},
+								"sink": {
+									"name": "Sequence"
 								}
 							}
 						],
