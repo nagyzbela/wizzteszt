@@ -59,6 +59,96 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "OutTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "OutTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "OutTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "OutTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "OutTimeActualCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "OffTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "OffTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "OffTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "OffTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "OffTimeActualCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
@@ -77,6 +167,51 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "OnTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "OnTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "OnTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "OnTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "OnTimeActualCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
@@ -86,10 +221,100 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "InTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "InTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "InTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "InTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "InTimeActualCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "BlockTimeEstimatedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "BlockTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "BlockTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "BlockTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "BlockTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "BlockTimeActualCorrectedSource",
 									"type": "String"
 								}
 							},
@@ -104,6 +329,51 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "TaxiOutTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "TaxiOutTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "TaxiOutTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "TaxiOutTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "TaxiOutTimeActualCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
@@ -113,10 +383,100 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FlightTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "FlightTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "FlightTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FlightTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "FlightTimeActualCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['Value']"
 								},
 								"sink": {
 									"name": "TaxiInTimeEstimatedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "TaxiInTimeEstimatedCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['@source']"
+								},
+								"sink": {
+									"name": "TaxiInTimeEstimatedCorrectedSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['Value']"
+								},
+								"sink": {
+									"name": "TaxiInTimeActualValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "TaxiInTimeActualCorrectedValue",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['@source']"
+								},
+								"sink": {
+									"name": "TaxiInTimeActualCorrectedSource",
 									"type": "String"
 								}
 							},
