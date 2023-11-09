@@ -15,24 +15,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "WaypointRemarks",
-						"type": "DataFlowReference",
-						"parameters": {
-							"TCreatedId": {
-								"value": "@guid()",
-								"type": "Expression"
-							},
-							"TFileName": {
-								"value": "$$FILEPATH",
-								"type": "Expression"
-							},
-							"TLoadDate": {
-								"value": "@utcNow()",
-								"type": "Expression"
-							}
-						}
-					},
 					"staging": {
 						"linkedService": {
 							"referenceName": "OFP_xml",

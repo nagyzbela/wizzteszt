@@ -1,0 +1,78 @@
+{
+	"name": "OFP_Waypoint_Tracks_SegmentTrack",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FlightPlanId",
+				"type": "varchar"
+			},
+			{
+				"name": "DataType",
+				"type": "varchar"
+			},
+			{
+				"name": "AlternateRouteAirportIATACode",
+				"type": "varchar"
+			},
+			{
+				"name": "WaypointSequenceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Value",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Unit",
+				"type": "varchar"
+			},
+			{
+				"name": "CorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CorrectedValueType",
+				"type": "varchar"
+			},
+			{
+				"name": "CorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfLido",
+			"table": "OFP_Waypoint_Tracks_SegmentTrack"
+		}
+	}
+}

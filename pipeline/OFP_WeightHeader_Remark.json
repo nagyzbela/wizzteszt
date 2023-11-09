@@ -3626,6 +3626,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -3820,6 +3822,410 @@
 				"outputs": [
 					{
 						"referenceName": "OFP_Waypoint_Tracks_OutboundTrack",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy_Waypoint_Tracks_SegmentTrack",
+				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.xml",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['@sequenceId']"
+								},
+								"sink": {
+									"name": "WaypointSequenceId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@DataType']"
+								},
+								"sink": {
+									"name": "DataType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@alternateRouteAirportIATACode']"
+								},
+								"sink": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']['Value']['@type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']['CorrectedValue']['@type']"
+								},
+								"sink": {
+									"name": "CorrectedValueType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['SegmentTrack']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['Waypoints']['Waypoint']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OFP_Waypoint_Tracks_SegmentTrack",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy_Waypoint_Tracks_InboundTrack",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.xml",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['@sequenceId']"
+								},
+								"sink": {
+									"name": "WaypointSequenceId",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@DataType']"
+								},
+								"sink": {
+									"name": "DataType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@alternateRouteAirportIATACode']"
+								},
+								"sink": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']['Value']['@type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']['CorrectedValue']['@type']"
+								},
+								"sink": {
+									"name": "CorrectedValueType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Tracks']['InboundTrack']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['Waypoints']['Waypoint']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OFP_Waypoint_Tracks_InboundTrack",
 						"type": "DatasetReference"
 					}
 				]
