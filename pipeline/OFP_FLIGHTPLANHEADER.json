@@ -77,6 +77,24 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['FaxNumber']"
+								},
+								"sink": {
+									"name": "AuthorContactFaxNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['EmailAddress']"
+								},
+								"sink": {
+									"name": "AuthorContactEmailAddress",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['DispatchOffice']"
 								},
 								"sink": {
@@ -113,6 +131,150 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageFuelFlowCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageFuelFlowCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageFuelFlowCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['TaxiFuelFlow']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TaxiFuelFlowUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['TaxiFuelFlow']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TaxiFuelFlowValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['TaxiFuelFlow']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TaxiFuelFlowCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['TaxiFuelFlow']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "TaxiFuelFlowCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['TaxiFuelFlow']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TaxiFuelFlowCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['HoldingFuelFlow']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "HoldingFuelFlowUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['HoldingFuelFlow']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "HoldingFuelFlowValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['HoldingFuelFlow']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "HoldingFuelFlowCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['HoldingFuelFlow']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "HoldingFuelFlowCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['FuelFlowInformation']['HoldingFuelFlow']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "HoldingFuelFlowCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['@routeName']"
+								},
+								"sink": {
+									"name": "RouteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['@optimization']"
+								},
+								"sink": {
+									"name": "Optimization",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['@fMSRouteName']"
+								},
+								"sink": {
+									"name": "fMSRouteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
 								},
 								"sink": {
@@ -140,6 +302,42 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['@type']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValueType",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
 								},
 								"sink": {
@@ -153,6 +351,33 @@
 								},
 								"sink": {
 									"name": "AverageWindSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedCorrectedValue",
 									"type": "Single"
 								}
 							},
@@ -176,6 +401,33 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageWindComponentCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindComponentCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindComponentCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['Value']['@unit']"
 								},
 								"sink": {
@@ -189,6 +441,33 @@
 								},
 								"sink": {
 									"name": "AverageTemperatureValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageTemperatureCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageTemperatureCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageTemperatureCorrectedValue",
 									"type": "Single"
 								}
 							},
@@ -212,6 +491,33 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageISADeviationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageISADeviationCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageISADeviationCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['Value']['@unit']"
 								},
 								"sink": {
@@ -225,6 +531,33 @@
 								},
 								"sink": {
 									"name": "InitialAltitudeValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "InitialAltitudeCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "InitialAltitudeCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "InitialAltitudeCorrectedValue",
 									"type": "Single"
 								}
 							},
