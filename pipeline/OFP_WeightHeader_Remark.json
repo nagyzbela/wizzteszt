@@ -3422,6 +3422,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -3621,10 +3623,8 @@
 				]
 			},
 			{
-				"name": "Copy_Waypoint_Tracks_SegmentTrack",
+				"name": "Copy_Waypoint_Tracks_SegmentTrack_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -3818,7 +3818,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "OFP_Waypoint_Tracks_SegmentTrack",
+						"referenceName": "OFP_Waypoint_Tracks_SegmentTrack_Stage",
 						"type": "DatasetReference"
 					}
 				]
@@ -4029,6 +4029,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
@@ -4246,6 +4248,230 @@
 				"outputs": [
 					{
 						"referenceName": "OFP_Waypoint_Tracks_OutboundTrack",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy_Waypoint_Tracks_SegmentTrack",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy_Waypoint_Tracks_SegmentTrack_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT [FlightPlanId]\n,json_value(b.Value, '$.Value._value_') as \"Value\"\n,json_value(b.Value, '$.Value.\"@type\"') as Type\n,json_value(b.Value, '$.Value.\"@unit\"') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage] A\n cross apply openjson(Value) b",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DataType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DataType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WaypointSequenceId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "WaypointSequenceId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Value",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "Type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Unit",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CorrectedValueType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CorrectedValueType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_Waypoint_Tracks_SegmentTrack_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OFP_Waypoint_Tracks_SegmentTrack",
 						"type": "DatasetReference"
 					}
 				]
