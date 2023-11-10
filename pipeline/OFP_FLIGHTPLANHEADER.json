@@ -1,0 +1,380 @@
+{
+	"name": "OFP_FLIGHTPLANHEADER",
+	"properties": {
+		"activities": [
+			{
+				"name": "OFP_FlightPlanHeader",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorName']['@authorType']"
+								},
+								"sink": {
+									"name": "AuthorType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorName']['_value_']"
+								},
+								"sink": {
+									"name": "AuthorName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['PhoneNumber']"
+								},
+								"sink": {
+									"name": "AuthorContactPhoneNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['TelexAddress']"
+								},
+								"sink": {
+									"name": "AuthorContactTelexAddress",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AuthorInformation']['AuthorContact']['DispatchOffice']"
+								},
+								"sink": {
+									"name": "AuthorContactDispatchOffice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['PerformanceFactor']"
+								},
+								"sink": {
+									"name": "PerformanceFactor",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageFuelFlowUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['AverageFuelFlow']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageFuelFlowValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
+								},
+								"sink": {
+									"name": "AverageWindDirectionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindDirectionUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Direction']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindDirectionValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWind']['Speed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindComponentUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageWindComponent']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindComponentValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageTemperatureUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageTemperature']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageTemperatureValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageISADeviationUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AverageISADeviation']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageISADeviationValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "InitialAltitudeUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['InitialAltitude']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "InitialAltitudeValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['CostIndex']['Value']"
+								},
+								"sink": {
+									"name": "ClimbProcedureCostIndexValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['@procedure']"
+								},
+								"sink": {
+									"name": "ClimbProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['CostIndex']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['@procedure']"
+								},
+								"sink": {
+									"name": "CruiseProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['CostIndex']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['@procedure']"
+								},
+								"sink": {
+									"name": "DescentProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GroundDistanceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GroundDistanceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AirDistanceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AirDistanceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GreatCircleDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GreatCircleDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": {
+								"value": "@pipeline().parameters.table_name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-30T14:48:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
