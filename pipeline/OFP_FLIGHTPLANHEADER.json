@@ -17,6 +17,26 @@
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -581,6 +601,132 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['CostIndex']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureCostIndexUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['CostIndex']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ClimbProcedureCostIndexCorrectedValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['MachNumber']['Value']"
+								},
+								"sink": {
+									"name": "ClimbProcedureMachNumberValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['MachNumber']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ClimbProcedureMachNumberCorrectedValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['Value']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['Value']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['CostIndex']['Value']"
 								},
 								"sink": {
@@ -599,10 +745,262 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['CostIndex']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['CostIndex']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexCorrectedValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['MachNumber']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureMachNumberValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['MachNumber']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CruiseProcedureMachNumberCorrectedValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['CostIndex']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureCostIndexUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['CostIndex']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DescentProcedureCostIndexCorrectedValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['MachNumber']['Value']"
+								},
+								"sink": {
+									"name": "DescentProcedureMachNumberValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['MachNumber']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DescentProcedureMachNumberCorrectedValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['Value']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['TrueAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['TrueAirSpeed']['Value']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['TrueAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['TrueAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['TrueAirSpeed']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['DescentProcedure']['CostIndex']['Value']"
 								},
 								"sink": {
-									"name": "CruiseProcedureCostIndexValue",
+									"name": "DescentProcedureCostIndexValue",
 									"type": "Single"
 								}
 							},
@@ -676,6 +1074,123 @@
 								"sink": {
 									"name": "FlightPlanId",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['RouteDescription']"
+								},
+								"sink": {
+									"name": "RouteDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['GroundDistance']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['RouteInformation']['AirDistance']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['GreatCircleDistance']['AirDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['GreatCircleDistance']['AirDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightPlanHeader']['GreatCircleDistance']['AirDistance']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						]
