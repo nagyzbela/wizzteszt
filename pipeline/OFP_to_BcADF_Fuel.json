@@ -988,6 +988,33 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['@unit']"
 								},
 								"sink": {
@@ -1001,6 +1028,33 @@
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['MaximumFuelWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['MaximumFuelWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['MaximumFuelWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValue",
 									"type": "Single"
 								}
 							},
@@ -1024,6 +1078,33 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['Density']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['Density']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['Density']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['Value']['@unit']"
 								},
 								"sink": {
@@ -1037,6 +1118,33 @@
 								},
 								"sink": {
 									"name": "PossibleExtraFuelTankVolumeValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['TankVolume']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['TankVolume']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra'][TankVolume']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
 									"type": "Single"
 								}
 							},
