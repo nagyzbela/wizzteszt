@@ -457,6 +457,285 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['NoAlternateFinalReserve']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ContingencyPolicy']['@policyName']"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ContingencyPolicy']['EnrouteAlternateAirport']['@airportName']"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ContingencyPolicy']['EnrouteAlternateAirport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ContingencyPolicy']['EnrouteAlternateAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ContingencyPolicy']['EnrouteAlternateAirport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['ETOPSFuel']['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
@@ -813,6 +1092,591 @@
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightCorrectedValue",
 									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "TaxiFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "TaxiFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TaxiFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "TaxiFuelDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "BlockFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "BlockFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "BlockFuelDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "LadingFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "LadingFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "LadingFuelDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "ArrivalFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "ArrivalFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ArrivalFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ArrivalFuelDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueSource",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationCorrectedValue",
+									"type": "String"
 								}
 							},
 							{
