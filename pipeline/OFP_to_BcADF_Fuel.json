@@ -1015,7 +1015,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['@unit']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightUnit",
@@ -1024,7 +1024,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Weight']['Value']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['_value_']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightValue",
@@ -1033,7 +1033,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['@unit']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightDensityUnit",
@@ -1042,7 +1042,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['_value_']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightDensityValue",
@@ -1150,7 +1150,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightUnit",
@@ -1159,7 +1159,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['_value_']"
 								},
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightValue",
@@ -1172,7 +1172,7 @@
 								},
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightCorrectedValueSource",
-									"type": "String"
+									"type": "Single"
 								}
 							},
 							{
@@ -1191,6 +1191,78 @@
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightCorrectedValue",
 									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "TakeOffFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "TakeOffFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "TakeOffFuelDurationCorrectedValue",
+									"type": "String"
 								}
 							},
 							{
