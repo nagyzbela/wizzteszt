@@ -1438,11 +1438,47 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueUnit",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
