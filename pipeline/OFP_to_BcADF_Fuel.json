@@ -988,7 +988,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['CorrectedValue']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['CorrectedValue']['source']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelCorrectedValueSource",
@@ -997,7 +997,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['CorrectedValue']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelCorrectedValueUnit",
@@ -1006,7 +1006,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['CorrectedValue']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelCorrectedValue",
@@ -1033,7 +1033,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['MaximumFuelWeigh']['CorrectedValue']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeigh']['CorrectedValue']['source']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueSource",
@@ -1042,7 +1042,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['MaximumFuelWeigh']['CorrectedValue']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeigh']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueUnit",
@@ -1051,7 +1051,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['MaximumFuelWeigh']['CorrectedValue']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeigh']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValue",
@@ -1078,7 +1078,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['Density']['CorrectedValue']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['Density']['CorrectedValue']['source']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueSource",
@@ -1087,7 +1087,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['Density']['CorrectedValue']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['Density']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueUnit",
@@ -1096,7 +1096,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['Density']['CorrectedValue']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['Density']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValue",
@@ -1123,7 +1123,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['TankVolume']['CorrectedValue']['source']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['CorrectedValue']['source']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelTankVolumeCorrectedValueSource",
@@ -1132,7 +1132,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra']['TankVolume']['CorrectedValue']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelTankVolumeCorrectedValueUnit",
@@ -1141,7 +1141,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtra'][TankVolume']['CorrectedValue']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel'][TankVolume']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
@@ -1159,7 +1159,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightUnit",
@@ -1168,7 +1168,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['TakeOffFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['EstimatedWeight']['Value']['_value_']"
 								},
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightValue",
