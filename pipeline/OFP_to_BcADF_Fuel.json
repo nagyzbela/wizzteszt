@@ -817,6 +817,24 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['IncreaseTransportCoefficient']"
+								},
+								"sink": {
+									"name": "IncreaseTransportCoefficient",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['DecreaseTransportCoefficient']"
+								},
+								"sink": {
+									"name": "DecreaseTransportCoefficient",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['@flightPlanId']"
 								},
 								"sink": {
