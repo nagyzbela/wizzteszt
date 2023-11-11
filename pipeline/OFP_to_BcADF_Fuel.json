@@ -295,10 +295,46 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ContingencyFuel']['ContingencyPolicy']['@policyName']"
+									"path": "$['FlightPlan']['FuelHeader']['ContingencyPolicy']['@policyName']"
 								},
 								"sink": {
 									"name": "ContingencyPolicy",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencyPolicy']['EnrouteAlternateAirport']['@airportName']"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencyPolicy']['EnrouteAlternateAirport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencyPolicy']['EnrouteAlternateAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencyPolicy']['EnrouteAlternateAirport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportIATACode",
 									"type": "String"
 								}
 							},
@@ -538,6 +574,123 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['EstimatedWeight']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['ActualWeigh']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['ActualWeigh']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['ActualWeigh']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['ContingencySavingsAdditionalFuel']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['PossibleExtra']['Value']['@unit']"
 								},
 								"sink": {
@@ -660,6 +813,14 @@
 								"sink": {
 									"name": "TakeOffFuelEstimatedWeightCorrectedValue",
 									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId"
 								}
 							}
 						],
