@@ -1710,34 +1710,7 @@
 									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['CorrectedValue']['_value_']"
 								},
 								"sink": {
-									"name": "PossibleExtraFuelTankVolumeCorrectedValueSource",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['source']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['_value_']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
+									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
 									"type": "Single"
 								}
 							},
