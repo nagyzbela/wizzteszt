@@ -1033,6 +1033,24 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeigh']['CorrectedValue']['source']"
 								},
 								"sink": {
@@ -1055,24 +1073,6 @@
 								},
 								"sink": {
 									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "PossibleExtraFuelMaximumFuelWeightDensityUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['MaximumFuelWeight']['Density']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "PossibleExtraFuelMaximumFuelWeightDensityValue",
 									"type": "Single"
 								}
 							},
@@ -1137,15 +1137,6 @@
 								"sink": {
 									"name": "PossibleExtraFuelTankVolumeCorrectedValueUnit",
 									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel'][TankVolume']['CorrectedValue']['_value_']"
-								},
-								"sink": {
-									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
-									"type": "Single"
 								}
 							},
 							{
@@ -1438,15 +1429,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']]['Value']['@unit']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Value']['_value_']"
 								},
 								"sink": {
@@ -1456,29 +1438,11 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling]['CorrectedValue']['source']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['@unit']"
 								},
 								"sink": {
 									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueUnit",
 									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel'][FuelOnBoardAfterRefueling']['CorrectedValue']['_value_']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
-									"type": "Single"
 								}
 							},
 							{
@@ -1739,6 +1703,42 @@
 								},
 								"sink": {
 									"name": "FlightPlanId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
+									"type": "Single"
 								}
 							},
 							{
