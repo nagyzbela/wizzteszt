@@ -1564,123 +1564,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "ReserveFuelEstimatedWeightUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "ReserveFuelEstimatedWeightValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['source']"
-								},
-								"sink": {
-									"name": "ReserveFuelEstimatedWeightCorrectedValueSource",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['@unit']"
-								},
-								"sink": {
-									"name": "ReserveFuelEstimatedWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['EstimatedWeight']['CorrectedValue']['_value_']"
-								},
-								"sink": {
-									"name": "ReserveFuelEstimatedWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "ReserveFuelActualWeightUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "ReserveFuelActualWeightValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['source']"
-								},
-								"sink": {
-									"name": "ReserveFuelActualWeightCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['@unit']"
-								},
-								"sink": {
-									"name": "ReserveFuelActualWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['ActualWeigh']['CorrectedValue']['_value_']"
-								},
-								"sink": {
-									"name": "ReserveFuelActualWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['Value']"
-								},
-								"sink": {
-									"name": "ReserveFuelDurationValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "ReserveFuelDurationCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['ReserveFuel']['Duration']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "ReserveFuelDurationCorrectedValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['IncreaseTransportCoefficient']"
 								},
 								"sink": {
@@ -1703,6 +1586,30 @@
 								},
 								"sink": {
 									"name": "FlightPlanId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
 								}
 							}
 						],
