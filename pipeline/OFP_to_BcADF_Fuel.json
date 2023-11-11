@@ -1501,15 +1501,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "BlockFuelFuelOnBoardAfterRefuelingValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['Value']['_value_']"
 								},
 								"sink": {
