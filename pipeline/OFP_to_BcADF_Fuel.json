@@ -1710,7 +1710,7 @@
 									"path": "$['FlightPlan']['FuelHeader']['PossibleExtraFuel']['TankVolume']['CorrectedValue']['_value_']"
 								},
 								"sink": {
-									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueSource",
 									"type": "Single"
 								}
 							},
