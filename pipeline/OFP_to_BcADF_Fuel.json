@@ -1438,6 +1438,51 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']]['Value']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling]['CorrectedValue']['source']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel']['FuelOnBoardAfterRefueling']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['BlockFuel'][FuelOnBoardAfterRefueling']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['LadingFuel']['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
@@ -1743,6 +1788,8 @@
 			{
 				"name": "Copy data to OFP FuelStatistic",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP_FuelHeader",
@@ -1924,6 +1971,8 @@
 			{
 				"name": "Copy data to OFP TankeringInfo",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelStatistic",
@@ -2114,6 +2163,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader_AlternateFuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -2315,6 +2366,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader_Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
@@ -2487,6 +2540,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Remark",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_Adjustment",
