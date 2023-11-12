@@ -2606,8 +2606,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['AlternateFuel']",
-						"mapComplexValuesToString": true
+						"collectionReference": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
