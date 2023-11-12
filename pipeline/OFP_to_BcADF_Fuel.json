@@ -2710,7 +2710,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@unit']"
 								},
 								"sink": {
 									"name": "AdjustmentUnit",
@@ -2719,7 +2719,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@affectedItem']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@affectedItem']"
 								},
 								"sink": {
 									"name": "AdjustmentAffectedItem",
@@ -2728,7 +2728,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['@unit']"
 								},
 								"sink": {
 									"name": "AffectedItemsUnit",
@@ -2737,7 +2737,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@deviationReasonChange']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['@deviationReasonChange']"
 								},
 								"sink": {
 									"name": "AffectedItemsDeviationReasonChange",
@@ -2746,7 +2746,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['@deviationReason']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['@deviationReason']"
 								},
 								"sink": {
 									"name": "DeviationReason",
@@ -2755,7 +2755,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['_value_]"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['_value_]"
 								},
 								"sink": {
 									"name": "Adjustment",
