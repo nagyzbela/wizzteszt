@@ -2635,7 +2635,7 @@
 				]
 			},
 			{
-				"name": "Copy data to OFP FuelHeader_Adjustment",
+				"name": "Copy data to OFP FuelHeader Adjustment",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -2681,6 +2681,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2700,43 +2701,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['@deviationReasonChange']"
-								},
-								"sink": {
-									"name": "AffectedItemsDeviationReasonChange",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "['@unit']"
-								},
-								"sink": {
-									"name": "AffectedItemsUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AffectedItems']['Adjustment']['@affectedItem']"
-								},
-								"sink": {
-									"name": "AdjustmentAffectedItem",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AffectedItems']['Adjustment']['_value_']"
-								},
-								"sink": {
-									"name": "Adjustment",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AffectedItems']['Adjustment']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
 								},
 								"sink": {
 									"name": "AdjustmentUnit",
@@ -2745,7 +2710,34 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['@deviationReason']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@affectedItem']"
+								},
+								"sink": {
+									"name": "AdjustmentAffectedItem",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@unit']"
+								},
+								"sink": {
+									"name": "AffectedItemsUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['@deviationReasonChange']"
+								},
+								"sink": {
+									"name": "AffectedItemsDeviationReasonChange",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['@deviationReason']"
 								},
 								"sink": {
 									"name": "DeviationReason",
@@ -2754,19 +2746,11 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
-								},
-								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['TFileName']"
 								},
 								"sink": {
-									"name": "TFileName"
+									"name": "TFileName",
+									"type": "String"
 								}
 							},
 							{
@@ -2774,7 +2758,8 @@
 									"path": "$['TCreatedId']"
 								},
 								"sink": {
-									"name": "TCreatedId"
+									"name": "TCreatedId",
+									"type": "String"
 								}
 							},
 							{
@@ -2782,11 +2767,12 @@
 									"path": "$['TLoadDate']"
 								},
 								"sink": {
-									"name": "TLoadDate"
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
@@ -2811,15 +2797,7 @@
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [
-					{
-						"activity": "Copy data to OFP FuelHeader_Adjustment",
-						"dependencyConditions": [
-							"Succeeded",
-							"Failed"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
