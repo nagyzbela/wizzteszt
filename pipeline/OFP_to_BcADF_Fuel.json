@@ -6,6 +6,8 @@
 			{
 				"name": "Copy data to OFP_FuelHeader",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -2235,8 +2237,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader_AlternateFuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -2354,6 +2354,51 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ActualWeighUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ActualWeighValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ActualWeighCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "ActualWeighCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "ActualWeighCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Value']"
 								},
 								"sink": {
@@ -2408,10 +2453,20 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['Sequence']"
 								},
 								"sink": {
-									"name": "Sequence"
+									"name": "Sequence",
+									"type": "Single"
 								}
 							}
 						],
