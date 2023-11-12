@@ -2681,7 +2681,6 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2755,15 +2754,6 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['_value_]"
-								},
-								"sink": {
-									"name": "Adjustment",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
 									"path": "$['TFileName']"
 								},
 								"sink": {
@@ -2790,7 +2780,7 @@
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "\"$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']\"",
 						"mapComplexValuesToString": true
 					}
 				},
