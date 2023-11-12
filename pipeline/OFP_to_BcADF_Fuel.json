@@ -2237,6 +2237,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader_AlternateFuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -2635,8 +2637,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader_Adjustment",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader_AlternateFuel",
@@ -2718,7 +2718,7 @@
 							},
 							{
 								"source": {
-									"path": "['Adjustment']['@affectedItem']"
+									"path": "$['FlightPlan']['FuelHeader']['AffectedItems']['Adjustment']['@affectedItem']"
 								},
 								"sink": {
 									"name": "AdjustmentAffectedItem",
@@ -2727,7 +2727,7 @@
 							},
 							{
 								"source": {
-									"path": "['Adjustment']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['AffectedItems']['Adjustment']['_value_']"
 								},
 								"sink": {
 									"name": "Adjustment",
@@ -2736,7 +2736,7 @@
 							},
 							{
 								"source": {
-									"path": "['Adjustment']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['AffectedItems']['Adjustment']['@unit']"
 								},
 								"sink": {
 									"name": "AdjustmentUnit",
@@ -2763,7 +2763,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TFileName']"
+									"path": "$['TFileName']"
 								},
 								"sink": {
 									"name": "TFileName"
@@ -2771,7 +2771,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TCreatedId']"
+									"path": "$['TCreatedId']"
 								},
 								"sink": {
 									"name": "TCreatedId"
@@ -2779,7 +2779,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['TLoadDate']"
+									"path": "$['TLoadDate']"
 								},
 								"sink": {
 									"name": "TLoadDate"
