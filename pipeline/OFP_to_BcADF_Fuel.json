@@ -2720,7 +2720,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['$[\\'FlightPlan\\'][\\'FuelHeader\\'][\\'Adjustments\\'][0][\\'AffectedItems\\'][\\'Adjustment\\'][\\'__text\\']']"
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['_value_']"
 								},
 								"sink": {
 									"name": "Adjustment",
@@ -2782,7 +2782,7 @@
 								}
 							}
 						],
-						"collectionReference": "\"$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']\"",
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']",
 						"mapComplexValuesToString": true
 					}
 				},
