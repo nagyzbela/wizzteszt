@@ -2701,6 +2701,15 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['@unit']"
 								},
 								"sink": {
@@ -2742,6 +2751,15 @@
 								"sink": {
 									"name": "DeviationReason",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments'][0]['AffectedItems']['Adjustment']['_value_]"
+								},
+								"sink": {
+									"name": "Adjustment",
+									"type": "Single"
 								}
 							},
 							{
