@@ -2848,6 +2848,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
