@@ -2354,46 +2354,46 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['Value']['@unit']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['Value']['@unit']"
 								},
 								"sink": {
-									"name": "ActualWeighUnit",
+									"name": "ActualWeightUnit",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['Value']['_value_']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['Value']['_value_']"
 								},
 								"sink": {
-									"name": "ActualWeighValue",
+									"name": "ActualWeightValue",
 									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['CorrectedValue']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValue']"
 								},
 								"sink": {
-									"name": "ActualWeighCorrectedValue",
+									"name": "ActualWeightCorrectedValue",
 									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['CorrectedValueSource']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValueSource']"
 								},
 								"sink": {
-									"name": "ActualWeighCorrectedValueSource",
+									"name": "ActualWeightCorrectedValueSource",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeigh']['CorrectedValueUnit']"
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValueUnit']"
 								},
 								"sink": {
-									"name": "ActualWeighCorrectedValueUnit",
+									"name": "ActualWeightCorrectedValueUnit",
 									"type": "String"
 								}
 							},
@@ -2421,6 +2421,213 @@
 								},
 								"sink": {
 									"name": "DurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeigh']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeighCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "FinalReserveDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValue",
 									"type": "String"
 								}
 							},
