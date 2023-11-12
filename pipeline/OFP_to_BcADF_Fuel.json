@@ -2585,6 +2585,30 @@
 									"name": "Sequence",
 									"type": "Single"
 								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
 							}
 						],
 						"collectionReference": "$['AlternateFuel']",
