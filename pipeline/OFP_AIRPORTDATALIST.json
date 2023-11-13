@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "OFP_AirportDataList",
+				"name": "OFP_AirportDataList_Stage",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -40,6 +40,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -271,6 +272,36 @@
 								"value": "@pipeline().parameters.table_name",
 								"type": "Expression"
 							}
+						}
+					}
+				]
+			},
+			{
+				"name": "OFP_AirportDataList",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_AirportDataList_Stage"
 						}
 					}
 				]

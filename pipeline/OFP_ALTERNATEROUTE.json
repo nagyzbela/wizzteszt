@@ -40,6 +40,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1034,7 +1035,7 @@
 							}
 						],
 						"collectionReference": "$['FlightPlan']['AlternateRoutes']['AlternateRoute']",
-						"mapComplexValuesToString": true
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
