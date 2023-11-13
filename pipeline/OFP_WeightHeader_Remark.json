@@ -3828,6 +3828,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_InboundTrack_Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -4481,6 +4483,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_InboundTrack",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_InboundTrack_Stage",
