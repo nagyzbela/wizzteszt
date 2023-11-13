@@ -2638,8 +2638,6 @@
 			{
 				"name": "Copy data to OFP FuelHeader Adjustment",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader Alternate Fuel",
@@ -2704,24 +2702,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
-								},
-								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@unit']"
-								},
-								"sink": {
-									"name": "AdjustmentUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@affectedItem']"
 								},
 								"sink": {
@@ -2767,6 +2747,15 @@
 							},
 							{
 								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['TFileName']"
 								},
 								"sink": {
@@ -2793,8 +2782,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']",
-						"mapComplexValuesToString": true
+						"collectionReference": "",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
@@ -2816,6 +2805,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Remark",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader Adjustment",
