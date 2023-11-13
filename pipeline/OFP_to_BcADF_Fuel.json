@@ -2702,7 +2702,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@affectedItem']"
+									"path": "['@affectedItem']"
 								},
 								"sink": {
 									"name": "AdjustmentAffectedItem",
@@ -2711,7 +2711,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['_value_']"
+									"path": "['_value_']"
 								},
 								"sink": {
 									"name": "Adjustment",
@@ -2782,7 +2782,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@unit']",
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']",
 						"mapComplexValuesToString": true
 					}
 				},
