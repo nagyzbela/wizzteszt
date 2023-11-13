@@ -2702,6 +2702,15 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@unit']"
+								},
+								"sink": {
+									"name": "AdjustmentUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@affectedItem']"
 								},
 								"sink": {
