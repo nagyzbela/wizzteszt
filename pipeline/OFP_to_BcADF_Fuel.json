@@ -6,6 +6,8 @@
 			{
 				"name": "Copy data to OFP_FuelHeader",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
@@ -42,7 +44,6 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1861,6 +1862,8 @@
 			{
 				"name": "Copy data to OFP FuelStatistic",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP_FuelHeader",
@@ -2042,6 +2045,8 @@
 			{
 				"name": "Copy data to OFP TankeringInfo",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelStatistic",
@@ -2233,6 +2238,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Alternate Fuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP TankeringInfo",
@@ -2631,6 +2638,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader Alternate Fuel",
@@ -2851,7 +2860,6 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2957,6 +2965,8 @@
 			{
 				"name": "Copy data to OOFP FuelHeader AdditionalFuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader Remark",
@@ -3213,6 +3223,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader ExtraFuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OOFP FuelHeader AdditionalFuel",
