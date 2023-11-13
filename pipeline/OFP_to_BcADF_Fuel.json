@@ -8,7 +8,7 @@
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -48,6 +48,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
@@ -1870,7 +1871,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -1910,7 +1911,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
-							"detectDataType": true,
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
@@ -2051,7 +2052,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -2242,7 +2243,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -2640,7 +2641,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -2680,7 +2681,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
-							"detectDataType": true,
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
@@ -2810,12 +2811,13 @@
 					{
 						"activity": "Copy data to OFP FuelHeader Adjustment",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -2855,6 +2857,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
@@ -2931,7 +2934,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']"
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']",
+						"mapComplexValuesToString": true
 					}
 				},
 				"inputs": [
@@ -2963,7 +2967,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -3003,7 +3007,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
-							"detectDataType": true,
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
@@ -3219,7 +3223,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:10:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -3259,7 +3263,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
-							"detectDataType": true,
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
