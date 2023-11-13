@@ -2702,15 +2702,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@unit']"
-								},
-								"sink": {
-									"name": "AdjustmentUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@affectedItem']"
 								},
 								"sink": {
@@ -2791,7 +2782,7 @@
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']['@unit']",
 						"mapComplexValuesToString": true
 					}
 				},
@@ -2881,16 +2872,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
-								},
-								"sink": {
-									"name": "FlightPlanId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']['Paragraph']['Text']"
+									"path": "['Paragraph']['Text']"
 								},
 								"sink": {
 									"name": "Text",
@@ -2899,7 +2881,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']['Paragraph']['@sequence']"
+									"path": "['Paragraph']['@sequence']"
 								},
 								"sink": {
 									"name": "Sequence",
@@ -2908,10 +2890,19 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']['@remarkType']"
+									"path": "['@remarkType']"
 								},
 								"sink": {
 									"name": "RemarkType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
 									"type": "String"
 								}
 							},
