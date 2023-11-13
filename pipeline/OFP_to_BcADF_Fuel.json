@@ -2638,6 +2638,8 @@
 			{
 				"name": "Copy data to OFP FuelHeader Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy data to OFP FuelHeader Alternate Fuel",
@@ -2702,7 +2704,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['@unit']"
+									"path": "['Adjustment']['@unit']"
 								},
 								"sink": {
 									"name": "AdjustmentUnit",
@@ -2711,7 +2713,7 @@
 							},
 							{
 								"source": {
-									"path": "['@affectedItem']"
+									"path": "['Adjustment']['@affectedItem']"
 								},
 								"sink": {
 									"name": "AdjustmentAffectedItem",
@@ -2720,7 +2722,7 @@
 							},
 							{
 								"source": {
-									"path": "['_value_']"
+									"path": "['Adjustment']['_value_']"
 								},
 								"sink": {
 									"name": "Adjustment",
@@ -2729,7 +2731,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['@unit']"
+									"path": "['@unit']"
 								},
 								"sink": {
 									"name": "AffectedItemsUnit",
@@ -2738,7 +2740,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['@deviationReasonChange']"
+									"path": "['@deviationReasonChange']"
 								},
 								"sink": {
 									"name": "AffectedItemsDeviationReasonChange",
@@ -2791,7 +2793,7 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']['Adjustment']",
+						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']",
 						"mapComplexValuesToString": true
 					}
 				},
