@@ -2702,6 +2702,15 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "['@unit']"
+								},
+								"sink": {
+									"name": "AdjustmentUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "['@affectedItem']"
 								},
 								"sink": {
