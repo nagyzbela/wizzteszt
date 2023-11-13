@@ -2889,7 +2889,7 @@
 							},
 							{
 								"source": {
-									"path": "['Paragraph']['Text']"
+									"path": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']['Paragraph']['Text']"
 								},
 								"sink": {
 									"name": "Text",
@@ -2898,7 +2898,7 @@
 							},
 							{
 								"source": {
-									"path": "['Paragraph']['@sequence']"
+									"path": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']['Paragraph']['@sequence']"
 								},
 								"sink": {
 									"name": "Sequence",
@@ -2907,7 +2907,7 @@
 							},
 							{
 								"source": {
-									"path": "['@remarkType']"
+									"path": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']['@remarkType']"
 								},
 								"sink": {
 									"name": "RemarkType",
