@@ -4,7 +4,7 @@
 		"description": "Copy data from OFP_xml to Fuel Tables",
 		"activities": [
 			{
-				"name": "Copy data to OFP_FuelHeader",
+				"name": "Copy OFP_FuelHeader",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -1860,7 +1860,7 @@
 				]
 			},
 			{
-				"name": "Copy data to OFP FuelStatistic",
+				"name": "Copy OFP FuelStatistic",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -2035,7 +2035,7 @@
 				]
 			},
 			{
-				"name": "Copy data to OFP TankeringInfo",
+				"name": "Copy OFP TankeringInfo",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -2780,7 +2780,7 @@
 				]
 			},
 			{
-				"name": "Copy data to OFP FuelHeader Remark",
+				"name": "Copy OFP FuelHeader Remark",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -2924,7 +2924,7 @@
 				]
 			},
 			{
-				"name": "Copy data to OOFP FuelHeader AdditionalFuel",
+				"name": "Copy OOFP FuelHeader AdditionalFuel",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -3424,13 +3424,11 @@
 				]
 			},
 			{
-				"name": "Copy data to OFP FuelHeader Alternate Fuel",
+				"name": "Copy OFP FuelHeader Alternate Fuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Copy OFP FuelHeader Adjustment Stage",
+						"activity": "Copy OFP FuelHeader Alternate Fuel Stage",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -3825,9 +3823,11 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Copy OFP FuelHeader Alternate Fuel Stage",
+						"activity": "Copy OFP FuelHeader Adjustment Stage",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -3996,6 +3996,74 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Delete OFP FuealHeader Adjustment Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader Alternate Fuel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Delete OFP FuelHeader AlternateFuel Stage",
+				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader Adjustment",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]\n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
 			}
 		],
 		"annotations": []
