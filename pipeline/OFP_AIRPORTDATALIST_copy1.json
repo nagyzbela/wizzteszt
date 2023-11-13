@@ -1,0 +1,290 @@
+{
+	"name": "OFP_AIRPORTDATALIST_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "OFP_AirportDataList_Stage",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.xml",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['Airport']['@airportName']"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SuitablePeriod']['@from']"
+								},
+								"sink": {
+									"name": "SuitablePeriodFrom",
+									"type": "DateTime",
+									"format": ""
+								}
+							},
+							{
+								"source": {
+									"path": "['SuitablePeriod']['@until']"
+								},
+								"sink": {
+									"name": "SuitablePeriodTo",
+									"type": "DateTime",
+									"format": ""
+								}
+							},
+							{
+								"source": {
+									"path": "['PlannedRunway']"
+								},
+								"sink": {
+									"name": "PlannedRunway",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TerminalProcedure']"
+								},
+								"sink": {
+									"name": "TerminalProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TerminalProcedure']['procedureType']"
+								},
+								"sink": {
+									"name": "TerminalProcedureType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']"
+								},
+								"sink": {
+									"name": "RequiredHorizontalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredHorizontalVisibility']['@unit']"
+								},
+								"sink": {
+									"name": "RequiredHorizontalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']"
+								},
+								"sink": {
+									"name": "RequiredVerticalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['RequiredWeatherCondition']['RequiredVerticalVisibility']['@unit']"
+								},
+								"sink": {
+									"name": "RequiredVerticalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']"
+								},
+								"sink": {
+									"name": "ConsideredHorizontalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredHorizontalVisibility']['@unit']"
+								},
+								"sink": {
+									"name": "ConsideredHorizontalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']"
+								},
+								"sink": {
+									"name": "ConsideredVerticalVisibility",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['ConsideredWeatherCondition']['ConsideredVerticalVisibility']['@unit']"
+								},
+								"sink": {
+									"name": "ConsideredVerticalVisibilityUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['AirportDataList']['AirportData']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": {
+								"value": "@pipeline().parameters.table_name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"table_name": {
+				"type": "string",
+				"defaultValue": "OFP_AirportDataList"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-30T14:48:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
