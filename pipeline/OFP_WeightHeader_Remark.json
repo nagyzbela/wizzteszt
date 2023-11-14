@@ -3143,7 +3143,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.filen",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -4859,8 +4862,6 @@
 			{
 				"name": "Delete_Waypoint_Function_Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Function",
@@ -4884,13 +4885,23 @@
 				"typeProperties": {
 					"scripts": [
 						{
-							"type": "Query"
+							"type": "NonQuery",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"type": "Expression"
+							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
 				}
 			}
 		],
+		"parameters": {
+			"filen": {
+				"type": "string",
+				"defaultValue": "test.xml"
+			}
+		},
 		"annotations": []
 	}
 }
