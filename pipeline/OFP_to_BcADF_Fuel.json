@@ -2289,7 +2289,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['@unit']"
+									"path": "['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "EstimatedWeightUnit",
@@ -2298,7 +2298,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['_value_']"
+									"path": "['EstimatedWeight']['Value']['_value_']"
 								},
 								"sink": {
 									"name": "EstimatedWeightValue",
@@ -2307,7 +2307,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValue']"
+									"path": "['EstimatedWeight']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "EstimatedWeightCorrectedValue",
@@ -2316,7 +2316,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValueSource']"
+									"path": "['EstimatedWeight']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "EstimatedWeightCorrectedValueSource",
@@ -2325,7 +2325,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValueUnit']"
+									"path": "['EstimatedWeight']['CorrectedValueUnit']"
 								},
 								"sink": {
 									"name": "EstimatedWeightCorrectedValueUnit",
@@ -2334,7 +2334,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['Value']['@unit']"
+									"path": "['ActualWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "ActualWeightUnit",
@@ -2343,7 +2343,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['Value']['_value_']"
+									"path": "['ActualWeight']['Value']['_value_']"
 								},
 								"sink": {
 									"name": "ActualWeightValue",
@@ -2352,7 +2352,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValue']"
+									"path": "['ActualWeight']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "ActualWeightCorrectedValue",
@@ -2361,7 +2361,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValueSource']"
+									"path": "['ActualWeight']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "ActualWeightCorrectedValueSource",
@@ -2370,7 +2370,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValueUnit']"
+									"path": "['ActualWeight']['CorrectedValueUnit']"
 								},
 								"sink": {
 									"name": "ActualWeightCorrectedValueUnit",
@@ -2379,7 +2379,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Value']"
+									"path": "['Duration']['Value']"
 								},
 								"sink": {
 									"name": "DurationValue",
@@ -2388,7 +2388,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['CorrectedValueSource']"
+									"path": "['Duration']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "DurationCorrectedValueSource",
@@ -2397,7 +2397,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['CorrectedValue']"
+									"path": "['Duration']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "DurationCorrectedValue",
@@ -2406,7 +2406,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['Value']['@unit']"
+									"path": "['FinalReserve']['ActualWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "FinalReserveActualWeightUnit",
@@ -2415,7 +2415,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['Value']['_value_']"
+									"path": "['FinalReserve']['ActualWeight']['Value']['_value_']"
 								},
 								"sink": {
 									"name": "FinalReserveActualWeightValue",
@@ -2424,7 +2424,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['CorrectedValue']"
+									"path": "['FinalReserve']['ActualWeight']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "FinalReserveActualWeightCorrectedValue",
@@ -2433,7 +2433,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['CorrectedValueSource']"
+									"path": "['FinalReserve']['ActualWeight']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "FinalReserveActualWeightCorrectedValueSource",
@@ -2442,7 +2442,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['CorrectedValueUnit']"
+									"path": "['FinalReserve']['ActualWeight']['CorrectedValueUnit']"
 								},
 								"sink": {
 									"name": "FinalReserveActualWeightCorrectedValueUnit",
@@ -2451,7 +2451,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+									"path": "['FinalReserve']['EstimatedWeight']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "FinalReserveEstimatedWeightUnit",
@@ -2460,7 +2460,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+									"path": "['FinalReserve']['EstimatedWeight']['Value']['_value_']"
 								},
 								"sink": {
 									"name": "FinalReserveEstimatedWeightValue",
@@ -2469,7 +2469,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValue']"
+									"path": "['FinalReserve']['EstimatedWeight']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "FinalReserveEstimatedWeightCorrectedValue",
@@ -2478,7 +2478,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueSource']"
+									"path": "['FinalReserve']['EstimatedWeight']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
@@ -2487,7 +2487,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueUnit']"
+									"path": "['FinalReserve']['EstimatedWeight']['CorrectedValueUnit']"
 								},
 								"sink": {
 									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
@@ -2496,7 +2496,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['Value']"
+									"path": "['FinalReserve']['Duration']['Value']"
 								},
 								"sink": {
 									"name": "FinalReserveDurationValue",
@@ -2505,7 +2505,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['CorrectedValueSource']"
+									"path": "['FinalReserve']['Duration']['CorrectedValueSource']"
 								},
 								"sink": {
 									"name": "FinalReserveDurationCorrectedValueSource",
@@ -2514,7 +2514,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['CorrectedValue']"
+									"path": "['FinalReserve']['Duration']['CorrectedValue']"
 								},
 								"sink": {
 									"name": "FinalReserveDurationCorrectedValue",
@@ -2523,7 +2523,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportICAOCode']"
+									"path": "['Airport']['AirportICAOCode']"
 								},
 								"sink": {
 									"name": "AirportICAOCode",
@@ -2532,7 +2532,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportIATACode']"
+									"path": "['Airport']['AirportIATACode']"
 								},
 								"sink": {
 									"name": "AirportIATACode",
@@ -2541,7 +2541,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportName']"
+									"path": "['Airport']['@airportName']"
 								},
 								"sink": {
 									"name": "AirportName",
@@ -2550,7 +2550,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportFunction']"
+									"path": "['Airport']['@airportFunction']"
 								},
 								"sink": {
 									"name": "AirportFunction",
@@ -2559,7 +2559,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['Sequence']"
+									"path": "['Sequence']"
 								},
 								"sink": {
 									"name": "Sequence",
@@ -2614,6 +2614,8 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
@@ -2906,7 +2908,7 @@
 							}
 						],
 						"collectionReference": "$['FlightPlan']['FuelHeader']['Remarks']['Remark']",
-						"mapComplexValuesToString": true
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
