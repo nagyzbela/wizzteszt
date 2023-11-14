@@ -2222,6 +2222,8 @@
 			{
 				"name": "Copy OFP FuelHeader Alternate Fuel Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
@@ -2612,8 +2614,6 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
@@ -3426,6 +3426,8 @@
 			{
 				"name": "Copy OFP FuelHeader Alternate Fuel",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Alternate Fuel Stage",
@@ -4088,39 +4090,6 @@
 			{
 				"name": "Delete OFP FuealHeader Adjustment Stage",
 				"type": "Script",
-				"dependsOn": [
-					{
-						"activity": "Copy OFP FuelHeader Alternate Fuel",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"linkedServiceName": {
-					"referenceName": "AzureSynapseAnalytics",
-					"type": "LinkedServiceReference"
-				},
-				"typeProperties": {
-					"scripts": [
-						{
-							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\n"
-						}
-					],
-					"scriptBlockExecutionTimeout": "02:00:00"
-				}
-			},
-			{
-				"name": "Delete OFP FuelHeader AlternateFuel Stage",
-				"type": "Script",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
@@ -4147,7 +4116,43 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]\n"
+							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Delete OFP FuelHeader AlternateFuel Stage",
+				"description": "delete  FROM [BcAdfLido].OFP_FuelHeader_AlternateFuel_Stage",
+				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader Alternate Fuel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
