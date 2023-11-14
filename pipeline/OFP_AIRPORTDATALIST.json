@@ -620,7 +620,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_Waypoint_Function_stage]\n"
+							"text": "delete  FROM [BcAdfLido].[OFP_AirportDataList_stage]\n"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
