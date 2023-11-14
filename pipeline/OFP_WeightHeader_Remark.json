@@ -5,6 +5,8 @@
 			{
 				"name": "Copy_WeightHeader_Remark",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.11:00:00",
@@ -3106,8 +3108,6 @@
 			{
 				"name": "Copy_Waypoint_Function_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -4707,8 +4707,6 @@
 			{
 				"name": "Copy_Waypoint_Function",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Function_Stage",
@@ -4886,8 +4884,7 @@
 				"typeProperties": {
 					"scripts": [
 						{
-							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_Waypoint_Function_stage]\n"
+							"type": "Query"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
