@@ -279,7 +279,14 @@
 			{
 				"name": "OFP_AirportDataList",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "OFP_AirportDataList_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -291,10 +298,278 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT [FlightPlanId]\n,json_value(b.Value, '$.\"_value_\"') as TerminalProcedure\n,json_value(b.Value, '$.\"@procedureType\"') as TerminalProcedureType\n,[AirportName]\n,[AirportFunction]\n,[AirportICAOCode]\n,[AirportIATACode]\n,[PlannedRunway]\n,[SuitablePeriodFrom]\n,[SuitablePeriodTo]\n,[RequiredHorizontalVisibility]\n,[RequiredHorizontalVisibilityUnit]\n,[RequiredVerticalVisibility]\n,[RequiredVerticalVisibilityUnit]\n,[ConsideredHorizontalVisibility]\n,[ConsideredHorizontalVisibilityUnit]\n,[ConsideredVerticalVisibility]\n,[ConsideredVerticalVisibilityUnit]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\nFROM [BcAdfLido].[OFP_AirportDataList_Stage] a\ncross apply openjson(\n    case when Left(TerminalProcedure,1) ='[' \n     then TerminalProcedure \n     else '['+TerminalProcedure+']' end ,'$') b",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PlannedRunway",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PlannedRunway",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TerminalProcedure",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "TerminalProcedure",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TerminalProcedureType",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "TerminalProcedureType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SuitablePeriodFrom",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "SuitablePeriodFrom",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "SuitablePeriodTo",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "SuitablePeriodTo",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "RequiredHorizontalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "RequiredHorizontalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "RequiredHorizontalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RequiredHorizontalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RequiredVerticalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "RequiredVerticalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "RequiredVerticalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RequiredVerticalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ConsideredHorizontalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ConsideredHorizontalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ConsideredHorizontalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ConsideredHorizontalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ConsideredVerticalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ConsideredVerticalVisibility",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ConsideredVerticalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ConsideredVerticalVisibilityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -304,7 +579,52 @@
 							"table_name": "OFP_AirportDataList_Stage"
 						}
 					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": {
+								"value": "@pipeline().parameters.table_name",
+								"type": "Expression"
+							}
+						}
+					}
 				]
+			},
+			{
+				"name": "Delete_OFP_AirportDataList_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "OFP_AirportDataList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "delete  FROM [BcAdfLido].[OFP_Waypoint_Function_stage]\n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
 			}
 		],
 		"parameters": {
