@@ -3444,40 +3444,9 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "XmlSource",
-						"additionalColumns": [
-							{
-								"name": "TFileName",
-								"value": "$$FILEPATH"
-							},
-							{
-								"name": "TCreatedId",
-								"value": {
-									"value": "@guid()",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "TLoadDate",
-								"value": {
-									"value": "@utcNow()",
-									"type": "Expression"
-								}
-							}
-						],
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"maxConcurrentConnections": 1,
-							"recursive": true,
-							"wildcardFileName": "*.xml",
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"detectDataType": false,
-							"namespaces": true
-						}
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "SqlDWSink",
@@ -3489,325 +3458,439 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "FlightPlanId",
-									"type": "String"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "EstimatedWeightUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "EstimatedWeightValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "EstimatedWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "EstimatedWeightCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['EstimatedWeight']['CorrectedValueUnit']"
-								},
-								"sink": {
-									"name": "EstimatedWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "ActualWeightUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "ActualWeightValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "ActualWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "ActualWeightCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['ActualWeight']['CorrectedValueUnit']"
-								},
-								"sink": {
-									"name": "ActualWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['Value']"
-								},
-								"sink": {
-									"name": "DurationValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "DurationCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Duration']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "DurationCorrectedValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "FinalReserveActualWeightUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "FinalReserveActualWeightValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "FinalReserveActualWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "FinalReserveActualWeightCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['ActualWeight']['CorrectedValueUnit']"
-								},
-								"sink": {
-									"name": "FinalReserveActualWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['@unit']"
-								},
-								"sink": {
-									"name": "FinalReserveEstimatedWeightUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['Value']['_value_']"
-								},
-								"sink": {
-									"name": "FinalReserveEstimatedWeightValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "FinalReserveEstimatedWeightCorrectedValue",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['EstimatedWeight']['CorrectedValueUnit']"
-								},
-								"sink": {
-									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['Value']"
-								},
-								"sink": {
-									"name": "FinalReserveDurationValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['CorrectedValueSource']"
-								},
-								"sink": {
-									"name": "FinalReserveDurationCorrectedValueSource",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['FinalReserve']['Duration']['CorrectedValue']"
-								},
-								"sink": {
-									"name": "FinalReserveDurationCorrectedValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportICAOCode']"
-								},
-								"sink": {
-									"name": "AirportICAOCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['AirportIATACode']"
-								},
-								"sink": {
-									"name": "AirportIATACode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportName']"
-								},
-								"sink": {
-									"name": "AirportName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']['Airport']['@airportFunction']"
+									"name": "AirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "AirportFunction",
-									"type": "String"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['AlternateFuels']['Sequence']"
+									"name": "AirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "EstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "DurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sequence",
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
 									"name": "Sequence",
-									"type": "Single"
+									"type": "Int32",
+									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TFileName']"
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
-									"name": "TFileName"
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TCreatedId']"
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
 								},
 								"sink": {
-									"name": "TCreatedId"
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TLoadDate']"
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
-									"name": "TLoadDate"
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']",
-						"mapComplexValuesToString": false
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "OFP_xml",
-						"type": "DatasetReference"
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_AlternateFuel_Stage"
+						}
 					}
 				],
 				"outputs": [
@@ -3843,40 +3926,9 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "XmlSource",
-						"additionalColumns": [
-							{
-								"name": "TFileName",
-								"value": "$$FILEPATH"
-							},
-							{
-								"name": "TCreatedId",
-								"value": {
-									"value": "@guid()",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "TLoadDate",
-								"value": {
-									"value": "@utcNow()",
-									"type": "Expression"
-								}
-							}
-						],
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"maxConcurrentConnections": 1,
-							"recursive": true,
-							"wildcardFileName": "*.xml",
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"detectDataType": false,
-							"namespaces": true
-						}
+						"type": "SqlDWSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "SqlDWSink",
@@ -3888,103 +3940,139 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['Adjustment']['@unit']"
-								},
-								"sink": {
-									"name": "AdjustmentUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['Adjustment']['@affectedItem']"
-								},
-								"sink": {
-									"name": "AdjustmentAffectedItem",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['Adjustment']['_value_']"
-								},
-								"sink": {
-									"name": "Adjustment",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "['@unit']"
-								},
-								"sink": {
-									"name": "AffectedItemsUnit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['@deviationReasonChange']"
-								},
-								"sink": {
-									"name": "AffectedItemsDeviationReasonChange",
-									"type": "Single"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['FuelHeader']['Adjustments']['@deviationReason']"
-								},
-								"sink": {
-									"name": "DeviationReason",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['FlightPlan']['@flightPlanId']"
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "FlightPlanId",
-									"type": "String"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TFileName']"
+									"name": "DeviationReason",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
-									"name": "TFileName",
-									"type": "String"
+									"name": "DeviationReason",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TCreatedId']"
+									"name": "AffectedItemsUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AffectedItemsUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AffectedItemsDeviationReasonChange",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AffectedItemsDeviationReasonChange",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AdjustmentUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AdjustmentUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AdjustmentAffectedItem",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AdjustmentAffectedItem",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Adjustment",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Adjustment",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "TCreatedId",
-									"type": "String"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"path": "$['TLoadDate']"
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
 								},
 								"sink": {
 									"name": "TLoadDate",
-									"type": "DateTime"
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['FuelHeader']['Adjustments']['AffectedItems']",
-						"mapComplexValuesToString": true
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "OFP_xml",
-						"type": "DatasetReference"
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_Adjustment_Stage"
+						}
 					}
 				],
 				"outputs": [
