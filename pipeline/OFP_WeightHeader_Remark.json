@@ -3108,6 +3108,8 @@
 			{
 				"name": "Copy_Waypoint_Function_Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -4052,7 +4054,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT [FlightPlanId]\n,json_value(b.Value, '$.Value._value_') as \"Value\"\n,json_value(b.Value, '$.Value.\"@type\"') as Type\n,json_value(b.Value, '$.Value.\"@unit\"') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage] A\n cross apply openjson(Value) b",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.filen,''';')",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -4709,6 +4714,8 @@
 			{
 				"name": "Copy_Waypoint_Function",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Function_Stage",
@@ -4728,7 +4735,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT [FlightPlanId]\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,b.value as [Function]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName] \n FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\n cross APPLY openjson(\n    case when Left([Function],1) ='[' \n     then [Function] \n     else '[\"'+[Function]+'\"]' end ,'$') b",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT [FlightPlanId]\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,b.value as [Function]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName] \n FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\n cross APPLY openjson(\n    case when Left([Function],1) =''['' \n     then [Function] \n     else ''[\"''+[Function]+''\"]'' end ,''$'') b\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -4861,6 +4871,8 @@
 			{
 				"name": "Delete_Waypoint_Function_Stage",
 				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Function",
