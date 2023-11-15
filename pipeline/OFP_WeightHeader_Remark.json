@@ -3423,8 +3423,6 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -3460,7 +3458,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.filen",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -4032,8 +4033,6 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
@@ -4888,6 +4887,42 @@
 							"type": "NonQuery",
 							"text": {
 								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Delete_Copy_Waypoint_Tracks_OutboundTrack_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy_Waypoint_Tracks_OutboundTrack",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
 								"type": "Expression"
 							}
 						}
