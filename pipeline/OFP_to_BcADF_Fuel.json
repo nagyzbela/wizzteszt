@@ -4121,7 +4121,7 @@
 								{
 									"name": "OFP_File_Name",
 									"type": "String",
-									"value": "'Test'",
+									"value": "*",
 									"direction": "Input"
 								}
 							],
@@ -4169,6 +4169,13 @@
 				}
 			}
 		],
+		"concurrency": 1,
+		"variables": {
+			"FileNameVar": {
+				"type": "String",
+				"defaultValue": "OFP"
+			}
+		},
 		"annotations": []
 	}
 }
