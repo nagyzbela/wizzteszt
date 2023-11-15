@@ -4117,6 +4117,14 @@
 				"typeProperties": {
 					"scripts": [
 						{
+							"parameters": [
+								{
+									"name": "OFP_File_Name",
+									"type": "String",
+									"value": "'Test'",
+									"direction": "Input"
+								}
+							],
 							"type": "Query",
 							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]"
 						}
