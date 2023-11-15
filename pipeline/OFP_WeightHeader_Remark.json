@@ -3425,6 +3425,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -3629,8 +3631,6 @@
 			{
 				"name": "Copy_Waypoint_Tracks_SegmentTrack_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -3666,7 +3666,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.filen",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -4035,6 +4038,8 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
@@ -4262,8 +4267,6 @@
 			{
 				"name": "Copy_Waypoint_Tracks_SegmentTrack",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_SegmentTrack_Stage",
@@ -4283,7 +4286,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT [FlightPlanId]\n,json_value(b.Value, '$.Value._value_') as \"Value\"\n,json_value(b.Value, '$.Value.\"@type\"') as Type\n,json_value(b.Value, '$.Value.\"@unit\"') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage] A\n cross apply openjson(Value) b",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.filen,''';')",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -4907,8 +4913,10 @@
 				}
 			},
 			{
-				"name": "Delete_Copy_Waypoint_Tracks_OutboundTrack_Stage",
+				"name": "Delete_Waypoint_Tracks_OutboundTrack_Stage",
 				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_OutboundTrack",
@@ -4935,6 +4943,42 @@
 							"type": "NonQuery",
 							"text": {
 								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Delete_Waypoint_Tracks_SegmentTrack_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy_Waypoint_Tracks_SegmentTrack",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
 								"type": "Expression"
 							}
 						}
