@@ -3910,8 +3910,6 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Adjustment Stage",
@@ -3931,12 +3929,14 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT \nFlightPlanId,\nDeviationReason,\nAffectedItemsUnit,\nAffectedItemsDeviationReasonChange,\njson_value(Affect_item.value,'$.\"@unit\"')  as AdjustmentUnit,\njson_value(Affect_item.value,'$.\"@affectedItem\"')  as AdjustmentAffectedItem,\njson_value(Affect_item.value,'$.\"_value_\"')as Adjustment,\nTCreatedId,\nTLoadDate,\nTFileName\nfrom [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\ncross APPLY openjson(\ncase when Left(Adjustment,1) ='[' \nthen Adjustment \nelse '['+Adjustment+']' end ,'$') as Affect_item",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "SqlDWSink",
-						"writeBehavior": "Insert"
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -4092,8 +4092,6 @@
 			{
 				"name": "Delete OFP FuealHeader Adjustment Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Adjustment",
