@@ -1866,7 +1866,7 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "OFP_FuelHeader"
+							"table_name": "OFP_FuelHeader_Stage"
 						}
 					}
 				]
@@ -3999,14 +3999,7 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Copy OFP FuelHeader Adjustment Stage",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
 					"retry": 0,
@@ -4405,6 +4398,188 @@
 				"typeProperties": {
 					"waitTimeInSeconds": 1
 				}
+			},
+			{
+				"name": "Copy OFP FuelHeader Adjustment_copy1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader Adjustment Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "select \n[FlightPlanId],\n[TripFuelEstimatedWeightUnit],\n[TripFuelEstimatedWeightValue],\n[TripFuelEstimatedWeightCorrectedValueSource],\n[TripFuelEstimatedWeightCorrectedValueUnit],\n[TripFuelEstimatedWeightCorrectedValue],\n[TripFuelActualWeightUnit],\n[TripFuelActualWeightValue],\n[TripFuelActualWeightCorrectedValueSource],\n[TripFuelActualWeightCorrectedValueUnit],\n[TripFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([TripFuelDurationValue]) [TripFuelDurationValue],\n[TripFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([TripFuelDurationCorrectedValue]) [TripFuelDurationCorrectedValue],\n[ContingencyFuelEstimatedWeightUnit],\n[ContingencyFuelEstimatedWeightValue],\n[ContingencyFuelEstimatedWeightCorrectedValueSource],\n[ContingencyFuelEstimatedWeightCorrectedValueUnit],\n[ContingencyFuelEstimatedWeightCorrectedValue],\n[ContingencyFuelActualWeightUnit],\n[ContingencyFuelActualWeightValue],\n[ContingencyFuelActualWeightCorrectedValueSource],\n[ContingencyFuelActualWeightCorrectedValueUnit],\n[ContingencyFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([ContingencyFuelDurationValue]) [ContingencyFuelDurationValue],\n[ContingencyFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([ContingencyFuelDurationCorrectedValue]) [ContingencyFuelDurationCorrectedValue],\n[ContingencyPolicy],\n[ContingencyPolicyEnrouteAlternateAirportName],\n[ContingencyPolicyEnrouteAlternateAirportFunction],\n[ContingencyPolicyEnrouteAlternateAirportICAOCode],\n[ContingencyPolicyEnrouteAlternateAirportIATACode],\n[FinalReserveEstimatedWeightUnit],\n[FinalReserveEstimatedWeightValue],\n[FinalReserveEstimatedWeightCorrectedValueSource],\n[FinalReserveEstimatedWeightCorrectedValueUnit],\n[FinalReserveEstimatedWeightCorrectedValue],\n[FinalReserveActualWeightUnit],\n[FinalReserveActualWeightValue],\n[FinalReserveActualWeightCorrectedValueSource],\n[FinalReserveActualWeightCorrectedValueUnit],\n[FinalReserveActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([FinalReserveDurationValue]) [FinalReserveDurationValue],\n[FinalReserveDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([FinalReserveDurationCorrectedValue]) [FinalReserveDurationCorrectedValue],\n[NoAlternateFinalReserveEstimatedWeightUnit],\n[NoAlternateFinalReserveEstimatedWeightValue],\n[NoAlternateFinalReserveEstimatedWeightCorrectedValueSource],\n[NoAlternateFinalReserveEstimatedWeightCorrectedValueUnit],\n[NoAlternateFinalReserveEstimatedWeightCorrectedValue],\n[NoAlternateFinalReserveActualWeightUnit],\n[NoAlternateFinalReserveActualWeightValue],\n[NoAlternateFinalReserveActualWeightCorrectedValueSource],\n[NoAlternateFinalReserveActualWeightCorrectedValueUnit],\n[NoAlternateFinalReserveActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([NoAlternateFinalReserveDurationValue]) [NoAlternateFinalReserveDurationValue],\n[NoAlternateFinalReserveDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([NoAlternateFinalReserveDurationCorrectedValue]) [NoAlternateFinalReserveDurationCorrectedValue],\n[ReserveFuelEstimatedWeightUnit],\n[ReserveFuelEstimatedWeightValue],\n[ReserveFuelEstimatedWeightCorrectedValueSource],\n[ReserveFuelEstimatedWeightCorrectedValueUnit],\n[ReserveFuelEstimatedWeightCorrectedValue],\n[ReserveFuelActualWeightUnit],\n[ReserveFuelActualWeightValue],\n[ReserveFuelActualWeightCorrectedValueSource],\n[ReserveFuelActualWeightCorrectedValueUnit],\n[ReserveFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([ReserveFuelDurationValue]) [ReserveFuelDurationValue],\n[ReserveFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([ReserveFuelDurationCorrectedValue]) [ReserveFuelDurationCorrectedValue],\n[ReserveFuelContingencyPolicy],\n[ReserveFuelContingencyPolicyEnrouteAlternateAirportName],\n[ReserveFuelContingencyPolicyEnrouteAlternateAirportFunction],\n[ReserveFuelContingencyPolicyEnrouteAlternateAirportICAOCode],\n[ReserveFuelContingencyPolicyEnrouteAlternateAirportIATACode],\n[ETOPSFuelEstimatedWeightUnit],\n[ETOPSFuelEstimatedWeightValue],\n[ETOPSFuelEstimatedWeightCorrectedValueSource],\n[ETOPSFuelEstimatedWeightCorrectedValueUnit],\n[ETOPSFuelEstimatedWeightCorrectedValue],\n[ETOPSFuelActualWeightUnit],\n[ETOPSFuelActualWeightValue],\n[ETOPSFuelActualWeightCorrectedValueSource],\n[ETOPSFuelActualWeightCorrectedValueUnit],\n[ETOPSFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([ETOPSFuelDurationValue]) [ETOPSFuelDurationValue],\n[ETOPSFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([ETOPSFuelDurationCorrectedValue]) [ETOPSFuelDurationCorrectedValue],\n[ContingencySavingsAdditionalFuelEstimatedWeightUnit],\n[ContingencySavingsAdditionalFuelEstimatedWeightValue],\n[ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueSource],\n[ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueUnit],\n[ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValue],\n[ContingencySavingsAdditionalFuelActualWeightUnit],\n[ContingencySavingsAdditionalFuelActualWeightValue],\n[ContingencySavingsAdditionalFuelActualWeightCorrectedValueSource],\n[ContingencySavingsAdditionalFuelActualWeightCorrectedValueUnit],\n[ContingencySavingsAdditionalFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([ContingencySavingsAdditionalFuelDurationValue]) [ContingencySavingsAdditionalFuelDurationValue],\n[ContingencySavingsAdditionalFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([ContingencySavingsAdditionalFuelDurationCorrectedValue]) [ContingencySavingsAdditionalFuelDurationCorrectedValue],\n[PossibleExtraFuelReason],\n[PossibleExtraFuelUnit],\n[PossibleExtraFuelValue],\n[PossibleExtraFuelCorrectedValueSource],\n[PossibleExtraFuelCorrectedValueUnit],\n[PossibleExtraFuelCorrectedValue],\n[PossibleExtraFuelMaximumFuelWeightUnit],\n[PossibleExtraFuelMaximumFuelWeightValue],\n[PossibleExtraFuelMaximumFuelWeightCorrectedValueSource],\n[PossibleExtraFuelMaximumFuelWeightCorrectedValueUnit],\n[PossibleExtraFuelMaximumFuelWeightCorrectedValue],\n[PossibleExtraFuelMaximumFuelWeightDensityUnit],\n[PossibleExtraFuelMaximumFuelWeightDensityValue],\n[PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueSource],\n[PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueUnit],\n[PossibleExtraFuelMaximumFuelWeightDensityCorrectedValue],\n[PossibleExtraFuelTankVolumeUnit],\n[PossibleExtraFuelTankVolumeValue],\n[PossibleExtraFuelTankVolumeCorrectedValueSource],\n[PossibleExtraFuelTankVolumeCorrectedValueUnit],\n[PossibleExtraFuelTankVolumeCorrectedValue],\n[TakeOffFuelEstimatedWeightUnit],\n[TakeOffFuelEstimatedWeightValue],\n[TakeOffFuelEstimatedWeightCorrectedValueSource],\n[TakeOffFuelEstimatedWeightCorrectedValueUnit],\n[TakeOffFuelEstimatedWeightCorrectedValue],\n[TakeOffFuelActualWeightUnit],\n[TakeOffFuelActualWeightValue],\n[TakeOffFuelActualWeightCorrectedValueSource],\n[TakeOffFuelActualWeightCorrectedValueUnit],\n[TakeOffFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([TakeOffFuelDurationValue]) [TakeOffFuelDurationValue],\n[TakeOffFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([TakeOffFuelDurationCorrectedValue]) [TakeOffFuelDurationCorrectedValue],\n[TaxiFuelEstimatedWeightUnit],\n[TaxiFuelEstimatedWeightValue],\n[TaxiFuelEstimatedWeightCorrectedValueSource],\n[TaxiFuelEstimatedWeightCorrectedValueUnit],\n[TaxiFuelEstimatedWeightCorrectedValue],\n[TaxiFuelActualWeightUnit],\n[TaxiFuelActualWeightValue],\n[TaxiFuelActualWeightCorrectedValueSource],\n[TaxiFuelActualWeightCorrectedValueUnit],\n[TaxiFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([TaxiFuelDurationValue]) [TaxiFuelDurationValue],\n[TaxiFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([TaxiFuelDurationCorrectedValue]) [TaxiFuelDurationCorrectedValue],\n[BlockFuelEstimatedWeightUnit],\n[BlockFuelEstimatedWeightValue],\n[BlockFuelEstimatedWeightCorrectedValueSource],\n[BlockFuelEstimatedWeightCorrectedValueUnit],\n[BlockFuelEstimatedWeightCorrectedValue],\n[BlockFuelActualWeightUnit],\n[BlockFuelActualWeightValue],\n[BlockFuelActualWeightCorrectedValueSource],\n[BlockFuelActualWeightCorrectedValueUnit],\n[BlockFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([BlockFuelDurationValue]) [BlockFuelDurationValue],\n[BlockFuelDurationCorrectedValueSource],\n[BlockFuelDurationCorrectedValue],\n[BlockFuelFuelOnBoardAfterRefuelingUnit],\n[BlockFuelFuelOnBoardAfterRefuelingValue],\n[BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource],\n[BlockFuelFuelOnBoardAfterRefuelingCorrectedValueUnit],\n[BlockFuelFuelOnBoardAfterRefuelingCorrectedValue],\n[LadingFuelEstimatedWeightUnit],\n[LadingFuelEstimatedWeightValue],\n[LadingFuelEstimatedWeightCorrectedValueSource],\n[LadingFuelEstimatedWeightCorrectedValueUnit],\n[LadingFuelEstimatedWeightCorrectedValue],\n[LadingFuelActualWeightUnit],\n[LadingFuelActualWeightValue],\n[LadingFuelActualWeightCorrectedValueSource],\n[LadingFuelActualWeightCorrectedValueUnit],\n[LadingFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([LadingFuelDurationValue]) [LadingFuelDurationValue],\n[LadingFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([LadingFuelDurationCorrectedValue]) [LadingFuelDurationCorrectedValue],\n[ArrivalFuelEstimatedWeightUnit],\n[ArrivalFuelEstimatedWeightValue],\n[ArrivalFuelEstimatedWeightCorrectedValueSource],\n[ArrivalFuelEstimatedWeightCorrectedValueUnit],\n[ArrivalFuelEstimatedWeightCorrectedValue],\n[ArrivalFuelActualWeightUnit],\n[ArrivalFuelActualWeightValue],\n[ArrivalFuelActualWeightCorrectedValueSource],\n[ArrivalFuelActualWeightCorrectedValueUnit],\n[ArrivalFuelActualWeightCorrectedValue],\n[MetaLoad].[ISO8601Period2Seconds]([ArrivalFuelDurationValue]) [ArrivalFuelDurationValue],\n[ArrivalFuelDurationCorrectedValueSource],\n[MetaLoad].[ISO8601Period2Seconds]([ArrivalFuelDurationCorrectedValue]) [ArrivalFuelDurationCorrectedValue],\n[IncreaseTransportCoefficient],\n[DecreaseTransportCoefficient],\n[TCreatedId],\n[TLoadDate],\n[TFileName]\nfrom [BcAdfLido].[OFP_FuelHeader]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DeviationReason",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DeviationReason",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AffectedItemsUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AffectedItemsUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AffectedItemsDeviationReasonChange",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AffectedItemsDeviationReasonChange",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AdjustmentUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AdjustmentUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AdjustmentAffectedItem",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AdjustmentAffectedItem",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Adjustment",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "Adjustment",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_Stage"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader"
+						}
+					}
+				]
 			}
 		],
 		"concurrency": 1,
