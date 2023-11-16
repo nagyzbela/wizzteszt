@@ -3257,7 +3257,8 @@
 				]
 			},
 			{
-				"name": "Copy OFP FuelHeader ExtraFuel",
+				"name": "Copy OFP FuelHeader ExtraFuel Stage",
+				"description": "Copy OFP FuelHeader ExtraFuel Stage",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -3512,7 +3513,7 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "OFP_FuelHeader_ExtraFuel"
+							"table_name": "OFP_FuelHeader_ExtraFuel_Stage"
 						}
 					}
 				]
@@ -4316,12 +4317,6 @@
 						]
 					},
 					{
-						"activity": "Copy OFP FuelHeader ExtraFuel",
-						"dependencyConditions": [
-							"Completed"
-						]
-					},
-					{
 						"activity": "Delete OFP FuelHeader AlternateFuel Stage",
 						"dependencyConditions": [
 							"Completed"
@@ -4347,6 +4342,12 @@
 					},
 					{
 						"activity": "Delete OFP_FuelHeader_AdditionalFuel Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Delete OFP_FuelHeader_ExtraFuel Stage_copy1",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -7458,7 +7459,343 @@
 							],
 							"type": "Query",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfLido].OFP_FuelHeader_AdditionalFuel_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Copy OFP FuelHeader ExtraFuel",
+				"description": "Copy OFP FuelHeader ExtraFuel",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader ExtraFuel Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT [FlightPlanId]\n      ,[Reason]\n      ,[CaptainCheck]\n      ,[EstimatedWeightUnit]\n      ,[EstimatedWeightValue]\n      ,[EstimatedWeightCorrectedValueSource]\n      ,[EstimatedWeightCorrectedValueUnit]\n      ,[EstimatedWeightCorrectedValue]\n      ,[ActualWeightUnit]\n      ,[ActualWeightValue]\n      ,[ActualWeightCorrectedValueSource]\n      ,[ActualWeightCorrectedValueUnit]\n      ,[ActualWeightCorrectedValue]\n      ,[MetaLoad].[ISO8601Period2Seconds] ([DurationValue]) [DurationValue]\n      ,[DurationCorrectedValueSource]\n      ,[MetaLoad].[ISO8601Period2Seconds] ([DurationCorrectedValue]) [DurationCorrectedValue]\n      ,[TCreatedId]\n      ,[TLoadDate]\n      ,[TFileName]\n  FROM [BcAdfLido].[OFP_FuelHeader_ExtraFuel_Stage]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Reason",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Reason",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CaptainCheck",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CaptainCheck",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "EstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "DurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_ExtraFuel_Stage"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_ExtraFuel"
+						}
+					}
+				]
+			},
+			{
+				"name": "Delete OFP_FuelHeader_ExtraFuel Stage_copy1",
+				"description": "Delete OFP_FuelHeader_ExtralFuel Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader ExtraFuel",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"parameters": [
+								{
+									"name": "OFP_File_Name",
+									"type": "String",
+									"value": "*",
+									"direction": "Input"
+								}
+							],
+							"type": "Query",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_ExtraFuel_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 								"type": "Expression"
 							}
 						}
