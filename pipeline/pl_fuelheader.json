@@ -4378,10 +4378,6 @@
 			}
 		},
 		"variables": {
-			"FileNameVar": {
-				"type": "String",
-				"defaultValue": "OFP"
-			},
 			"v_createdid": {
 				"type": "String"
 			},
