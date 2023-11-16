@@ -3,7 +3,159 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "OFP_FlightPlan",
+				"name": "Copy_OFP_FlightPlan_Remark",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['@remarkType']"
+								},
+								"sink": {
+									"name": "RemarkType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Paragraph']['@sequence']"
+								},
+								"sink": {
+									"name": "Sequence",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Paragraph']['Text']"
+								},
+								"sink": {
+									"name": "Text",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['Remarks']['Remark']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FlightPlan_Remark"
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy_OFP_FlightPlan",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -360,10 +512,7 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": {
-								"value": "@pipeline().parameters.table_name",
-								"type": "Expression"
-							}
+							"table_name": "OFP_FlightPlan"
 						}
 					}
 				]
@@ -396,18 +545,61 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "v_loaddate",
-					"value": "@utcNow()"
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
 				}
 			},
 			{
-				"name": "Set variable3",
+				"name": "Set output",
 				"type": "SetVariable",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Copy_OFP_FlightPlan",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_OFP_FlightPlan_Remark",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "created_id",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_createdid')"
+							}
+						},
+						{
+							"key": "load_date",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_loaddate')"
+							}
+						},
+						{
+							"key": "log_output",
+							"value": {
+								"type": "Expression",
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_FlightPlan\",\n    \"result\": \"',activity('Copy_OFP_FlightPlan').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_FlightPlan').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_FlightPlan').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_FlightPlan_Remark\",\n    \"result\": \"',activity('Copy_OFP_FlightPlan_Remark').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_FlightPlan_Remark').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_FlightPlan_Remark').output.rowsCopied,0),'\n}]\n'))"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
 			},
 			{
 				"name": "Wait1",

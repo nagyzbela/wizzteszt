@@ -1135,7 +1135,7 @@
 							"key": "log_output",
 							"value": {
 								"type": "Expression",
-								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_AlternateRoute\",\n    \"result\": \"',activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_AlternateRoute').output.rowsCopied,0),'\n},]\n'))"
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_AlternateRoute\",\n    \"result\": \"',activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_AlternateRoute').output.rowsCopied,0),'\n}]\n'))"
 							}
 						}
 					],

@@ -57,6 +57,8 @@
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"validateDataConsistency": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -1194,7 +1196,8 @@
 									"type": "DateTime"
 								}
 							}
-						]
+						],
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
