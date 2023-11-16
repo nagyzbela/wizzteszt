@@ -5,9 +5,14 @@
 			{
 				"name": "Copy_WeightHeader_Remark",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.11:00:00",
 					"retry": 0,
@@ -22,19 +27,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -42,7 +50,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -143,9 +154,14 @@
 			{
 				"name": "Copy_WeightHeader",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -160,19 +176,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -180,7 +199,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1053,9 +1075,14 @@
 			{
 				"name": "Copy_Waypoint",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -1070,19 +1097,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -1090,7 +1120,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3108,9 +3141,14 @@
 			{
 				"name": "Copy_Waypoint_Function_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -3125,19 +3163,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -3146,7 +3187,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "@pipeline().parameters.filen",
+								"value": "@pipeline().parameters.InputFileName",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -3260,9 +3301,14 @@
 			{
 				"name": "Copy_Waypoint_Remark",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.11:00:00",
 					"retry": 0,
@@ -3277,19 +3323,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -3297,7 +3346,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3425,9 +3477,14 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -3442,19 +3499,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -3463,7 +3523,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "@pipeline().parameters.filen",
+								"value": "@pipeline().parameters.InputFileName",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -3631,9 +3691,14 @@
 			{
 				"name": "Copy_Waypoint_Tracks_SegmentTrack_Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -3648,19 +3713,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -3669,7 +3737,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "@pipeline().parameters.filen",
+								"value": "@pipeline().parameters.InputFileName",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -3837,7 +3905,14 @@
 			{
 				"name": "Copy_Waypoint_Tracks_InboundTrack_Stage",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -3852,19 +3927,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -3873,7 +3951,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "@pipeline().parameters.filen",
+								"value": "@pipeline().parameters.InputFileName",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -4041,13 +4119,11 @@
 			{
 				"name": "Copy_Waypoint_Tracks_OutboundTrack",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_OutboundTrack_Stage",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4063,7 +4139,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.filen,''';')",
+							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.InputFileName,''';')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -4270,13 +4346,11 @@
 			{
 				"name": "Copy_Waypoint_Tracks_SegmentTrack",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_SegmentTrack_Stage",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4292,7 +4366,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.filen,''';')",
+							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.InputFileName,''';')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -4503,7 +4577,7 @@
 					{
 						"activity": "Copy_Waypoint_Tracks_InboundTrack_Stage",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4519,7 +4593,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_InboundTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.filen,''';')",
+							"value": "@concat('SELECT [FlightPlanId]\n,json_value(b.Value, ''$.Value._value_'') as \"Value\"\n,json_value(b.Value, ''$.Value.\"@type\"'') as Type\n,json_value(b.Value, ''$.Value.\"@unit\"'') as Unit\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,[CorrectedValue]\n,[CorrectedValueType]\n,[CorrectedValueUnit]\n,[CorrectedValueSource]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Tracks_InboundTrack_Stage] A\n cross apply openjson(Value) b\n where tfilename = ''',pipeline().parameters.InputFileName,''';')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -4726,13 +4800,11 @@
 			{
 				"name": "Copy_Waypoint_Function",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Function_Stage",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4748,7 +4820,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "@concat('SELECT [FlightPlanId]\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,b.value as [Function]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName] \n FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\n cross APPLY openjson(\n    case when Left([Function],1) =''['' \n     then [Function] \n     else ''[\"''+[Function]+''\"]'' end ,''$'') b\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+							"value": "@concat('SELECT [FlightPlanId]\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[WaypointSequenceId]\n,b.value as [Function]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName] \n FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\n cross APPLY openjson(\n    case when Left([Function],1) =''['' \n     then [Function] \n     else ''[\"''+[Function]+''\"]'' end ,''$'') b\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -4883,13 +4955,11 @@
 			{
 				"name": "Delete_Waypoint_Function_Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Function",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4910,7 +4980,7 @@
 						{
 							"type": "NonQuery",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Function_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 								"type": "Expression"
 							}
 						}
@@ -4921,13 +4991,11 @@
 			{
 				"name": "Delete_Waypoint_Tracks_OutboundTrack_Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_OutboundTrack",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4948,7 +5016,7 @@
 						{
 							"type": "NonQuery",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_OutboundTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 								"type": "Expression"
 							}
 						}
@@ -4959,13 +5027,11 @@
 			{
 				"name": "Delete_Waypoint_Tracks_SegmentTrack_Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_Waypoint_Tracks_SegmentTrack",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4986,7 +5052,7 @@
 						{
 							"type": "NonQuery",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_SegmentTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 								"type": "Expression"
 							}
 						}
@@ -5001,7 +5067,7 @@
 					{
 						"activity": "Copy_Waypoint_Tracks_InboundTrack",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -5022,19 +5088,169 @@
 						{
 							"type": "NonQuery",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_InboundTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.filen,''';')",
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Tracks_InboundTrack_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 								"type": "Expression"
 							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
 				}
+			},
+			{
+				"name": "Set createid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_createdid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set loaddate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Wait",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Set createid",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Set loaddate",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "Set output",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Delete_Waypoint_Tracks_SegmentTrack_Stage_copy1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Delete_Waypoint_Tracks_SegmentTrack_Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Delete_Waypoint_Function_Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Delete_Waypoint_Tracks_OutboundTrack_Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Copy_WeightHeader_Remark",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Copy_WeightHeader",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Copy_Waypoint",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Copy_Waypoint_Remark",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "created_id",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_createdid')"
+							}
+						},
+						{
+							"key": "load_date",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_loaddate')"
+							}
+						},
+						{
+							"key": "log_output",
+							"value": {
+								"type": "Expression",
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_WeightHeader_Remark\",\n    \"result\": \"',activity('Copy_WeightHeader_Remark').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_WeightHeader_Remark').output.executionDetails[0].status,'Succeeded'),activity('Copy_WeightHeader_Remark').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_WeightHeader\",\n    \"result\": \"',activity('Copy_WeightHeader').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_WeightHeader').output.executionDetails[0].status,'Succeeded'),activity('Copy_WeightHeader').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_Waypoint_Tracks_InboundTrack\",\n    \"result\": \"',activity('Copy_Waypoint_Tracks_InboundTrack').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_Waypoint_Tracks_InboundTrack').output.executionDetails[0].status,'Succeeded'),activity('Copy_Waypoint_Tracks_InboundTrack').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_Waypoint_Tracks_OutboundTrack\",\n    \"result\": \"',activity('Copy_Waypoint_Tracks_OutboundTrack').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_Waypoint_Tracks_OutboundTrack').output.executionDetails[0].status,'Succeeded'),activity('Copy_Waypoint_Tracks_OutboundTrack').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_Waypoint_Tracks_SegmentTrack\",\n    \"result\": \"',activity('Copy_Waypoint_Tracks_SegmentTrack').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_Waypoint_Tracks_SegmentTrack').output.executionDetails[0].status,'Succeeded'),activity('Copy_Waypoint_Tracks_SegmentTrack').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_Waypoint_Function\",\n    \"result\": \"',activity('Copy_Waypoint_Function').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_Waypoint_Function').output.executionDetails[0].status,'Succeeded'),activity('Copy_Waypoint_Function').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_Waypoint_Remark\",\n    \"result\": \"',activity('Copy_Waypoint_Remark').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_Waypoint_Remark').output.executionDetails[0].status,'Succeeded'),activity('Copy_Waypoint_Remark').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfLido.OFP_Waypoint\",\n    \"result\": \"',activity('Copy_Waypoint').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_Waypoint').output.executionDetails[0].status,'Succeeded'),activity('Copy_Waypoint').output.rowsCopied,0),'\n}]\n'))"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
 			}
 		],
 		"parameters": {
-			"filen": {
+			"InputFileName": {
 				"type": "string",
-				"defaultValue": "test.xml"
+				"defaultValue": "ofp.xml"
+			}
+		},
+		"variables": {
+			"v_createdid": {
+				"type": "String"
+			},
+			"v_loaddate": {
+				"type": "String"
 			}
 		},
 		"annotations": []
