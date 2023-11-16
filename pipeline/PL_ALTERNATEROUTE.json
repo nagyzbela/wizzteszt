@@ -3,9 +3,16 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "OFP_AlternateRoute",
+				"name": "Copy_OFP_AlternateRoute",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -40,7 +47,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1049,19 +1059,127 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": {
-								"value": "@pipeline().parameters.table_name",
-								"type": "Expression"
-							}
+							"table_name": "OFP_AlternateRoute"
 						}
 					}
 				]
+			},
+			{
+				"name": "Set createdid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_createdid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set loaddate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set output",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Copy_OFP_AlternateRoute",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "created_id",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('created_id')"
+							}
+						},
+						{
+							"key": "load_date",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_loaddate')"
+							}
+						},
+						{
+							"key": "log_output",
+							"value": {
+								"type": "Expression",
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_AlternateRoute\",\n    \"result\": \"',activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_AlternateRoute').output.rowsCopied,0),'\n},]\n'))"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			},
+			{
+				"name": "Wait",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Set createdid",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set loaddate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
 			}
 		],
 		"parameters": {
-			"table_name": {
+			"InputFileName": {
 				"type": "string",
-				"defaultValue": "OFP_AlternateRoute"
+				"defaultValue": "ofp.xml"
+			}
+		},
+		"variables": {
+			"v_createdid": {
+				"type": "String"
+			},
+			"v_loaddate": {
+				"type": "String"
+			},
+			"created_id": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
