@@ -4371,6 +4371,12 @@
 			}
 		],
 		"concurrency": 1,
+		"parameters": {
+			"InputFileName": {
+				"type": "string",
+				"defaultValue": "OFP.xml"
+			}
+		},
 		"variables": {
 			"FileNameVar": {
 				"type": "String",
