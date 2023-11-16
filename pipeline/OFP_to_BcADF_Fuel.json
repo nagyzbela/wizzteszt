@@ -44,7 +44,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1901,7 +1904,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2076,7 +2082,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2261,7 +2270,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2653,7 +2665,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2825,7 +2840,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2969,7 +2987,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3217,7 +3238,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -4170,6 +4194,401 @@
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
 				}
+			},
+			{
+				"name": "Copy OFP FuelHeader Alternate Fuel Stage_copy1",
+				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"maxConcurrentConnections": 1,
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "*.xml",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"detectDataType": false,
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "EstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "EstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['EstimatedWeight']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['EstimatedWeight']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EstimatedWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "EstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ActualWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ActualWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['ActualWeight']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['ActualWeight']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ActualWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "ActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Duration']['Value']"
+								},
+								"sink": {
+									"name": "DurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "DurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['ActualWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['ActualWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['ActualWeight']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['ActualWeight']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['ActualWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['EstimatedWeight']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['EstimatedWeight']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['EstimatedWeight']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['EstimatedWeight']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['EstimatedWeight']['CorrectedValueUnit']"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['Duration']['Value']"
+								},
+								"sink": {
+									"name": "FinalReserveDurationValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['Duration']['CorrectedValueSource']"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FinalReserve']['Duration']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValue",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['@airportName']"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Sequence']"
+								},
+								"sink": {
+									"name": "Sequence",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['FuelHeader']['AlternateFuels']['AlternateFuel']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_FuelHeader_AlternateFuel_Stage"
+						}
+					}
+				]
 			}
 		],
 		"concurrency": 1,
