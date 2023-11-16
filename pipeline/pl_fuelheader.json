@@ -29,7 +29,7 @@
 							{
 								"name": "TFileName",
 								"value": {
-									"value": "@variables('v_loaddate')",
+									"value": "@pipeline().parameters.InputFileName",
 									"type": "Expression"
 								}
 							},
@@ -52,6 +52,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1916,7 +1917,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2099,7 +2100,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2292,7 +2293,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2692,7 +2693,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2872,7 +2873,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3024,7 +3025,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3282,7 +3283,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -4189,7 +4190,10 @@
 								}
 							],
 							"type": "Query",
-							"text": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')"
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
@@ -4223,7 +4227,10 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')"
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
