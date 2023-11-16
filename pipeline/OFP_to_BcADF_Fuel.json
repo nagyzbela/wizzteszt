@@ -2928,7 +2928,7 @@
 				]
 			},
 			{
-				"name": "Copy OOFP FuelHeader AdditionalFuel",
+				"name": "Copy OFP FuelHeader AdditionalFuel",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -3178,10 +3178,8 @@
 				]
 			},
 			{
-				"name": "Copy data to OFP FuelHeader ExtraFuel",
+				"name": "Copy OFP FuelHeader ExtraFuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
