@@ -3490,7 +3490,7 @@
 					{
 						"activity": "Copy OFP FuelHeader Alternate Fuel Stage",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -3972,7 +3972,7 @@
 					{
 						"activity": "Copy OFP FuelHeader Adjustment Stage",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4156,7 +4156,7 @@
 					{
 						"activity": "Copy OFP FuelHeader Adjustment",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -4200,7 +4200,7 @@
 					{
 						"activity": "Copy OFP FuelHeader Alternate Fuel",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
