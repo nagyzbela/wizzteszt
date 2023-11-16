@@ -1,0 +1,453 @@
+{
+	"name": "PL_FLIGHTPLAN_new",
+	"properties": {
+		"activities": [
+			{
+				"name": "OFP_FlightPlan",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@variables('v_createdid')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@variables('v_loaddate')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633Header']['@timestamp']"
+								},
+								"sink": {
+									"name": "HeaderTimestamp",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633Header']['@versionNumber']"
+								},
+								"sink": {
+									"name": "HeaderVersionNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightIdentifier']"
+								},
+								"sink": {
+									"name": "FlightIdentifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['CommercialFlightNumber']"
+								},
+								"sink": {
+									"name": "CommercialFlightNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['@airlineIATACode']"
+								},
+								"sink": {
+									"name": "AirlineIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['FlightNumber']['@number']"
+								},
+								"sink": {
+									"name": "FlightNumber",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['FlightIdentification']['operationalSuffix']"
+								},
+								"sink": {
+									"name": "OperationalSuffix",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "DepartureAirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "DepartureAirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "DepartureAirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['DepartureAirport']['@airportName']"
+								},
+								"sink": {
+									"name": "DepartureAirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "ArrivalAirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "ArrivalAirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "ArrivalAirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['ArrivalAirport']['@airportName']"
+								},
+								"sink": {
+									"name": "ArrivalAirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@flightOriginDate']"
+								},
+								"sink": {
+									"name": "FlightOriginDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Flight']['@scheduledTimeOfDeparture']"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Aircraft']['AircraftModel']['AircraftICAOType']"
+								},
+								"sink": {
+									"name": "AircraftICAOType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Aircraft']['AircraftModel']['@airlineSpecificSubType']"
+								},
+								"sink": {
+									"name": "AircraftAirlineSpecificSubType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['M633SupplementaryHeader']['Aircraft']['@aircraftRegistration']"
+								},
+								"sink": {
+									"name": "AircraftRegistration",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightInfo']['@aTCCallsign']"
+								},
+								"sink": {
+									"name": "ATCCallsign",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['FlightInfo']['@captain']"
+								},
+								"sink": {
+									"name": "Captain",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@category']"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@computedTime']"
+								},
+								"sink": {
+									"name": "ComputedTime",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@linkedFlightPlan']"
+								},
+								"sink": {
+									"name": "LinkedFlightPlan",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['@cancelsId']"
+								},
+								"sink": {
+									"name": "CancelsId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": {
+								"value": "@pipeline().parameters.table_name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Set createid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_createdid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set loaddate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": "@utcNow()"
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Set createid",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set loaddate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"parameters": {
+			"InputFileName": {
+				"type": "string",
+				"defaultValue": "ofp.xml"
+			}
+		},
+		"variables": {
+			"v_createdid": {
+				"type": "String"
+			},
+			"v_loaddate": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-30T14:48:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

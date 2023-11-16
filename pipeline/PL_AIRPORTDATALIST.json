@@ -3,9 +3,16 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "OFP_AirportDataList_Stage",
+				"name": "Copy to OFP_AirportDataList_Stage table",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -277,11 +284,11 @@
 				]
 			},
 			{
-				"name": "OFP_AirportDataList",
+				"name": "Copy to OFP_AirportDataList table",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "OFP_AirportDataList_Stage",
+						"activity": "Copy to OFP_AirportDataList_Stage table",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -598,7 +605,7 @@
 				"type": "Script",
 				"dependsOn": [
 					{
-						"activity": "OFP_AirportDataList",
+						"activity": "Copy to OFP_AirportDataList table",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -625,12 +632,90 @@
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
 				}
+			},
+			{
+				"name": "Set createid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_createdid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set loaddate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": ""
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Set createid",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set loaddate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "Set output",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Delete_OFP_AirportDataList_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
 		"parameters": {
-			"table_name": {
+			"InputFileName": {
 				"type": "string",
-				"defaultValue": "OFP_AirportDataList"
+				"defaultValue": "ofp.xml"
+			}
+		},
+		"variables": {
+			"v_createdid": {
+				"type": "String"
+			},
+			"v_loaddate": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
