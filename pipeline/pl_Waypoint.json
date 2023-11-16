@@ -3991,7 +3991,7 @@
 				}
 			},
 			{
-				"name": "Delete_Waypoint_Tracks_SegmentTrack_Stage_copy1",
+				"name": "Delete_Waypoint_Tracks_InboundTrack_Stage",
 				"type": "Script",
 				"dependsOn": [
 					{
@@ -4087,7 +4087,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Delete_Waypoint_Tracks_SegmentTrack_Stage_copy1",
+						"activity": "Delete_Waypoint_Tracks_InboundTrack_Stage",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4117,7 +4117,7 @@
 						]
 					},
 					{
-						"activity": "Copy_Waypoint",
+						"activity": "Delete_Waypoint_Stage",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4179,7 +4179,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "@concat('SELECT [FlightPlanId]\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[SequenceId]\n,[WaypointId]\n,[WaypointName]\n,[CountryICAOCode]\n,[WaypointLongName]\n,[Passed]\n,[UpdateRequested]\n,[CreationMethod]\n,[Deleted]\n,[CoordinatesLatitude]\n,[CoordinatesLongitude]\n,[Coordinates]\n,[AirwayType]\n,[Airway]\n,[AltitudeEstimatedValue]\n,[AltitudeEstimatedUnit]\n,[AltitudeEstimatedCorrectedValue]\n,[AltitudeEstimatedCorrectedValueUnit]\n,[AltitudeEstimatedCorrectedValueSource]\n,[AltitudeActualValue]\n,[AltitudeActualUnit]\n,[AltitudeActualCorrectedValue]\n,[AltitudeActualCorrectedValueUnit]\n,[AltitudeActualCorrectedValueSource]\n,[MinimumSafeAltitudeValue]\n,[MinimumSafeAltitudeUnit]\n,[MinimumSafeAltitudeCorrectedValue]\n,[MinimumSafeAltitudeCorrectedValueUnit]\n,[MinimumSafeAltitudeCorrectedValueSource]\n,[SegmentWindDirectionType]\n,[SegmentWindDirectionUnit]\n,[SegmentWindDirectionValue]\n,[SegmentWindDirectionCorrectedValueSource]\n,[SegmentWindDirectionCorrectedValueType]\n,[SegmentWindDirectionCorrectedValueUnit]\n,[SegmentWindDirectionCorrectedValue]\n,[SegmentWindSpeedUnit]\n,[SegmentWindSpeedValue]\n,[SegmentWindSpeedCorrectedValueSource]\n,[SegmentWindSpeedCorrectedValueUnit]\n,[SegmentWindSpeedCorrectedValue]\n,[SegmentWindComponentValue]\n,[SegmentWindComponentUnit]\n,[SegmentWindComponentCorrectedValue]\n,[SegmentWindComponentCorrectedValueUnit]\n,[SegmentWindComponentCorrectedValueSource]\n,[SegmentShearRateSegmentVerticalWindChangeValue]\n,[SegmentShearRateSegmentVerticalWindChangeUnit]\n,[SegmentShearRateSegmentVerticalWindChangeCorrectedValue]\n,[SegmentShearRateSegmentVerticalWindChangeCorrectedValueUnit]\n,[SegmentShearRateSegmentVerticalWindChangeCorrectedValueSource]\n,[SegmentShearRateAltitudeDifference]\n,[SegmentShearRateAltitudeDifferenceUnit]\n,[SegmentTemperatureValue]\n,[SegmentTemperatureUnit]\n,[SegmentTemperatureCorrectedValue]\n,[SegmentTemperatureCorrectedValueUnit]\n,[SegmentTemperatureCorrectedValueSource]\n,[SegmentISADeviationValue]\n,[SegmentISADeviationUnit]\n,[SegmentISADeviationCorrectedValue]\n,[SegmentISADeviationCorrectedValueUnit]\n,[SegmentISADeviationCorrectedValueSource]\n,[TropopauseValue]\n,[TropopauseUnit]\n,[TropopauseCorrectedValue]\n,[TropopauseCorrectedValueUnit]\n,[TropopauseCorrectedValueSource]\n,[TrueAirSpeedEstimatedSpeedValue]\n,[TrueAirSpeedEstimatedSpeedUnit]\n,[TrueAirSpeedEstimatedSpeedCorrectedValue]\n,[TrueAirSpeedEstimatedSpeedCorrectedValueUnit]\n,[TrueAirSpeedEstimatedSpeedCorrectedValueSource]\n,[TrueAirSpeedActualSpeedValue]\n,[TrueAirSpeedActualSpeedUnit]\n,[TrueAirSpeedActualSpeedCorrectedValue]\n,[TrueAirSpeedActualSpeedCorrectedValueUnit]\n,[TrueAirSpeedActualSpeedCorrectedValueSource]\n,[MachNumberEstimatedMachNumberValue]\n,[MachNumberEstimatedMachNumberCorrectedValue]\n,[MachNumberActualMachNumberValue]\n,[MachNumberActualMachNumberCorrectedValue]\n,[IndicatedAirSpeedEstimatedSpeedValue]\n,[IndicatedAirSpeedEstimatedSpeedUnit]\n,[IndicatedAirSpeedEstimatedSpeedCorrectedValue]\n,[IndicatedAirSpeedEstimatedSpeedCorrectedValueUnit]\n,[IndicatedAirSpeedEstimatedSpeedCorrectedValueSource]\n,[IndicatedAirSpeedActualSpeedValue]\n,[IndicatedAirSpeedActualSpeedUnit]\n,[IndicatedAirSpeedActualSpeedCorrectedValue]\n,[IndicatedAirSpeedActualSpeedCorrectedValueUnit]\n,[IndicatedAirSpeedActualSpeedCorrectedValueSource]\n,[GroundSpeedEstimatedSpeedValue]\n,[GroundSpeedEstimatedSpeedUnit]\n,[GroundSpeedEstimatedSpeedCorrectedValue]\n,[GroundSpeedEstimatedSpeedCorrectedValueUnit]\n,[GroundSpeedEstimatedSpeedCorrectedValueSource]\n,[GroundSpeedActualSpeedValue]\n,[GroundSpeedActualSpeedUnit]\n,[GroundSpeedActualSpeedCorrectedValue]\n,[GroundSpeedActualSpeedCorrectedValueUnit]\n,[GroundSpeedActualSpeedCorrectedValueSource]\n,[GroundDistanceValue]\n,[GroundDistanceUnit]\n,[GroundDistanceCorrectedValue]\n,[GroundDistanceCorrectedValueUnit]\n,[GroundDistanceCorrectedValueSource]\n,[RemainingGroundDistanceValue]\n,[RemainingGroundDistanceUnit]\n,[RemainingGroundDistanceCorrectedValue]\n,[RemainingGroundDistanceCorrectedValueUnit]\n,[RemainingGroundDistanceCorrectedValueSource]\n,[AirDistanceValue]\n,[AirDistanceUnit]\n,[AirDistanceCorrectedValue]\n,[AirDistanceCorrectedValueUnit]\n,[AirDistanceCorrectedValueSource]\n,[RemainingAirDistanceValue]\n,[RemainingAirDistanceUnit]\n,[RemainingAirDistanceCorrectedValue]\n,[RemainingAirDistanceCorrectedValueUnit]\n,[RemainingAirDistanceCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointEstimatedTimeValue]) as TimeFromPreviousWaypointEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointEstimatedTimeCorrectedValue]) as TimeFromPreviousWaypointEstimatedTimeCorrectedValue\n,[TimeFromPreviousWaypointEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointActualTimeValue]) as TimeFromPreviousWaypointActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointActualTimeCorrectedValue]) as TimeFromPreviousWaypointActualTimeCorrectedValue\n,[TimeFromPreviousWaypointActualTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointEstimatedTimeValue]) as TimeOverWaypointEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointEstimatedTimeCorrectedValue]) as TimeOverWaypointEstimatedTimeCorrectedValue \n,[TimeOverWaypointEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointActualTimeValue]) as TimeOverWaypointActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointActualTimeCorrectedValue]) as TimeOverWaypointActualTimeCorrectedValue\n,[TimeOverWaypointActualTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeEstimatedTimeValue]) as CummulatedFlightTimeEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeEstimatedTimeCorrectedValue]) as CummulatedFlightTimeEstimatedTimeCorrectedValue\n,[CummulatedFlightTimeEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeActualTimeValue]) as CummulatedFlightTimeActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeActualTimeCorrectedValue]) as CummulatedFlightTimeActualTimeCorrectedValue\n,[CummulatedFlightTimeActualTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeEstimatedTimeValue]) as RemainingFlightTimeEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeEstimatedTimeCorrectedValue]) as RemainingFlightTimeEstimatedTimeCorrectedValue\n,[RemainingFlightTimeEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeActualTimeValue]) as RemainingFlightTimeActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeActualTimeCorrectedValue]) as RemainingFlightTimeActualTimeCorrectedValue\n,[RemainingFlightTimeActualTimeCorrectedValueSource]\n,[BurnOffEstimatedWeightValue]\n,[BurnOffEstimatedWeightUnit]\n,[BurnOffEstimatedWeightCorrectedValue]\n,[BurnOffEstimatedWeightCorrectedValueUnit]\n,[BurnOffEstimatedWeightCorrectedValueSource]\n,[BurnOffActualWeightValue]\n,[BurnOffActualWeightUnit]\n,[BurnOffActualWeightCorrectedValue]\n,[BurnOffActualWeightCorrectedValueUnit]\n,[BurnOffActualWeightCorrectedValueSource]\n,[CummulatedBurnOffEstimatedWeightValue]\n,[CummulatedBurnOffEstimatedWeightUnit]\n,[CummulatedBurnOffEstimatedWeightCorrectedValue]\n,[CummulatedBurnOffEstimatedWeightCorrectedValueUnit]\n,[CummulatedBurnOffEstimatedWeightCorrectedValueSource]\n,[CummulatedBurnOffActualWeightValue]\n,[CummulatedBurnOffActualWeightUnit]\n,[CummulatedBurnOffActualWeightCorrectedValue]\n,[CummulatedBurnOffActualWeightCorrectedValueUnit]\n,[CummulatedBurnOffActualWeightCorrectedValueSource]\n,[CummulatedBurnOffDifferenceValue]\n,[CummulatedBurnOffDifferenceUnit]\n,[CummulatedBurnOffDifferenceCorrectedValue]\n,[CummulatedBurnOffDifferenceCorrectedValueUnit]\n,[CummulatedBurnOffDifferenceCorrectedValueSource]\n,[CalculatedFuelOnBoardValue]\n,[CalculatedFuelOnBoardUnit]\n,[CalculatedFuelOnBoardCorrectedValue]\n,[CalculatedFuelOnBoardCorrectedValueUnit]\n,[CalculatedFuelOnBoardCorrectedValueSource]\n,[FuelOnBoardEstimatedWeightValue]\n,[FuelOnBoardEstimatedWeightUnit]\n,[FuelOnBoardEstimatedWeightCorrectedValue]\n,[FuelOnBoardEstimatedWeightCorrectedValueUnit]\n,[FuelOnBoardEstimatedWeightCorrectedValueSource]\n,[FuelOnBoardActualWeightValue]\n,[FuelOnBoardActualWeightUnit]\n,[FuelOnBoardActualWeightCorrectedValue]\n,[FuelOnBoardActualWeightCorrectedValueUnit]\n,[FuelOnBoardActualWeightCorrectedValueSource]\n,[FuelOnBoardDifferenceValue]\n,[FuelOnBoardDifferenceUnit]\n,[FuelOnBoardDifferenceCorrectedValue]\n,[FuelOnBoardDifferenceCorrectedValueUnit]\n,[FuelOnBoardDifferenceCorrectedValueSource]\n,[LeakDetectionValue]\n,[LeakDetectionUnit]\n,[LeakDetectionCorrectedValue]\n,[LeakDetectionCorrectedValueUnit]\n,[LeakDetectionCorrectedValueSource]\n,[AircraftWeightEstimatedWeightValue]\n,[AircraftWeightEstimatedWeightUnit]\n,[AircraftWeightEstimatedWeightCorrectedValue]\n,[AircraftWeightEstimatedWeightCorrectedValueUnit]\n,[AircraftWeightEstimatedWeightCorrectedValueSource]\n,[AircraftWeightActualWeightValue]\n,[AircraftWeightActualWeightUnit]\n,[AircraftWeightActualWeightCorrectedValue]\n,[AircraftWeightActualWeightCorrectedValueUnit]\n,[AircraftWeightActualWeightCorrectedValueSource]\n,[MinimumFuelOnBoardValue]\n,[MinimumFuelOnBoardUnit]\n,[MinimumFuelOnBoardCorrectedValue]\n,[MinimumFuelOnBoardCorrectedValueUnit]\n,[MinimumFuelOnBoardCorrectedValueSource]\n,[AirspaceAirspaceICAOCode]\n,[AirspaceAirspaceName]\n,[AirspaceRadioFrequency]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint_Stage]\n where tfilename = ''',pipeline().parameters.InputFileName,''';')",
+							"value": "@concat('SELECT *\n FROM [BcAdfLido].[OFP_Waypoint_Stage_View]\n where tfilename = ''',pipeline().parameters.InputFileName,''';')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -6854,6 +6854,42 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Delete_Waypoint_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy_Waypoint",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_Waypoint_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
 			}
 		],
 		"parameters": {
