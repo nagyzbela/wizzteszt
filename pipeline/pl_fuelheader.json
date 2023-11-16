@@ -4,7 +4,7 @@
 		"description": "Copy data from OFP_xml to Fuel Tables",
 		"activities": [
 			{
-				"name": "Copy OFP FuelHeader",
+				"name": "Copy OFP FuelHeader Stage",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -3999,7 +3999,14 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader Adjustment Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.00:10:00",
 					"retry": 0,
@@ -4173,11 +4180,11 @@
 			},
 			{
 				"name": "Delete OFP FuealHeader Adjustment Stage",
-				"description": "Delete OFP FuealHeader Adjustment Stage",
+				"description": "Delete OFP FuealHeader Stage",
 				"type": "Script",
 				"dependsOn": [
 					{
-						"activity": "Copy OFP FuelHeader Adjustment",
+						"activity": "Copy OFP FuelHeader",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4208,7 +4215,7 @@
 							],
 							"type": "Query",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
 								"type": "Expression"
 							}
 						}
@@ -4295,12 +4302,6 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Copy OFP FuelHeader",
-						"dependencyConditions": [
-							"Completed"
-						]
-					},
-					{
 						"activity": "Copy OFP FuelStatistic",
 						"dependencyConditions": [
 							"Completed"
@@ -4332,6 +4333,12 @@
 					},
 					{
 						"activity": "Delete OFP FuelHeader AlternateFuel Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					},
+					{
+						"activity": "Delete OFP FuealHeader Adjustment Stage_copy1",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4400,11 +4407,11 @@
 				}
 			},
 			{
-				"name": "Copy OFP FuelHeader Adjustment_copy1",
+				"name": "Copy OFP FuelHeader",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy OFP FuelHeader Adjustment Stage",
+						"activity": "Copy OFP FuelHeader Stage",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4580,6 +4587,51 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Delete OFP FuealHeader Adjustment Stage_copy1",
+				"description": "Delete OFP FuealHeader Adjustment Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy OFP FuelHeader Adjustment",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"parameters": [
+								{
+									"name": "OFP_File_Name",
+									"type": "String",
+									"value": "*",
+									"direction": "Input"
+								}
+							],
+							"type": "Query",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
 			}
 		],
 		"concurrency": 1,
