@@ -30,19 +30,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@variables('v_loaddate')",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -1893,19 +1896,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -2075,19 +2081,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -2267,19 +2276,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -2666,19 +2678,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -2845,19 +2860,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -2996,19 +3014,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -3251,19 +3272,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
