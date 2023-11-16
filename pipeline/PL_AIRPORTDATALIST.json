@@ -626,7 +626,7 @@
 				"typeProperties": {
 					"scripts": [
 						{
-							"type": "Query",
+							"type": "NonQuery",
 							"text": "@concat('delete FROM [BcAdfLido].[OFP_AirportDataList_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')\n"
 						}
 					],
@@ -701,7 +701,8 @@
 						{
 							"key": "laod_date",
 							"value": {
-								"type": "Expression"
+								"type": "Expression",
+								"content": "@variables('v_loaddate')"
 							}
 						},
 						{
