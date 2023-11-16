@@ -10,7 +10,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -1873,7 +1873,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -2055,7 +2055,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -2247,7 +2247,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -2646,7 +2646,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -2825,7 +2825,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -2976,7 +2976,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -3231,7 +3231,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Wait",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4227,24 +4227,40 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "Set createdid",
+				"description": "Set Created ID of File load",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_createdid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
 			},
 			{
-				"name": "Set variable2",
+				"name": "Set loaddate",
+				"description": "Set Load Date of File",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
 			},
 			{
 				"name": "Set Output",
@@ -4331,17 +4347,18 @@
 				}
 			},
 			{
-				"name": "Wait1",
+				"name": "Wait",
+				"description": "Wait",
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "Set createdid",
 						"dependencyConditions": [
 							"Completed"
 						]
 					},
 					{
-						"activity": "Set variable2",
+						"activity": "Set loaddate",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4358,6 +4375,12 @@
 			"FileNameVar": {
 				"type": "String",
 				"defaultValue": "OFP"
+			},
+			"v_createdid": {
+				"type": "String"
+			},
+			"v_loaddate": {
+				"type": "String"
 			}
 		},
 		"annotations": []
