@@ -4352,13 +4352,15 @@
 						{
 							"key": "created_id",
 							"value": {
-								"type": "Expression"
+								"type": "Expression",
+								"content": "@variables('v_createdid')"
 							}
 						},
 						{
 							"key": "load_date",
 							"value": {
-								"type": "Expression"
+								"type": "Expression",
+								"content": "@variables('v_loaddate')"
 							}
 						},
 						{
