@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy to OFP_AirportDataList_Stage table",
+				"name": "Copy_OFP_AirportDataList_Stage",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -27,19 +27,22 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.InputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
 								"value": {
-									"value": "@guid()",
+									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "TLoadDate",
 								"value": {
-									"value": "@utcNow()",
+									"value": "@variables('v_loaddate')",
 									"type": "Expression"
 								}
 							}
@@ -47,7 +50,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -275,20 +281,17 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": {
-								"value": "@pipeline().parameters.table_name",
-								"type": "Expression"
-							}
+							"table_name": "OFP_AirportDataList_Stage"
 						}
 					}
 				]
 			},
 			{
-				"name": "Copy to OFP_AirportDataList table",
+				"name": "Copy_OFP_AirportDataList",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy to OFP_AirportDataList_Stage table",
+						"activity": "Copy_OFP_AirportDataList_Stage",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -592,10 +595,7 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": {
-								"value": "@pipeline().parameters.table_name",
-								"type": "Expression"
-							}
+							"table_name": "OFP_AirportDataList"
 						}
 					}
 				]
@@ -605,7 +605,7 @@
 				"type": "Script",
 				"dependsOn": [
 					{
-						"activity": "Copy to OFP_AirportDataList table",
+						"activity": "Copy_OFP_AirportDataList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -627,7 +627,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_AirportDataList_stage]\n"
+							"text": "@concat('delete FROM [BcAdfLido].[OFP_AirportDataList_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')\n"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
@@ -648,20 +648,6 @@
 						"value": "@guid()",
 						"type": "Expression"
 					}
-				}
-			},
-			{
-				"name": "Set loaddate",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "v_loaddate",
-					"value": ""
 				}
 			},
 			{
@@ -701,7 +687,50 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "createe_id",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_createdid')"
+							}
+						},
+						{
+							"key": "laod_date",
+							"value": {
+								"type": "Expression"
+							}
+						},
+						{
+							"key": "log_output",
+							"value": {
+								"type": "Expression",
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_AirportDataList\",\n    \"result\": \"',activity('Copy_OFP_AirportDataList').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_AirportDataList').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_AirportDataList').output.rowsCopied,0),'\n},]\n'))"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			},
+			{
+				"name": "Set loaddate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
