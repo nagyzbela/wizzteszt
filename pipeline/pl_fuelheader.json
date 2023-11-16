@@ -4411,7 +4411,7 @@
 		"parameters": {
 			"InputFileName": {
 				"type": "string",
-				"defaultValue": "OFP.xml"
+				"defaultValue": "ofp.xml"
 			}
 		},
 		"variables": {
