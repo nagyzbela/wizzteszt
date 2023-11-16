@@ -4247,7 +4247,7 @@
 				"userProperties": []
 			},
 			{
-				"name": "Set variable3",
+				"name": "Set Output",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -4303,7 +4303,22 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "created_id"
+						},
+						{
+							"key": "load_date"
+						},
+						{
+							"key": "log_output"
+						}
+					],
+					"setSystemVariable": true
+				}
 			},
 			{
 				"name": "Wait1",
