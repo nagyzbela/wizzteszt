@@ -52,7 +52,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1917,7 +1920,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2100,7 +2106,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2293,7 +2302,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2693,7 +2705,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -2873,7 +2888,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3025,7 +3043,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -3283,7 +3304,10 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "@pipeline().parameters.InputFileName",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -4274,7 +4298,7 @@
 			},
 			{
 				"name": "Set Output",
-				"description": "Set Fuel Header Pipeline Output Varaibles",
+				"description": "Set Fuel Header Pipeline Output Variables",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
