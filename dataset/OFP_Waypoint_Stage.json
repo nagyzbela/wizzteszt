@@ -1,0 +1,973 @@
+{
+	"name": "OFP_Waypoint_Stage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FlightPlanId",
+				"type": "varchar"
+			},
+			{
+				"name": "DataType",
+				"type": "varchar"
+			},
+			{
+				"name": "AlternateRouteAirportIATACode",
+				"type": "varchar"
+			},
+			{
+				"name": "SequenceId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WaypointId",
+				"type": "varchar"
+			},
+			{
+				"name": "WaypointName",
+				"type": "varchar"
+			},
+			{
+				"name": "CountryICAOCode",
+				"type": "varchar"
+			},
+			{
+				"name": "WaypointLongName",
+				"type": "varchar"
+			},
+			{
+				"name": "Passed",
+				"type": "bit"
+			},
+			{
+				"name": "UpdateRequested",
+				"type": "bit"
+			},
+			{
+				"name": "CreationMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "Deleted",
+				"type": "bit"
+			},
+			{
+				"name": "CoordinatesLatitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CoordinatesLongitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Coordinates",
+				"type": "varchar"
+			},
+			{
+				"name": "AirwayType",
+				"type": "varchar"
+			},
+			{
+				"name": "Airway",
+				"type": "varchar"
+			},
+			{
+				"name": "AltitudeEstimatedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AltitudeEstimatedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AltitudeEstimatedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AltitudeEstimatedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AltitudeEstimatedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "AltitudeActualValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AltitudeActualUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AltitudeActualCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AltitudeActualCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AltitudeActualCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "MinimumSafeAltitudeValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MinimumSafeAltitudeUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "MinimumSafeAltitudeCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MinimumSafeAltitudeCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "MinimumSafeAltitudeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindDirectionType",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindDirectionUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindDirectionValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentWindDirectionCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindDirectionCorrectedValueType",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindDirectionCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindDirectionCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentWindSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentWindSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentWindComponentValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentWindComponentUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindComponentCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentWindComponentCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentWindComponentCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentShearRateSegmentVerticalWindChangeValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentShearRateSegmentVerticalWindChangeUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentShearRateAltitudeDifference",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentShearRateAltitudeDifferenceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentTemperatureValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentTemperatureUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentTemperatureCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentTemperatureCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentTemperatureCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentISADeviationValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentISADeviationUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentISADeviationCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SegmentISADeviationCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "SegmentISADeviationCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TropopauseValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TropopauseUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TropopauseCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TropopauseCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TropopauseCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TrueAirSpeedEstimatedSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TrueAirSpeedEstimatedSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TrueAirSpeedEstimatedSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TrueAirSpeedEstimatedSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TrueAirSpeedEstimatedSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TrueAirSpeedActualSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TrueAirSpeedActualSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TrueAirSpeedActualSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TrueAirSpeedActualSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "TrueAirSpeedActualSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "MachNumberEstimatedMachNumberValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MachNumberEstimatedMachNumberCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MachNumberActualMachNumberValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MachNumberActualMachNumberCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "IndicatedAirSpeedEstimatedSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "IndicatedAirSpeedEstimatedSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "IndicatedAirSpeedActualSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "IndicatedAirSpeedActualSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "IndicatedAirSpeedActualSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "IndicatedAirSpeedActualSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "IndicatedAirSpeedActualSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundSpeedEstimatedSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GroundSpeedEstimatedSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundSpeedEstimatedSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GroundSpeedEstimatedSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundSpeedEstimatedSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundSpeedActualSpeedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GroundSpeedActualSpeedUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundSpeedActualSpeedCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GroundSpeedActualSpeedCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundSpeedActualSpeedCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundDistanceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GroundDistanceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundDistanceCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GroundDistanceCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "GroundDistanceCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingGroundDistanceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RemainingGroundDistanceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingGroundDistanceCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RemainingGroundDistanceCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingGroundDistanceCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "AirDistanceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AirDistanceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AirDistanceCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AirDistanceCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AirDistanceCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingAirDistanceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RemainingAirDistanceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingAirDistanceCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RemainingAirDistanceCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingAirDistanceCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeFromPreviousWaypointEstimatedTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeFromPreviousWaypointActualTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeFromPreviousWaypointActualTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeFromPreviousWaypointActualTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeOverWaypointEstimatedTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeOverWaypointEstimatedTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeOverWaypointEstimatedTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeOverWaypointActualTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeOverWaypointActualTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeOverWaypointActualTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedFlightTimeEstimatedTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedFlightTimeEstimatedTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedFlightTimeEstimatedTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedFlightTimeActualTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedFlightTimeActualTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedFlightTimeActualTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingFlightTimeEstimatedTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingFlightTimeEstimatedTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingFlightTimeEstimatedTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingFlightTimeActualTimeValue",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingFlightTimeActualTimeCorrectedValue",
+				"type": "varchar"
+			},
+			{
+				"name": "RemainingFlightTimeActualTimeCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "BurnOffEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "BurnOffEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "BurnOffEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "BurnOffEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "BurnOffEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "BurnOffActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "BurnOffActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "BurnOffActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "BurnOffActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "BurnOffActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CummulatedBurnOffEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CummulatedBurnOffEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CummulatedBurnOffActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CummulatedBurnOffActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffDifferenceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CummulatedBurnOffDifferenceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffDifferenceCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CummulatedBurnOffDifferenceCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CummulatedBurnOffDifferenceCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CalculatedFuelOnBoardValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CalculatedFuelOnBoardUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CalculatedFuelOnBoardCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CalculatedFuelOnBoardCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "CalculatedFuelOnBoardCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FuelOnBoardEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FuelOnBoardEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FuelOnBoardActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FuelOnBoardActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardDifferenceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FuelOnBoardDifferenceUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardDifferenceCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FuelOnBoardDifferenceCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelOnBoardDifferenceCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "LeakDetectionValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LeakDetectionUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LeakDetectionCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LeakDetectionCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "LeakDetectionCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftWeightEstimatedWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AircraftWeightEstimatedWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftWeightEstimatedWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AircraftWeightEstimatedWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftWeightEstimatedWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftWeightActualWeightValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AircraftWeightActualWeightUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftWeightActualWeightCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AircraftWeightActualWeightCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftWeightActualWeightCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "MinimumFuelOnBoardValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MinimumFuelOnBoardUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "MinimumFuelOnBoardCorrectedValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MinimumFuelOnBoardCorrectedValueUnit",
+				"type": "varchar"
+			},
+			{
+				"name": "MinimumFuelOnBoardCorrectedValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "AirspaceAirspaceICAOCode",
+				"type": "varchar"
+			},
+			{
+				"name": "AirspaceAirspaceName",
+				"type": "varchar"
+			},
+			{
+				"name": "AirspaceRadioFrequency",
+				"type": "varchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfLido",
+			"table": "OFP_Waypoint_Stage"
+		}
+	}
+}

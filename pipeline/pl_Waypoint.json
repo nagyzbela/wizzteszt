@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_Waypoint",
+				"name": "Copy_Waypoint_Stage",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -2063,7 +2063,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "OFP_Waypoint",
+						"referenceName": "OFP_Waypoint_Stage",
 						"type": "DatasetReference"
 					}
 				]
@@ -4111,13 +4111,13 @@
 						]
 					},
 					{
-						"activity": "Copy_Waypoint",
+						"activity": "Copy_Waypoint_Remark",
 						"dependencyConditions": [
 							"Completed"
 						]
 					},
 					{
-						"activity": "Copy_Waypoint_Remark",
+						"activity": "Copy_Waypoint",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -4155,6 +4155,2705 @@
 					],
 					"setSystemVariable": true
 				}
+			},
+			{
+				"name": "Copy_Waypoint",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy_Waypoint_Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "@concat('SELECT [FlightPlanId]\n,[DataType]\n,[AlternateRouteAirportIATACode]\n,[SequenceId]\n,[WaypointId]\n,[WaypointName]\n,[CountryICAOCode]\n,[WaypointLongName]\n,[Passed]\n,[UpdateRequested]\n,[CreationMethod]\n,[Deleted]\n,[CoordinatesLatitude]\n,[CoordinatesLongitude]\n,[Coordinates]\n,[AirwayType]\n,[Airway]\n,[AltitudeEstimatedValue]\n,[AltitudeEstimatedUnit]\n,[AltitudeEstimatedCorrectedValue]\n,[AltitudeEstimatedCorrectedValueUnit]\n,[AltitudeEstimatedCorrectedValueSource]\n,[AltitudeActualValue]\n,[AltitudeActualUnit]\n,[AltitudeActualCorrectedValue]\n,[AltitudeActualCorrectedValueUnit]\n,[AltitudeActualCorrectedValueSource]\n,[MinimumSafeAltitudeValue]\n,[MinimumSafeAltitudeUnit]\n,[MinimumSafeAltitudeCorrectedValue]\n,[MinimumSafeAltitudeCorrectedValueUnit]\n,[MinimumSafeAltitudeCorrectedValueSource]\n,[SegmentWindDirectionType]\n,[SegmentWindDirectionUnit]\n,[SegmentWindDirectionValue]\n,[SegmentWindDirectionCorrectedValueSource]\n,[SegmentWindDirectionCorrectedValueType]\n,[SegmentWindDirectionCorrectedValueUnit]\n,[SegmentWindDirectionCorrectedValue]\n,[SegmentWindSpeedUnit]\n,[SegmentWindSpeedValue]\n,[SegmentWindSpeedCorrectedValueSource]\n,[SegmentWindSpeedCorrectedValueUnit]\n,[SegmentWindSpeedCorrectedValue]\n,[SegmentWindComponentValue]\n,[SegmentWindComponentUnit]\n,[SegmentWindComponentCorrectedValue]\n,[SegmentWindComponentCorrectedValueUnit]\n,[SegmentWindComponentCorrectedValueSource]\n,[SegmentShearRateSegmentVerticalWindChangeValue]\n,[SegmentShearRateSegmentVerticalWindChangeUnit]\n,[SegmentShearRateSegmentVerticalWindChangeCorrectedValue]\n,[SegmentShearRateSegmentVerticalWindChangeCorrectedValueUnit]\n,[SegmentShearRateSegmentVerticalWindChangeCorrectedValueSource]\n,[SegmentShearRateAltitudeDifference]\n,[SegmentShearRateAltitudeDifferenceUnit]\n,[SegmentTemperatureValue]\n,[SegmentTemperatureUnit]\n,[SegmentTemperatureCorrectedValue]\n,[SegmentTemperatureCorrectedValueUnit]\n,[SegmentTemperatureCorrectedValueSource]\n,[SegmentISADeviationValue]\n,[SegmentISADeviationUnit]\n,[SegmentISADeviationCorrectedValue]\n,[SegmentISADeviationCorrectedValueUnit]\n,[SegmentISADeviationCorrectedValueSource]\n,[TropopauseValue]\n,[TropopauseUnit]\n,[TropopauseCorrectedValue]\n,[TropopauseCorrectedValueUnit]\n,[TropopauseCorrectedValueSource]\n,[TrueAirSpeedEstimatedSpeedValue]\n,[TrueAirSpeedEstimatedSpeedUnit]\n,[TrueAirSpeedEstimatedSpeedCorrectedValue]\n,[TrueAirSpeedEstimatedSpeedCorrectedValueUnit]\n,[TrueAirSpeedEstimatedSpeedCorrectedValueSource]\n,[TrueAirSpeedActualSpeedValue]\n,[TrueAirSpeedActualSpeedUnit]\n,[TrueAirSpeedActualSpeedCorrectedValue]\n,[TrueAirSpeedActualSpeedCorrectedValueUnit]\n,[TrueAirSpeedActualSpeedCorrectedValueSource]\n,[MachNumberEstimatedMachNumberValue]\n,[MachNumberEstimatedMachNumberCorrectedValue]\n,[MachNumberActualMachNumberValue]\n,[MachNumberActualMachNumberCorrectedValue]\n,[IndicatedAirSpeedEstimatedSpeedValue]\n,[IndicatedAirSpeedEstimatedSpeedUnit]\n,[IndicatedAirSpeedEstimatedSpeedCorrectedValue]\n,[IndicatedAirSpeedEstimatedSpeedCorrectedValueUnit]\n,[IndicatedAirSpeedEstimatedSpeedCorrectedValueSource]\n,[IndicatedAirSpeedActualSpeedValue]\n,[IndicatedAirSpeedActualSpeedUnit]\n,[IndicatedAirSpeedActualSpeedCorrectedValue]\n,[IndicatedAirSpeedActualSpeedCorrectedValueUnit]\n,[IndicatedAirSpeedActualSpeedCorrectedValueSource]\n,[GroundSpeedEstimatedSpeedValue]\n,[GroundSpeedEstimatedSpeedUnit]\n,[GroundSpeedEstimatedSpeedCorrectedValue]\n,[GroundSpeedEstimatedSpeedCorrectedValueUnit]\n,[GroundSpeedEstimatedSpeedCorrectedValueSource]\n,[GroundSpeedActualSpeedValue]\n,[GroundSpeedActualSpeedUnit]\n,[GroundSpeedActualSpeedCorrectedValue]\n,[GroundSpeedActualSpeedCorrectedValueUnit]\n,[GroundSpeedActualSpeedCorrectedValueSource]\n,[GroundDistanceValue]\n,[GroundDistanceUnit]\n,[GroundDistanceCorrectedValue]\n,[GroundDistanceCorrectedValueUnit]\n,[GroundDistanceCorrectedValueSource]\n,[RemainingGroundDistanceValue]\n,[RemainingGroundDistanceUnit]\n,[RemainingGroundDistanceCorrectedValue]\n,[RemainingGroundDistanceCorrectedValueUnit]\n,[RemainingGroundDistanceCorrectedValueSource]\n,[AirDistanceValue]\n,[AirDistanceUnit]\n,[AirDistanceCorrectedValue]\n,[AirDistanceCorrectedValueUnit]\n,[AirDistanceCorrectedValueSource]\n,[RemainingAirDistanceValue]\n,[RemainingAirDistanceUnit]\n,[RemainingAirDistanceCorrectedValue]\n,[RemainingAirDistanceCorrectedValueUnit]\n,[RemainingAirDistanceCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointEstimatedTimeValue]) as TimeFromPreviousWaypointEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointEstimatedTimeCorrectedValue]) as TimeFromPreviousWaypointEstimatedTimeCorrectedValue\n,[TimeFromPreviousWaypointEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointActualTimeValue]) as TimeFromPreviousWaypointActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeFromPreviousWaypointActualTimeCorrectedValue]) as TimeFromPreviousWaypointActualTimeCorrectedValue\n,[TimeFromPreviousWaypointActualTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointEstimatedTimeValue]) as TimeOverWaypointEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointEstimatedTimeCorrectedValue]) as TimeOverWaypointEstimatedTimeCorrectedValue \n,[TimeOverWaypointEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointActualTimeValue]) as TimeOverWaypointActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([TimeOverWaypointActualTimeCorrectedValue]) as TimeOverWaypointActualTimeCorrectedValue\n,[TimeOverWaypointActualTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeEstimatedTimeValue]) as CummulatedFlightTimeEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeEstimatedTimeCorrectedValue]) as CummulatedFlightTimeEstimatedTimeCorrectedValue\n,[CummulatedFlightTimeEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeActualTimeValue]) as CummulatedFlightTimeActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([CummulatedFlightTimeActualTimeCorrectedValue]) as CummulatedFlightTimeActualTimeCorrectedValue\n,[CummulatedFlightTimeActualTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeEstimatedTimeValue]) as RemainingFlightTimeEstimatedTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeEstimatedTimeCorrectedValue]) as RemainingFlightTimeEstimatedTimeCorrectedValue\n,[RemainingFlightTimeEstimatedTimeCorrectedValueSource]\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeActualTimeValue]) as RemainingFlightTimeActualTimeValue\n,[MetaLoad].[ISO8601Period2Seconds]([RemainingFlightTimeActualTimeCorrectedValue]) as RemainingFlightTimeActualTimeCorrectedValue\n,[RemainingFlightTimeActualTimeCorrectedValueSource]\n,[BurnOffEstimatedWeightValue]\n,[BurnOffEstimatedWeightUnit]\n,[BurnOffEstimatedWeightCorrectedValue]\n,[BurnOffEstimatedWeightCorrectedValueUnit]\n,[BurnOffEstimatedWeightCorrectedValueSource]\n,[BurnOffActualWeightValue]\n,[BurnOffActualWeightUnit]\n,[BurnOffActualWeightCorrectedValue]\n,[BurnOffActualWeightCorrectedValueUnit]\n,[BurnOffActualWeightCorrectedValueSource]\n,[CummulatedBurnOffEstimatedWeightValue]\n,[CummulatedBurnOffEstimatedWeightUnit]\n,[CummulatedBurnOffEstimatedWeightCorrectedValue]\n,[CummulatedBurnOffEstimatedWeightCorrectedValueUnit]\n,[CummulatedBurnOffEstimatedWeightCorrectedValueSource]\n,[CummulatedBurnOffActualWeightValue]\n,[CummulatedBurnOffActualWeightUnit]\n,[CummulatedBurnOffActualWeightCorrectedValue]\n,[CummulatedBurnOffActualWeightCorrectedValueUnit]\n,[CummulatedBurnOffActualWeightCorrectedValueSource]\n,[CummulatedBurnOffDifferenceValue]\n,[CummulatedBurnOffDifferenceUnit]\n,[CummulatedBurnOffDifferenceCorrectedValue]\n,[CummulatedBurnOffDifferenceCorrectedValueUnit]\n,[CummulatedBurnOffDifferenceCorrectedValueSource]\n,[CalculatedFuelOnBoardValue]\n,[CalculatedFuelOnBoardUnit]\n,[CalculatedFuelOnBoardCorrectedValue]\n,[CalculatedFuelOnBoardCorrectedValueUnit]\n,[CalculatedFuelOnBoardCorrectedValueSource]\n,[FuelOnBoardEstimatedWeightValue]\n,[FuelOnBoardEstimatedWeightUnit]\n,[FuelOnBoardEstimatedWeightCorrectedValue]\n,[FuelOnBoardEstimatedWeightCorrectedValueUnit]\n,[FuelOnBoardEstimatedWeightCorrectedValueSource]\n,[FuelOnBoardActualWeightValue]\n,[FuelOnBoardActualWeightUnit]\n,[FuelOnBoardActualWeightCorrectedValue]\n,[FuelOnBoardActualWeightCorrectedValueUnit]\n,[FuelOnBoardActualWeightCorrectedValueSource]\n,[FuelOnBoardDifferenceValue]\n,[FuelOnBoardDifferenceUnit]\n,[FuelOnBoardDifferenceCorrectedValue]\n,[FuelOnBoardDifferenceCorrectedValueUnit]\n,[FuelOnBoardDifferenceCorrectedValueSource]\n,[LeakDetectionValue]\n,[LeakDetectionUnit]\n,[LeakDetectionCorrectedValue]\n,[LeakDetectionCorrectedValueUnit]\n,[LeakDetectionCorrectedValueSource]\n,[AircraftWeightEstimatedWeightValue]\n,[AircraftWeightEstimatedWeightUnit]\n,[AircraftWeightEstimatedWeightCorrectedValue]\n,[AircraftWeightEstimatedWeightCorrectedValueUnit]\n,[AircraftWeightEstimatedWeightCorrectedValueSource]\n,[AircraftWeightActualWeightValue]\n,[AircraftWeightActualWeightUnit]\n,[AircraftWeightActualWeightCorrectedValue]\n,[AircraftWeightActualWeightCorrectedValueUnit]\n,[AircraftWeightActualWeightCorrectedValueSource]\n,[MinimumFuelOnBoardValue]\n,[MinimumFuelOnBoardUnit]\n,[MinimumFuelOnBoardCorrectedValue]\n,[MinimumFuelOnBoardCorrectedValueUnit]\n,[MinimumFuelOnBoardCorrectedValueSource]\n,[AirspaceAirspaceICAOCode]\n,[AirspaceAirspaceName]\n,[AirspaceRadioFrequency]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfLido].[OFP_Waypoint]\n where tfilename = ''',pipeline().parameters.InputFileName,''';')",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DataType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DataType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AlternateRouteAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SequenceId",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SequenceId",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WaypointId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WaypointId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WaypointName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WaypointName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CountryICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CountryICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WaypointLongName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WaypointLongName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Passed",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Passed",
+									"type": "Boolean",
+									"physicalType": "bit"
+								}
+							},
+							{
+								"source": {
+									"name": "UpdateRequested",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "UpdateRequested",
+									"type": "Boolean",
+									"physicalType": "bit"
+								}
+							},
+							{
+								"source": {
+									"name": "CreationMethod",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CreationMethod",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Deleted",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "Deleted",
+									"type": "Boolean",
+									"physicalType": "bit"
+								}
+							},
+							{
+								"source": {
+									"name": "CoordinatesLatitude",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CoordinatesLatitude",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CoordinatesLongitude",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CoordinatesLongitude",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "Coordinates",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Coordinates",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirwayType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirwayType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Airway",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Airway",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeEstimatedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeEstimatedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeEstimatedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeEstimatedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeEstimatedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AltitudeEstimatedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeActualValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AltitudeActualValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeActualUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AltitudeActualUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeActualCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AltitudeActualCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeActualCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AltitudeActualCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AltitudeActualCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AltitudeActualCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumSafeAltitudeValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumSafeAltitudeUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumSafeAltitudeCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumSafeAltitudeCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumSafeAltitudeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumSafeAltitudeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionCorrectedValueType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValueType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindDirectionCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentWindDirectionCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentWindSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindComponentValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentWindComponentValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindComponentUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindComponentUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindComponentCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentWindComponentCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindComponentCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindComponentCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentWindComponentCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentWindComponentCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentShearRateSegmentVerticalWindChangeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateAltitudeDifference",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentShearRateAltitudeDifference",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentShearRateAltitudeDifferenceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentShearRateAltitudeDifferenceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentTemperatureValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentTemperatureValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentTemperatureUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentTemperatureUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentTemperatureCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentTemperatureCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentTemperatureCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentTemperatureCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentTemperatureCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentTemperatureCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentISADeviationValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentISADeviationValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentISADeviationUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentISADeviationUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentISADeviationCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "SegmentISADeviationCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentISADeviationCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentISADeviationCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SegmentISADeviationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SegmentISADeviationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TropopauseValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TropopauseValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TropopauseUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TropopauseUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TropopauseCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TropopauseCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TropopauseCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TropopauseCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TropopauseCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TropopauseCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedEstimatedSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedEstimatedSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TrueAirSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedActualSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedActualSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TrueAirSpeedActualSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MachNumberEstimatedMachNumberValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MachNumberEstimatedMachNumberValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MachNumberEstimatedMachNumberCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MachNumberEstimatedMachNumberCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MachNumberActualMachNumberValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MachNumberActualMachNumberValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MachNumberActualMachNumberCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MachNumberActualMachNumberCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedEstimatedSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedEstimatedSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedActualSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedActualSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndicatedAirSpeedActualSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedEstimatedSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedEstimatedSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundSpeedEstimatedSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedActualSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedActualSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedActualSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedActualSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundSpeedActualSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundSpeedActualSpeedCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "GroundDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GroundDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingGroundDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingGroundDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingGroundDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingGroundDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingGroundDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingGroundDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AirDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AirDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AirDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingAirDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingAirDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingAirDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingAirDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingAirDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingAirDistanceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeFromPreviousWaypointActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeFromPreviousWaypointActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeFromPreviousWaypointActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TimeFromPreviousWaypointActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeOverWaypointEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeOverWaypointEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeOverWaypointEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeOverWaypointEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeOverWaypointEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TimeOverWaypointEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeOverWaypointActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeOverWaypointActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeOverWaypointActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TimeOverWaypointActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TimeOverWaypointActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TimeOverWaypointActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedFlightTimeEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedFlightTimeActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedFlightTimeActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedFlightTimeActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedFlightTimeActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingFlightTimeEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeEstimatedTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingFlightTimeEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeEstimatedTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingFlightTimeEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeEstimatedTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingFlightTimeActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeActualTimeValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingFlightTimeActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeActualTimeCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "RemainingFlightTimeActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RemainingFlightTimeActualTimeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BurnOffEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BurnOffActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BurnOffActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffDifferenceValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffDifferenceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CummulatedBurnOffDifferenceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CalculatedFuelOnBoardValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CalculatedFuelOnBoardUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CalculatedFuelOnBoardCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CalculatedFuelOnBoardCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CalculatedFuelOnBoardCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CalculatedFuelOnBoardCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardDifferenceValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardDifferenceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardDifferenceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardDifferenceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelOnBoardDifferenceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelOnBoardDifferenceCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LeakDetectionValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "LeakDetectionValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LeakDetectionUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LeakDetectionUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LeakDetectionCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "LeakDetectionCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LeakDetectionCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LeakDetectionCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LeakDetectionCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LeakDetectionCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftWeightEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftWeightActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftWeightActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumFuelOnBoardValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumFuelOnBoardUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumFuelOnBoardCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumFuelOnBoardCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumFuelOnBoardCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumFuelOnBoardCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirspaceAirspaceICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirspaceAirspaceICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirspaceAirspaceName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirspaceAirspaceName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirspaceRadioFrequency",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirspaceRadioFrequency",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_Waypoint_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OFP_Waypoint",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"parameters": {
