@@ -4173,6 +4173,7 @@
 			},
 			{
 				"name": "Delete OFP FuealHeader Adjustment Stage",
+				"description": "Delete OFP FuealHeader Adjustment Stage",
 				"type": "Script",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -4208,7 +4209,7 @@
 								}
 							],
 							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]"
+							"text": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_Adjustment_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
@@ -4216,7 +4217,7 @@
 			},
 			{
 				"name": "Delete OFP FuelHeader AlternateFuel Stage",
-				"description": "delete  FROM [BcAdfLido].OFP_FuelHeader_AlternateFuel_Stage",
+				"description": "Delete OFP FuelHeader AlternateFuel Stage",
 				"type": "Script",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -4244,7 +4245,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "delete  FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]"
+							"text": "@concat('delete FROM [BcAdfLido].[OFP_FuelHeader_AlternateFuel_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
