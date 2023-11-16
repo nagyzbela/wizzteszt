@@ -2614,6 +2614,8 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
@@ -3910,6 +3912,8 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Adjustment Stage",
@@ -4092,6 +4096,8 @@
 			{
 				"name": "Delete OFP FuealHeader Adjustment Stage",
 				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Adjustment",
