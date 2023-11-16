@@ -4455,72 +4455,2328 @@
 							},
 							{
 								"source": {
-									"name": "DeviationReason",
+									"name": "TripFuelEstimatedWeightUnit",
 									"type": "String",
 									"physicalType": "varchar"
 								},
 								"sink": {
-									"name": "DeviationReason",
+									"name": "TripFuelEstimatedWeightUnit",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "AffectedItemsUnit",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "AffectedItemsUnit",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "AffectedItemsDeviationReasonChange",
+									"name": "TripFuelEstimatedWeightValue",
 									"type": "Single",
 									"physicalType": "float"
 								},
 								"sink": {
-									"name": "AffectedItemsDeviationReasonChange",
+									"name": "TripFuelEstimatedWeightValue",
 									"type": "Single",
 									"physicalType": "float"
 								}
 							},
 							{
 								"source": {
-									"name": "AdjustmentUnit",
+									"name": "TripFuelEstimatedWeightCorrectedValueSource",
 									"type": "String",
 									"physicalType": "varchar"
 								},
 								"sink": {
-									"name": "AdjustmentUnit",
+									"name": "TripFuelEstimatedWeightCorrectedValueSource",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "AdjustmentAffectedItem",
+									"name": "TripFuelEstimatedWeightCorrectedValueUnit",
 									"type": "String",
 									"physicalType": "varchar"
 								},
 								"sink": {
-									"name": "AdjustmentAffectedItem",
+									"name": "TripFuelEstimatedWeightCorrectedValueUnit",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Adjustment",
+									"name": "TripFuelEstimatedWeightCorrectedValue",
 									"type": "Single",
 									"physicalType": "float"
 								},
 								"sink": {
-									"name": "Adjustment",
+									"name": "TripFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TripFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TripFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TripFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TripFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TripFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TripFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TripFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TripFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TripFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencyFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencyFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencyFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencyFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ContingencyFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ContingencyFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyPolicy",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyPolicy",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencyPolicyEnrouteAlternateAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "FinalReserveActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FinalReserveDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FinalReserveDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FinalReserveDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoAlternateFinalReserveDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "NoAlternateFinalReserveDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ReserveFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ReserveFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ReserveFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelContingencyPolicy",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicy",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportFunction",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportICAOCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReserveFuelContingencyPolicyEnrouteAlternateAirportIATACode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ETOPSFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ETOPSFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ETOPSFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ETOPSFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ETOPSFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ETOPSFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ETOPSFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ETOPSFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ContingencySavingsAdditionalFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ContingencySavingsAdditionalFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelReason",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelReason",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelMaximumFuelWeightDensityCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelTankVolumeUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelTankVolumeValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "PossibleExtraFuelTankVolumeCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TakeOffFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TakeOffFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TakeOffFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TakeOffFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TakeOffFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TaxiFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "TaxiFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TaxiFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxiFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxiFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "TaxiFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BlockFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BlockFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "BlockFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "BlockFuelFuelOnBoardAfterRefuelingCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "LadingFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "LadingFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "LadingFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LadingFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LadingFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "LadingFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ArrivalFuelEstimatedWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightCorrectedValueUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "ArrivalFuelActualWeightCorrectedValue",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelDurationValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ArrivalFuelDurationValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalFuelDurationCorrectedValueSource",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalFuelDurationCorrectedValue",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ArrivalFuelDurationCorrectedValue",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IncreaseTransportCoefficient",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "IncreaseTransportCoefficient",
+									"type": "Single",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "DecreaseTransportCoefficient",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "DecreaseTransportCoefficient",
 									"type": "Single",
 									"physicalType": "float"
 								}
