@@ -2260,7 +2260,7 @@
 							"type": "AzureBlobStorageReadSettings",
 							"maxConcurrentConnections": 1,
 							"recursive": true,
-							"wildcardFileName": "*.xml",
+							"wildcardFileName": "@pipeline().parameters.InputFileName",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
