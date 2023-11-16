@@ -6,8 +6,6 @@
 			{
 				"name": "Copy OFP_FuelHeader",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -1872,8 +1870,6 @@
 			{
 				"name": "Copy OFP FuelStatistic",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -2057,8 +2053,6 @@
 			{
 				"name": "Copy OFP TankeringInfo",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -2252,8 +2246,6 @@
 			{
 				"name": "Copy OFP FuelHeader Alternate Fuel Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -2654,8 +2646,6 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment Stage",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -2836,8 +2826,6 @@
 			{
 				"name": "Copy OFP FuelHeader Remark",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -2990,8 +2978,6 @@
 			{
 				"name": "Copy OFP FuelHeader AdditionalFuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -3508,8 +3494,6 @@
 			{
 				"name": "Copy OFP FuelHeader Alternate Fuel",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Alternate Fuel Stage",
@@ -3990,8 +3974,6 @@
 			{
 				"name": "Copy OFP FuelHeader Adjustment",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Adjustment Stage",
@@ -4175,8 +4157,6 @@
 				"name": "Delete OFP FuealHeader Adjustment Stage",
 				"description": "Delete OFP FuealHeader Adjustment Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Adjustment",
@@ -4219,8 +4199,6 @@
 				"name": "Delete OFP FuelHeader AlternateFuel Stage",
 				"description": "Delete OFP FuelHeader AlternateFuel Stage",
 				"type": "Script",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy OFP FuelHeader Alternate Fuel",
