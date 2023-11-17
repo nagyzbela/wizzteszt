@@ -80,7 +80,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "OutTimeEstimatedCorrectedValue",
@@ -89,7 +89,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "OutTimeEstimatedCorrectedSource",
@@ -107,7 +107,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "OutTimeActualCorrectedValue",
@@ -116,7 +116,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OutTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "OutTimeActualCorrectedSource",
@@ -125,7 +125,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "OffTimeEstimatedCorrectedValue",
@@ -134,7 +134,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "OffTimeEstimatedCorrectedSource",
@@ -152,7 +152,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "OffTimeActualCorrectedValue",
@@ -161,7 +161,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OffTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "OffTimeActualCorrectedSource",
@@ -188,7 +188,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "OnTimeEstimatedCorrectedValue",
@@ -197,7 +197,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "OnTimeEstimatedCorrectedSource",
@@ -215,7 +215,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "OnTimeActualCorrectedValue",
@@ -224,7 +224,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['OnTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "OnTimeActualCorrectedSource",
@@ -242,7 +242,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "InTimeEstimatedCorrectedValue",
@@ -251,7 +251,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "InTimeEstimatedCorrectedSource",
@@ -269,7 +269,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "InTimeActualCorrectedValue",
@@ -278,7 +278,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['InTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "InTimeActualCorrectedSource",
@@ -296,7 +296,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "BlockTimeEstimatedCorrectedValue",
@@ -305,7 +305,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "BlockTimeEstimatedCorrectedSource",
@@ -323,7 +323,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "BlockTimeActualCorrectedValue",
@@ -332,7 +332,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['BlockTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "BlockTimeActualCorrectedSource",
@@ -350,7 +350,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "TaxiOutTimeEstimatedCorrectedValue",
@@ -359,7 +359,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "TaxiOutTimeEstimatedCorrectedSource",
@@ -377,7 +377,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "TaxiOutTimeActualCorrectedValue",
@@ -386,7 +386,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiOutTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "TaxiOutTimeActualCorrectedSource",
@@ -404,7 +404,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "FlightTimeEstimatedCorrectedValue",
@@ -413,7 +413,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "FlightTimeEstimatedCorrectedSource",
@@ -431,7 +431,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "FlightTimeActualCorrectedValue",
@@ -440,7 +440,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['FlightTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "FlightTimeActualCorrectedSource",
@@ -458,7 +458,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "TaxiInTimeEstimatedCorrectedValue",
@@ -467,7 +467,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['EstimatedTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "TaxiInTimeEstimatedCorrectedSource",
@@ -485,7 +485,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "TaxiInTimeActualCorrectedValue",
@@ -494,7 +494,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['TaxiInTime']['ActualTime']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "TaxiInTimeActualCorrectedSource",
@@ -512,7 +512,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['CTOT']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['CTOT']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "CTOTCorrectedValue",
@@ -521,7 +521,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['CTOT']['@source']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['CTOT']['CorrectedValue']['@source']"
 								},
 								"sink": {
 									"name": "CTOTCorrectedSource",
@@ -530,7 +530,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['@unit']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine1Unit",
@@ -566,7 +566,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine1']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine1CorrectedValue",
@@ -575,7 +575,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['@unit']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine2Unit",
@@ -611,7 +611,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine2']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine2CorrectedValue",
@@ -620,7 +620,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['@unit']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine3Unit",
@@ -656,7 +656,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine3']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine3CorrectedValue",
@@ -665,7 +665,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['@unit']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['Value']['@unit']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine4Unit",
@@ -701,7 +701,7 @@
 							},
 							{
 								"source": {
-									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['CorrectedValue']"
+									"path": "$['FlightPlan']['FlightPlanSummary']['EngineFuel']['FuelUsedEngine4']['CorrectedValue']['_value_']"
 								},
 								"sink": {
 									"name": "FuelUsedEngine4CorrectedValue",
