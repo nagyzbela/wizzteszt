@@ -2017,7 +2017,8 @@
 									"path": "$['TCreatedId']"
 								},
 								"sink": {
-									"name": "TCreatedId"
+									"name": "TCreatedId",
+									"type": "String"
 								}
 							},
 							{
@@ -2025,7 +2026,8 @@
 									"path": "$['TLoadDate']"
 								},
 								"sink": {
-									"name": "TLoadDate"
+									"name": "TLoadDate",
+									"type": "DateTime"
 								}
 							},
 							{
@@ -2033,7 +2035,8 @@
 									"path": "$['TFileName']"
 								},
 								"sink": {
-									"name": "TFileName"
+									"name": "TFileName",
+									"type": "String"
 								}
 							}
 						],
