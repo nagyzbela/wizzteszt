@@ -1866,8 +1866,6 @@
 			{
 				"name": "Copy OFP FuelStatistic",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:10:00",
@@ -1905,7 +1903,7 @@
 							"maxConcurrentConnections": 1,
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "*.xml",
+								"value": "OFP_HALYS_W44825_231120_TIA_NAP_F231120025815.xml",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
@@ -1957,7 +1955,8 @@
 									"path": "['@analysedFuelText']"
 								},
 								"sink": {
-									"name": "AnalysedFuelText"
+									"name": "AnalysedFuelText",
+									"type": "String"
 								}
 							},
 							{
@@ -2036,7 +2035,7 @@
 						"referenceName": "synapse_BcAdfLido",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "OFP_FuelStatistic"
+							"table_name": "OFP_FuelStatistic_Stage"
 						}
 					}
 				]
