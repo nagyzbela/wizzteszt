@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "ofp.xml",
+				"fileName": "OFP_HALYS_W44825_231120_TIA_NAP_F231120025815.xml",
 				"container": "ofp"
 			}
 		}
