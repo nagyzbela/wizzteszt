@@ -1,5 +1,5 @@
 {
-	"name": "PL_FLIGHTPLAN_new",
+	"name": "PL_FLIGHTPLAN",
 	"properties": {
 		"activities": [
 			{
@@ -3634,7 +3634,10 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "@concat('delete FROM [BcAdfLido].[OFP_FlightPlanSummary_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')"
+							"text": {
+								"value": "@concat('delete FROM [BcAdfLido].[OFP_FlightPlanSummary_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
