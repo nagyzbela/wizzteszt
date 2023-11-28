@@ -1,0 +1,19 @@
+{
+	"name": "AIMS_FlightDelays",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OFP_xml",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Delays.txt_2023-11-28T094119+0100.txt",
+				"container": "AIMS"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

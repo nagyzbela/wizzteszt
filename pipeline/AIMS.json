@@ -1,0 +1,1189 @@
+{
+	"name": "AIMS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_FlightDelays",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['Status']"
+								},
+								"sink": {
+									"name": "AlternateRouteStatus",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['@airportName']"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['@airportFunction']"
+								},
+								"sink": {
+									"name": "AirportFunction",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportICAOCode']"
+								},
+								"sink": {
+									"name": "AirportICAOCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Airport']['AirportIATACode']"
+								},
+								"sink": {
+									"name": "AirportIATACode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['@routeName']"
+								},
+								"sink": {
+									"name": "RouteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['@fMSRouteName']"
+								},
+								"sink": {
+									"name": "fMSRouteName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['@optimization']"
+								},
+								"sink": {
+									"name": "Optimization",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['Value']['@type']"
+								},
+								"sink": {
+									"name": "AverageWindDirectionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindDirectionUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindDirectionValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['@type']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValueType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Direction']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Speed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Speed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Speed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Speed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWind']['Speed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWindComponent']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindComponentUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWindComponent']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindComponentValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWindComponent']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageWindComponentCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWindComponent']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageWindComponentCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageWindComponent']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageWindComponentCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageTemperature']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageTemperatureUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageTemperature']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageTemperatureValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageTemperature']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageTemperatureCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageTemperature']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageTemperatureCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageTemperature']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageTemperatureCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageISADeviation']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AverageISADeviationUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageISADeviation']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AverageISADeviationValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageISADeviation']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AverageISADeviationCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageISADeviation']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AverageISADeviationCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AverageISADeviation']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "AverageISADeviationCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['InitialAltitude']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "InitialAltitudeUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['InitialAltitude']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "InitialAltitudeValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['InitialAltitude']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "InitialAltitudeCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['InitialAltitude']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "InitialAltitudeCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['InitialAltitude']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "InitialAltitudeCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['CostIndex']['Value']"
+								},
+								"sink": {
+									"name": "ClimbProcedureCostIndexValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['@procedure']"
+								},
+								"sink": {
+									"name": "ClimbProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['CostIndex']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureCostIndexUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['CostIndex']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ClimbProcedureCostIndexCorrectedValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['MachNumber']['Value']"
+								},
+								"sink": {
+									"name": "ClimbProcedureMachNumberValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['MachNumber']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "ClimbProcedureMachNumberCorrectedValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['IndicatedAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureIndicatedAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['ClimbProcedure']['TrueAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "ClimbProcedureTrueAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['CostIndex']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['@procedure']"
+								},
+								"sink": {
+									"name": "CruiseProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['CostIndex']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['CostIndex']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CruiseProcedureCostIndexCorrectedValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['MachNumber']['Value']"
+								},
+								"sink": {
+									"name": "CruiseProcedureMachNumberValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['MachNumber']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "CruiseProcedureMachNumberCorrectedValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['IndicatedAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureIndicatedAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['CruiseProcedure']['TrueAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "CruiseProcedureTrueAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['CostIndex']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureCostIndexUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['CostIndex']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DescentProcedureCostIndexCorrectedValue",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['MachNumber']['Value']"
+								},
+								"sink": {
+									"name": "DescentProcedureMachNumberValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['MachNumber']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "DescentProcedureMachNumberCorrectedValue",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['IndicatedAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureIndicatedAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['TrueAirSpeed']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['TrueAirSpeed']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['TrueAirSpeed']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['TrueAirSpeed']['CorrectedValue']['_value_']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['TrueAirSpeed']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "DescentProcedureTrueAirSpeedCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['CostIndex']['Value']"
+								},
+								"sink": {
+									"name": "DescentProcedureCostIndexValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['DescentProcedure']['@procedure']"
+								},
+								"sink": {
+									"name": "DescentProcedure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['RouteDescription']"
+								},
+								"sink": {
+									"name": "RouteDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GroundDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GroundDistanceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GroundDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GroundDistanceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GroundDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GroundDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GroundDistance']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "GroundDistanceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AirDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "AirDistanceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AirDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "AirDistanceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AirDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AirDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['AirDistance']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "AirDistanceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GreatCircleDistance']['Value']['@unit']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GreatCircleDistance']['Value']['_value_']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GreatCircleDistance']['CorrectedValue']['@source']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceCorrectedValueSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GreatCircleDistance']['CorrectedValue']['@unit']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceCorrectedValueUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RouteInformation']['GreatCircleDistance']['CorrectedValue']"
+								},
+								"sink": {
+									"name": "GreatCircleDistanceCorrectedValue",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['FlightPlan']['@flightPlanId']"
+								},
+								"sink": {
+									"name": "FlightPlanId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TFileName']"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TCreatedId']"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TLoadDate']"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['FlightPlan']['AlternateRoutes']['AlternateRoute']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OFP_xml",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfLido",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "OFP_AlternateRoute"
+						}
+					}
+				]
+			},
+			{
+				"name": "Set createdid",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_createdid",
+					"value": {
+						"value": "@guid()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set loaddate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "v_loaddate",
+					"value": {
+						"value": "@utcnow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set output",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightDelays",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "created_id",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('created_id')"
+							}
+						},
+						{
+							"key": "load_date",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('v_loaddate')"
+							}
+						},
+						{
+							"key": "log_output",
+							"value": {
+								"type": "Expression",
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_AlternateRoute\",\n    \"result\": \"',activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_AlternateRoute').output.rowsCopied,0),'\n}]\n'))"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			},
+			{
+				"name": "Wait",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Set createdid",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set loaddate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"parameters": {
+			"InputFileName": {
+				"type": "string",
+				"defaultValue": "ofp.xml"
+			}
+		},
+		"variables": {
+			"v_createdid": {
+				"type": "String"
+			},
+			"v_loaddate": {
+				"type": "String"
+			},
+			"created_id": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-30T14:48:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
