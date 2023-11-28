@@ -1,0 +1,304 @@
+{
+	"name": "AIMS_FlightDelays_2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OFP_xml",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Delays.txt_2023-11-28T094119+0100.txt",
+				"container": "aims"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "HA-LHU",
+				"type": "String"
+			},
+			{
+				"name": "11",
+				"type": "String"
+			},
+			{
+				"name": "207",
+				"type": "String"
+			},
+			{
+				"name": "A",
+				"type": "String"
+			},
+			{
+				"name": "7",
+				"type": "String"
+			},
+			{
+				"name": "27112023",
+				"type": "String"
+			},
+			{
+				"name": "02:20",
+				"type": "String"
+			},
+			{
+				"name": "ALA",
+				"type": "String"
+			},
+			{
+				"name": "09:25",
+				"type": "String"
+			},
+			{
+				"name": "BUD",
+				"type": "String"
+			},
+			{
+				"name": "9310",
+				"type": "String"
+			},
+			{
+				"name": "111",
+				"type": "String"
+			},
+			{
+				"name": "012",
+				"type": "String"
+			},
+			{
+				"name": "013",
+				"type": "String"
+			},
+			{
+				"name": "014",
+				"type": "String"
+			},
+			{
+				"name": "015",
+				"type": "String"
+			},
+			{
+				"name": "016",
+				"type": "String"
+			},
+			{
+				"name": "017",
+				"type": "String"
+			},
+			{
+				"name": "9318",
+				"type": "String"
+			},
+			{
+				"name": "019",
+				"type": "String"
+			},
+			{
+				"name": "01:04",
+				"type": "String"
+			},
+			{
+				"name": "00:08",
+				"type": "String"
+			},
+			{
+				"name": "00:0022",
+				"type": "String"
+			},
+			{
+				"name": "00:0023",
+				"type": "String"
+			},
+			{
+				"name": "00:0024",
+				"type": "String"
+			},
+			{
+				"name": "00:0025",
+				"type": "String"
+			},
+			{
+				"name": "00:0026",
+				"type": "String"
+			},
+			{
+				"name": "00:0027",
+				"type": "String"
+			},
+			{
+				"name": "01:07",
+				"type": "String"
+			},
+			{
+				"name": "00:0029",
+				"type": "String"
+			},
+			{
+				"name": "030",
+				"type": "String"
+			},
+			{
+				"name": "031",
+				"type": "String"
+			},
+			{
+				"name": "032",
+				"type": "String"
+			},
+			{
+				"name": "033",
+				"type": "String"
+			},
+			{
+				"name": "034",
+				"type": "String"
+			},
+			{
+				"name": "035",
+				"type": "String"
+			},
+			{
+				"name": "036",
+				"type": "String"
+			},
+			{
+				"name": "037",
+				"type": "String"
+			},
+			{
+				"name": "038",
+				"type": "String"
+			},
+			{
+				"name": "039",
+				"type": "String"
+			},
+			{
+				"name": "140",
+				"type": "String"
+			},
+			{
+				"name": "141",
+				"type": "String"
+			},
+			{
+				"name": "042",
+				"type": "String"
+			},
+			{
+				"name": "043",
+				"type": "String"
+			},
+			{
+				"name": "044",
+				"type": "String"
+			},
+			{
+				"name": "045",
+				"type": "String"
+			},
+			{
+				"name": "046",
+				"type": "String"
+			},
+			{
+				"name": "047",
+				"type": "String"
+			},
+			{
+				"name": "048",
+				"type": "String"
+			},
+			{
+				"name": "049",
+				"type": "String"
+			},
+			{
+				"name": "9350",
+				"type": "String"
+			},
+			{
+				"name": "62",
+				"type": "String"
+			},
+			{
+				"name": "052",
+				"type": "String"
+			},
+			{
+				"name": "053",
+				"type": "String"
+			},
+			{
+				"name": "054",
+				"type": "String"
+			},
+			{
+				"name": "055",
+				"type": "String"
+			},
+			{
+				"name": "056",
+				"type": "String"
+			},
+			{
+				"name": "057",
+				"type": "String"
+			},
+			{
+				"name": "99",
+				"type": "String"
+			},
+			{
+				"name": "059",
+				"type": "String"
+			},
+			{
+				"name": "60",
+				"type": "String"
+			},
+			{
+				"name": "10",
+				"type": "String"
+			},
+			{
+				"name": "062",
+				"type": "String"
+			},
+			{
+				"name": "063",
+				"type": "String"
+			},
+			{
+				"name": "064",
+				"type": "String"
+			},
+			{
+				"name": "065",
+				"type": "String"
+			},
+			{
+				"name": "066",
+				"type": "String"
+			},
+			{
+				"name": "067",
+				"type": "String"
+			},
+			{
+				"name": "66",
+				"type": "String"
+			},
+			{
+				"name": "069",
+				"type": "String"
+			}
+		]
+	}
+}

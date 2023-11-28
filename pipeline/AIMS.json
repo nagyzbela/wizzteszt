@@ -47,10 +47,6 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": {
-								"value": "@pipeline().parameters.InputFileName",
-								"type": "Expression"
-							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -1050,7 +1046,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "OFP_xml",
+						"referenceName": "AIMS_FlightDelays",
 						"type": "DatasetReference"
 					}
 				],
