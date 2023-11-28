@@ -1,5 +1,5 @@
 {
-	"name": "synapse_BcAdfLido_copy1",
+	"name": "synapse_BcAdfAims",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics",
@@ -14,7 +14,7 @@
 		"type": "AzureSqlDWTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "BcAdfLido",
+			"schema": "BcAdfAims",
 			"table": {
 				"value": "@dataset().table_name",
 				"type": "Expression"
