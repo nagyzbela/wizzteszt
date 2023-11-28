@@ -67,7 +67,46 @@
 						"mappings": [
 							{
 								"source": {
-									"name": ""
+									"type": "String",
+									"ordinal": 1
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							}
 						],
@@ -86,8 +125,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "FlightDelays",
-						"type": "DatasetReference"
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightDelays_Stage"
+						}
 					}
 				]
 			},
