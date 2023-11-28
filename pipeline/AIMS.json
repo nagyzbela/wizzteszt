@@ -23,7 +23,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "XmlSource",
+						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
 								"name": "TFileName",
@@ -50,9 +50,7 @@
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"namespaces": true
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -1040,13 +1038,16 @@
 								}
 							}
 						],
-						"collectionReference": "$['FlightPlan']['AlternateRoutes']['AlternateRoute']",
-						"mapComplexValuesToString": false
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "AIMS_FlightDelays",
+						"referenceName": "AIMS_FlightDelays_2",
 						"type": "DatasetReference"
 					}
 				],
