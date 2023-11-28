@@ -5,6 +5,8 @@
 			{
 				"name": "Copy AircraftDates Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait1",
@@ -230,6 +232,8 @@
 			{
 				"name": "Copy AircraftDates",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy AircraftDates Stage",
@@ -375,6 +379,955 @@
 				"outputs": [
 					{
 						"referenceName": "AircraftDates",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Aircrafts Stage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@variables('v_loaddate')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@variables('v_createdid')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 1
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Aims_Aircrafts",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Aircrafts_Stage",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Aircrafts Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT SUBSTRING(RawData,1,6) as AircraftRegistrationId\n,SUBSTRING(RawData,8,6) as AircraftTypeCode\n,SUBSTRING(RawData,15,6) as AircraftDutyIndex\n,SUBSTRING(RawData,22,20) as AircraftTypeDescription\n,SUBSTRING(RawData,43,20) as AircraftName\n,SUBSTRING(RawData,64,6) as MaxCrewSeats\n,SUBSTRING(RawData,71,6) as NumberOfSeatCategory1\n,SUBSTRING(RawData,78,6) as NumberOfSeatCategory2\n,SUBSTRING(RawData,85,6) as NumberOfSeatCategory3\n,SUBSTRING(RawData,92,6) as NumberOfSeatCategory4\n,SUBSTRING(RawData,99,6) as TotalHoursAndCyclesSinceDeliveryDate\n,SUBSTRING(RawData,106,11) as BlockHoursAccumulatedSinceDelivery\n,SUBSTRING(RawData,118,11) as AirbornkHoursAccumulatedSinceDelivery\n,SUBSTRING(RawData,130,11) as LandingsHoursAccumulatedSinceDelivery\n,SUBSTRING(RawData,142,6) as MaxCrewBunks\n,SUBSTRING(RawData,149,2) as WeightVariant\n,SUBSTRING(RawData,152,3) as AcShortCode\n,SUBSTRING(RawData,156,10) as MovementControlColor\n,SUBSTRING(RawData,167,6) as AcOwnerCode\n,SUBSTRING(RawData,174,6) as AircraftFlyMaxRange\n,SUBSTRING(RawData,181,6) as EropsMinutes\n,SUBSTRING(RawData,188,6) as DateUntilXferBeenRun\n,cast(SUBSTRING(RawData,195,8) as datetime) as AircraftReleaseDate\n,cast(SUBSTRING(RawData,204,8) as datetime) as AircraftDeliveryDate\n,SUBSTRING(RawData,213,6) as AircraftCruisingSpeed\n,SUBSTRING(RawData,220,11) as CargoCapacity\n,SUBSTRING(RawData,232,4) as SelectiveCall\n,SUBSTRING(RawData,237,6) as OperatingEmptyWeight\n,SUBSTRING(RawData,244,6) as AircraftClassificationNumber\n,SUBSTRING(RawData,251,6) as MinimumRunwayLength\n,SUBSTRING(RawData,258,10) as FireCategory\n,SUBSTRING(RawData,269,10) as IIsCategory\n,SUBSTRING(RawData,280,10) as WeightIndex\n,SUBSTRING(RawData,291,10) as AirportEquippedAPU\n,SUBSTRING(RawData,302,10) as AirportEquippedASU\n,SUBSTRING(RawData,313,6) as MaximumLandingWeight\n,SUBSTRING(RawData,320,11) as MaximumTakeoffWeight\n,SUBSTRING(RawData,332,30) as AircraftCategory\n,cast(SUBSTRING(RawData,363,8)as datetime) as LastModificationDate\n,SUBSTRING(RawData,372,5) as LastModificationTime\n,SUBSTRING(RawData,378,6) as Modified_by\n,SUBSTRING(RawData,385,20) as LongIndexOfOperatingEmptyWeight\n,SUBSTRING(RawData,406,6) as AircraftSubCategory\n,SUBSTRING(RawData,413,30) as AcMobilePhoneCP\n,SUBSTRING(RawData,444,20) as AcMobilePhoneFO\n,SUBSTRING(RawData,465,20) as AcSatellitePhoneNumber\n,SUBSTRING(RawData,486,20) as AcSatellitePhoneNumber2\n,SUBSTRING(RawData,507,11) as SQModuleIndividualHireRate\n,SUBSTRING(RawData,519,10) as SpecialFlagsForMovementControl\n,SUBSTRING(RawData,530,11) as RegistrationColorForMovementControl\n,SUBSTRING(RawData,542,6) as WheaterLimitationForCelling1\n,SUBSTRING(RawData,549,6) as WheaterLimitationForCelling2\n,SUBSTRING(RawData,556,6) as WheaterLimitationForRvr1\n,SUBSTRING(RawData,563,6) as WheaterLimitationForRvr2\n,SUBSTRING(RawData,570,6) as WheaterLimitationForVisibility1\n,SUBSTRING(RawData,577,6) as WheaterLimitationForVisibility2\n,SUBSTRING(RawData,584,6) as WheaterLimitationForCrosswind1\n,SUBSTRING(RawData,591,6) as WheaterLimitationForCrosswind2\n,SUBSTRING(RawData,598,6) as WheaterLimitationForWind1\n,SUBSTRING(RawData,605,6) as WheaterLimitationForWind2\n,SUBSTRING(RawData,612,6) as WheaterLimitationTakeoff\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[Aircrafts_Stage]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AircraftRegistrationId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftRegistrationId",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftTypeCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftTypeCode",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftDutyIndex",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftDutyIndex",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftTypeDescription",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftTypeDescription",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MaxCrewSeats",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MaxCrewSeats",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "NumberOfSeatCategory1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NumberOfSeatCategory1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "NumberOfSeatCategory2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NumberOfSeatCategory2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "NumberOfSeatCategory3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NumberOfSeatCategory3",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "NumberOfSeatCategory4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NumberOfSeatCategory4",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalHoursAndCyclesSinceDeliveryDate",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TotalHoursAndCyclesSinceDeliveryDate",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "BlockHoursAccumulatedSinceDelivery",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BlockHoursAccumulatedSinceDelivery",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AirbornkHoursAccumulatedSinceDelivery",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirbornkHoursAccumulatedSinceDelivery",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "LandingsHoursAccumulatedSinceDelivery",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LandingsHoursAccumulatedSinceDelivery",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "MaxCrewBunks",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MaxCrewBunks",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WeightVariant",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WeightVariant",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AcShortCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AcShortCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MovementControlColor",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MovementControlColor",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AcOwnerCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AcOwnerCode",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftFlyMaxRange",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftFlyMaxRange",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "EropsMinutes",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EropsMinutes",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DateUntilXferBeenRun",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DateUntilXferBeenRun",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftReleaseDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "AircraftReleaseDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftDeliveryDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "AircraftDeliveryDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftCruisingSpeed",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftCruisingSpeed",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CargoCapacity",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CargoCapacity",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SelectiveCall",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SelectiveCall",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OperatingEmptyWeight",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OperatingEmptyWeight",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftClassificationNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftClassificationNumber",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumRunwayLength",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumRunwayLength",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FireCategory",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FireCategory",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IIsCategory",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IIsCategory",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WeightIndex",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WeightIndex",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportEquippedAPU",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportEquippedAPU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportEquippedASU",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportEquippedASU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MaximumLandingWeight",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MaximumLandingWeight",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MaximumTakeoffWeight",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MaximumTakeoffWeight",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftCategory",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftCategory",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModificationDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "LastModificationDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "LastModificationTime",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LastModificationTime",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Modified_by",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ModifierUserID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "LongIndexOfOperatingEmptyWeight",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LongIndexOfOperatingEmptyWeight",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftSubCategory",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftSubCategory",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AcMobilePhoneCP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AcMobilePhoneCP",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AcMobilePhoneFO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AcMobilePhoneFO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AcSatellitePhoneNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AcSatellitePhoneNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AcSatellitePhoneNumber2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AcSatellitePhoneNumber2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SQModuleIndividualHireRate",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SQModuleIndividualHireRate",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SpecialFlagsForMovementControl",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SpecialFlagsForMovementControl",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RegistrationColorForMovementControl",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RegistrationColorForMovementControl",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForCelling1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForCelling1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForCelling2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForCelling2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForRvr1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForRvr1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForRvr2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForRvr2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForVisibility1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForVisibility1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForVisibility2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForVisibility2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForCrosswind1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForCrosswind1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForCrosswind2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForCrosswind2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForWind1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForWind1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationForWind2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationForWind2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "WheaterLimitationTakeoff",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "WheaterLimitationTakeoff",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Aircrafts_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Aircrafts",
 						"type": "DatasetReference"
 					}
 				]

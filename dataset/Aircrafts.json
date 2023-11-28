@@ -1,0 +1,316 @@
+{
+	"name": "Aircrafts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "AircraftRegistrationId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AircraftTypeCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AircraftDutyIndex",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AircraftTypeDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AircraftName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MaxCrewSeats",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NumberOfSeatCategory1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NumberOfSeatCategory2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NumberOfSeatCategory3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NumberOfSeatCategory4",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotalHoursAndCyclesSinceDeliveryDate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BlockHoursAccumulatedSinceDelivery",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AirbornkHoursAccumulatedSinceDelivery",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LandingsHoursAccumulatedSinceDelivery",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MaxCrewBunks",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WeightVariant",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcShortCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MovementControlColor",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcOwnerCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AircraftFlyMaxRange",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EropsMinutes",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DateUntilXferBeenRun",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AircraftReleaseDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AircraftDeliveryDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AircraftCruisingSpeed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CargoCapacity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SelectiveCall",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OperatingEmptyWeight",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AircraftClassificationNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MinimumRunwayLength",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FireCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IIsCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WeightIndex",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AirportEquippedAPU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AirportEquippedASU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MaximumLandingWeight",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MaximumTakeoffWeight",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AircraftCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastModificationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastModificationTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModifierUserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LongIndexOfOperatingEmptyWeight",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AircraftSubCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcMobilePhoneCP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcMobilePhoneFO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcSatellitePhoneNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AcSatellitePhoneNumber2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SQModuleIndividualHireRate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SpecialFlagsForMovementControl",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegistrationColorForMovementControl",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForCelling1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForCelling2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForRvr1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForRvr2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForVisibility1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForVisibility2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForCrosswind1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForCrosswind2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForWind1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationForWind2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WheaterLimitationTakeoff",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "Aircrafts"
+		}
+	}
+}

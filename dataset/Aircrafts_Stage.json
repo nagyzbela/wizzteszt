@@ -1,0 +1,52 @@
+{
+	"name": "Aircrafts_Stage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "AircraftRegistrationId",
+				"type": "varchar"
+			},
+			{
+				"name": "AircraftTypeCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BaseCode",
+				"type": "varchar"
+			},
+			{
+				"name": "DeliveryDay",
+				"type": "varchar"
+			},
+			{
+				"name": "ReleaseDate",
+				"type": "varchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "Aircrafts_Stage"
+		}
+	}
+}

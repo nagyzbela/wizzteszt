@@ -1,0 +1,28 @@
+{
+	"name": "Aims_Aircrafts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OFP_xml",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Aircrafts_STD_2023-11-28T090304+0100.txt",
+				"container": "aims"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "9A-CBC      2      1 MD-82                                          0      0      0    163      0      0           0           0           0      0                 0      0      0      0   9510 20061012 20061001      0           0                  0      0          0          0          1          0          0                  0 0                              20061011 12:22      2                                                                                                                                     0          0           0      0      0      0      0      0      0      0      0      0      0      0 ",
+				"type": "String"
+			}
+		]
+	}
+}
