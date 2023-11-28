@@ -1,5 +1,5 @@
 {
-	"name": "AIMS_FlightDelays_2",
+	"name": "AIMS_FlightDelays",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "OFP_xml",
@@ -13,7 +13,7 @@
 				"fileName": "Delays.txt_2023-11-28T094119+0100.txt",
 				"container": "aims"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": "\""
