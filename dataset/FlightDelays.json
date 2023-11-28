@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalyticsTable1",
+	"name": "FlightDelays",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics",
