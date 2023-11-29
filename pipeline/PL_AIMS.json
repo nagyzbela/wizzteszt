@@ -942,6 +942,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Delete_FlightSchedule_MST_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -970,7 +976,7 @@
 							"key": "log_output",
 							"value": {
 								"type": "Expression",
-								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfAims.FlightDelays\",\n    \"result\": \"',activity('Copy_FlightDelays').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightDelays').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightDelays').output.rowsCopied,0),'\n}]\n'))"
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfAims.FlightDelays\",\n    \"result\": \"',activity('Copy_FlightDelays').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightDelays').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightDelays').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfAims.FlightSchedule_MST\",\n    \"result\": \"',activity('Copy_FlightSchedule_MST').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightSchedule_MST').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightSchedule_MST').output.rowsCopied,0),'\n}]\n'))"
 							}
 						}
 					],
@@ -1002,6 +1008,8 @@
 			{
 				"name": "Copy_FlightDelays",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_FlightDelays_Stage",
@@ -1943,6 +1951,8 @@
 			{
 				"name": "Delete_FlightDelays_Stage",
 				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_FlightDelays",
@@ -2057,7 +2067,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "TCreatedId",
+									"name": "TFileName",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -2065,23 +2075,23 @@
 							{
 								"source": {
 									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
 									"type": "String"
 								},
 								"sink": {
 									"name": "TLoadDate",
 									"type": "DateTime",
 									"physicalType": "datetime"
-								}
-							},
-							{
-								"source": {
-									"name": "TLoadDate",
-									"type": "String"
-								},
-								"sink": {
-									"name": "TFileName",
-									"type": "String",
-									"physicalType": "varchar"
 								}
 							}
 						],
@@ -2107,6 +2117,479 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Copy_FlightSchedule_MST",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightSchedule_MST_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "SELECT SUBSTRING(RawData,1,6) as CarrierIndex\n,SUBSTRING(RawData,7,7) as FlightNumber\n,case when trim(SUBSTRING(RawData,14,2)) = '' then null else SUBSTRING(RawData,14,2) end as FlightLegCode\n,SUBSTRING(RawData,16,4) as DepartureStation\n,SUBSTRING(RawData,20,5) as ArrivalStation\n,convert(date,SUBSTRING(RawData,25,11),103) as OperationDay\n,SUBSTRING(RawData,36,7) as ScheduledTimeOfDeparture\n,SUBSTRING(RawData,43,6) as ScheduledTimeOfArrival\n,convert(date,SUBSTRING(RawData,49,10),103) as EstimatedDepartureDay\n,case when trim(SUBSTRING(RawData,59,7)) = '' then null else SUBSTRING(RawData,59,7) end as EstimatedTimeOfDeparture\n,case when trim(SUBSTRING(RawData,66,7)) = '' then null else SUBSTRING(RawData,66,7) end as EstimatedTimeOfArrival\n,case when trim(SUBSTRING(RawData,73,7)) = '' then null else SUBSTRING(RawData,73,7) end as ATDBlockOffTimeBasedOnSITAMVT\n,case when trim(SUBSTRING(RawData,80,7)) = '' then null else SUBSTRING(RawData,80,7) end as TakeOffTimeBasedOnSITAMVT\n,case when trim(SUBSTRING(RawData,87,7)) = '' then null else SUBSTRING(RawData,87,7) end as TouchDownTimeBasedOnSITAMVT\n,case when trim(SUBSTRING(RawData,96,8)) = '' then null else SUBSTRING(RawData,96,8) end as ATABlockOnTimeBasedOnSITAMVT\n,SUBSTRING(RawData,102,7) as ExpectedPassengers\n,SUBSTRING(RawData,109,7) as TotalFlightPassengers1\n,SUBSTRING(RawData,116,7) as TotalFlightPassengers5\n,SUBSTRING(RawData,123,5) as AircraftTypeIndex\n,SUBSTRING(RawData,128,11) as AircraftRegistrationID\n,SUBSTRING(RawData,139,7) as FlightServiceType\n,SUBSTRING(RawData,146,5) as AircraftRouteNumber\n,convert(date,SUBSTRING(RawData,151,15),103) as AircraftRouteStartingDate\n,SUBSTRING(RawData,166,7) as FlightStatus\n,convert(date,SUBSTRING(RawData,173,11),103) as OriginalDepartureDayOfRescheduledAC\n,SUBSTRING(RawData,195,9) as OriginalDepartureSTDOfRescheduledAC\n,SUBSTRING(RawData,204,7) as RescheduledACRegistration\n,case when trim(SUBSTRING(RawData,211,7)) = '' then null else SUBSTRING(RawData,211,7) end as OriginalSTAOfRescheduledACleg\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\nFROM [BcAdfAims].[FlightSchedule_MST_Stage]\n where tfilename = '@{pipeline().parameters.FlightSchedule_MSTInputFileName}'",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CarrierIndex",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CarrierIndex",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightNumber",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightLegCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightLegCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OperationDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "OperationDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfArrival",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfArrival",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedDepartureDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "EstimatedDepartureDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedTimeOfDeparture",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedTimeOfDeparture",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedTimeOfArrival",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EstimatedTimeOfArrival",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ATDBlockOffTimeBasedOnSITAMVT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ATDBlockOffTimeBasedOnSITAMVT",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TakeOffTimeBasedOnSITAMVT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TakeOffTimeBasedOnSITAMVT",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TouchDownTimeBasedOnSITAMVT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TouchDownTimeBasedOnSITAMVT",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ATABlockOnTimeBasedOnSITAMVT",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ATABlockOnTimeBasedOnSITAMVT",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ExpectedPassengers",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ExpectedPassengers",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalFlightPassengers1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TotalFlightPassengers1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalFlightPassengers5",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TotalFlightPassengers5",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftTypeIndex",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftTypeIndex",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftRegistrationID",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftRegistrationID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightServiceType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightServiceType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftRouteNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftRouteNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftRouteStartingDate",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "AircraftRouteStartingDate",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightStatus",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightStatus",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OriginalDepartureDayOfRescheduledAC",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "OriginalDepartureDayOfRescheduledAC",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "OriginalDepartureSTDOfRescheduledAC",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OriginalDepartureSTDOfRescheduledAC",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "RescheduledACRegistration",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RescheduledACRegistration",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OriginalSTAOfRescheduledACleg",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OriginalSTAOfRescheduledACleg",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightSchedule_MST_Stage"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightSchedule_MST"
+						}
+					}
+				]
+			},
+			{
+				"name": "Delete_FlightSchedule_MST_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightSchedule_MST",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfAims].[FlightSchedule_Stage]\nwhere tfilename = ''',pipeline().parameters.FlightSchedule_MSTInputFileName,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
 			}
 		],
 		"parameters": {
