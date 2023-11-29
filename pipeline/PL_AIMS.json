@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_FlightDelays",
+				"name": "Copy_FlightDelays_Stage",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -116,8 +116,8 @@
 								},
 								"sink": {
 									"name": "OperationDay",
-									"type": "DateTime",
-									"physicalType": "date"
+									"type": "Byte",
+									"physicalType": "tinyint"
 								}
 							},
 							{
@@ -127,8 +127,8 @@
 								},
 								"sink": {
 									"name": "ScheduledTimeOfDeparture",
-									"type": "TimeSpan",
-									"physicalType": "time"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -137,7 +137,7 @@
 									"ordinal": 7
 								},
 								"sink": {
-									"name": "DepartureStation",
+									"name": "ScheduledTimeOfDepartureTime",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -148,9 +148,9 @@
 									"ordinal": 8
 								},
 								"sink": {
-									"name": "ScheduledTimeOfArrival",
-									"type": "TimeSpan",
-									"physicalType": "time"
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -159,9 +159,9 @@
 									"ordinal": 9
 								},
 								"sink": {
-									"name": "ArrivalStation",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "ScheduledTimeOfArrival",
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -170,9 +170,9 @@
 									"ordinal": 10
 								},
 								"sink": {
-									"name": "FlightServiceType",
-									"type": "Byte",
-									"physicalType": "tinyint"
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
@@ -292,8 +292,8 @@
 								},
 								"sink": {
 									"name": "DelayTime1",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -303,8 +303,8 @@
 								},
 								"sink": {
 									"name": "DelayTime2",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -314,8 +314,8 @@
 								},
 								"sink": {
 									"name": "DelayTime3",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -325,8 +325,8 @@
 								},
 								"sink": {
 									"name": "DelayTime4",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -336,8 +336,8 @@
 								},
 								"sink": {
 									"name": "DelayTime5",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -347,8 +347,8 @@
 								},
 								"sink": {
 									"name": "DelayTime6",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -358,8 +358,8 @@
 								},
 								"sink": {
 									"name": "DelayTime7",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -369,8 +369,8 @@
 								},
 								"sink": {
 									"name": "DelayTime8",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -380,8 +380,8 @@
 								},
 								"sink": {
 									"name": "DelayTime9",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -391,8 +391,8 @@
 								},
 								"sink": {
 									"name": "DelayTime10",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								}
 							},
 							{
@@ -887,7 +887,7 @@
 						"referenceName": "synapse_BcAdfAims",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "FlightDelays"
+							"table_name": "FlightDelays_Stage"
 						}
 					}
 				]
@@ -929,11 +929,9 @@
 			{
 				"name": "Set output",
 				"type": "SetVariable",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Copy_FlightDelays",
+						"activity": "Delete_FlightDelays_Stage",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -965,7 +963,7 @@
 							"key": "log_output",
 							"value": {
 								"type": "Expression",
-								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfLido.OFP_AlternateRoute\",\n    \"result\": \"',activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_OFP_AlternateRoute').output.executionDetails[0].status,'Succeeded'),activity('Copy_OFP_AlternateRoute').output.rowsCopied,0),'\n}]\n'))"
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfAims.FlightDelays\",\n    \"result\": \"',activity('Copy_FlightDelays').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightDelays').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightDelays').output.rowsCopied,0),'\n}]\n'))"
 							}
 						}
 					],
@@ -992,6 +990,983 @@
 				"userProperties": [],
 				"typeProperties": {
 					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "Copy_FlightDelays",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightDelays_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "SELECT [AircraftRegistrationId]\n,[CarrierIndex]\n,[FlightNumber]\n,[FlightNumberSuffix]\n,[OperationDay]\n,convert(datetime,concat(substring(ScheduledTimeOfDeparture,1,2),'/',substring(ScheduledTimeOfDeparture,3,2),'/',SUBSTRING(ScheduledTimeOfDeparture,5,4),' ',ScheduledTimeOfDepartureTime),103) as [ScheduledTimeOfDeparture]\n,[DepartureStation]\n,[ScheduledTimeOfArrival]\n,[ArrivalStation]\n,null as FlightServiceType\n,[DelayCodeIndex1]\n,[DelayCodeIndex2]\n,[DelayCodeIndex3]\n,[DelayCodeIndex4]\n,[DelayCodeIndex5]\n,[DelayCodeIndex6]\n,[DelayCodeIndex7]\n,[DelayCodeIndex8]\n,[DelayCodeIndex9]\n,[DelayCodeIndex10]\n,[DelayTime1]\n,[DelayTime2]\n,[DelayTime3]\n,[DelayTime4]\n,[DelayTime5]\n,[DelayTime6]\n,[DelayTime7]\n,[DelayTime8]\n,[DelayTime9]\n,[DelayTime10]\n,[SubDelayCodeIndexMVT1]\n,[SubDelayCodeIndexMVT2]\n,[SubDelayCodeIndexMVT3]\n,[SubDelayCodeIndexMVT4]\n,[SubDelayCodeIndexMVT5]\n,[SubDelayCodeIndexMVT6]\n,[SubDelayCodeIndexMVT7]\n,[SubDelayCodeIndexMVT8]\n,[SubDelayCodeIndexMVT9]\n,[SubDelayCodeIndexMVT10]\n,[DelayCodeIndexVOYAGE1]\n,[DelayCodeIndexVOYAGE2]\n,[DelayCodeIndexVOYAGE3]\n,[DelayCodeIndexVOYAGE4]\n,[DelayCodeIndexVOYAGE5]\n,[DelayCodeIndexVOYAGE6]\n,[DelayCodeIndexVOYAGE7]\n,[DelayCodeIndexVOYAGE8]\n,[DelayCodeIndexVOYAGE9]\n,[DelayCodeIndexVOYAGE10]\n,[DelayTimeVOYAGE1]\n,[DelayTimeVOYAGE2]\n,[DelayTimeVOYAGE3]\n,[DelayTimeVOYAGE4]\n,[DelayTimeVOYAGE5]\n,[DelayTimeVOYAGE6]\n,[DelayTimeVOYAGE7]\n,[DelayTimeVOYAGE8]\n,[DelayTimeVOYAGE9]\n,[DelayTimeVOYAGE10]\n,[SubDelayCodeIndexVOYAGE1]\n,[SubDelayCodeIndexVOYAGE2]\n,[SubDelayCodeIndexVOYAGE3]\n,[SubDelayCodeIndexVOYAGE4]\n,[SubDelayCodeIndexVOYAGE5]\n,[SubDelayCodeIndexVOYAGE6]\n,[SubDelayCodeIndexVOYAGE7]\n,[SubDelayCodeIndexVOYAGE8]\n,[SubDelayCodeIndexVOYAGE9]\n,[SubDelayCodeIndexVOYAGE10]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightDelays_Stage]\n where tfilename = '@{pipeline().parameters.InputFileName}'",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AircraftRegistrationId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftRegistrationId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CarrierIndex",
+									"type": "Byte",
+									"physicalType": "tinyint"
+								},
+								"sink": {
+									"name": "CarrierIndex",
+									"type": "Byte",
+									"physicalType": "tinyint"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumber",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FlightNumber",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumberSuffix",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightNumberSuffix",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OperationDay",
+									"type": "Byte",
+									"physicalType": "tinyint"
+								},
+								"sink": {
+									"name": "OperationDay",
+									"type": "Byte",
+									"physicalType": "tinyint"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfArrival",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfArrival",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightServiceType",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FlightServiceType",
+									"type": "Byte",
+									"physicalType": "tinyint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndex10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndex10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime1",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime1",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime2",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime2",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime3",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime3",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime4",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime4",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime5",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime5",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime6",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime6",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime7",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime7",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime8",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime8",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime9",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime9",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTime10",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								},
+								"sink": {
+									"name": "DelayTime10",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexMVT10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexMVT10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayCodeIndexVOYAGE10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "DelayCodeIndexVOYAGE10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE1",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE2",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE3",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE3",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE4",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE4",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE5",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE5",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE6",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE6",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE7",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE7",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE8",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE8",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE9",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE9",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DelayTimeVOYAGE10",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DelayTimeVOYAGE10",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE1",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE2",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE3",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE4",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE5",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE6",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE7",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE8",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE9",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "SubDelayCodeIndexVOYAGE10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SubDelayCodeIndexVOYAGE10",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightDelays_Stage"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightDelays"
+						}
+					}
+				]
+			},
+			{
+				"name": "Delete_FlightDelays_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightDelays",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfAims].[FlightDelays_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
 				}
 			}
 		],
