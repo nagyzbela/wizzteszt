@@ -27,7 +27,10 @@
 						"additionalColumns": [
 							{
 								"name": "TFileName",
-								"value": "$$FILEPATH"
+								"value": {
+									"value": "@pipeline().parameters.FlightDelaysInputFileName",
+									"type": "Expression"
+								}
 							},
 							{
 								"name": "TCreatedId",
@@ -47,6 +50,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.FlightDelaysInputFileName",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -878,7 +885,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AIMS_FlightDelays",
+						"referenceName": "AIMS",
 						"type": "DatasetReference"
 					}
 				],
@@ -1015,7 +1022,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "SELECT [AircraftRegistrationId]\n,[CarrierIndex]\n,[FlightNumber]\n,[FlightNumberSuffix]\n,[OperationDay]\n,convert(datetime,concat(substring(ScheduledTimeOfDeparture,1,2),'/',substring(ScheduledTimeOfDeparture,3,2),'/',SUBSTRING(ScheduledTimeOfDeparture,5,4),' ',ScheduledTimeOfDepartureTime),103) as [ScheduledTimeOfDeparture]\n,[DepartureStation]\n,[ScheduledTimeOfArrival]\n,[ArrivalStation]\n,null as FlightServiceType\n,[DelayCodeIndex1]\n,[DelayCodeIndex2]\n,[DelayCodeIndex3]\n,[DelayCodeIndex4]\n,[DelayCodeIndex5]\n,[DelayCodeIndex6]\n,[DelayCodeIndex7]\n,[DelayCodeIndex8]\n,[DelayCodeIndex9]\n,[DelayCodeIndex10]\n,[DelayTime1]\n,[DelayTime2]\n,[DelayTime3]\n,[DelayTime4]\n,[DelayTime5]\n,[DelayTime6]\n,[DelayTime7]\n,[DelayTime8]\n,[DelayTime9]\n,[DelayTime10]\n,[SubDelayCodeIndexMVT1]\n,[SubDelayCodeIndexMVT2]\n,[SubDelayCodeIndexMVT3]\n,[SubDelayCodeIndexMVT4]\n,[SubDelayCodeIndexMVT5]\n,[SubDelayCodeIndexMVT6]\n,[SubDelayCodeIndexMVT7]\n,[SubDelayCodeIndexMVT8]\n,[SubDelayCodeIndexMVT9]\n,[SubDelayCodeIndexMVT10]\n,[DelayCodeIndexVOYAGE1]\n,[DelayCodeIndexVOYAGE2]\n,[DelayCodeIndexVOYAGE3]\n,[DelayCodeIndexVOYAGE4]\n,[DelayCodeIndexVOYAGE5]\n,[DelayCodeIndexVOYAGE6]\n,[DelayCodeIndexVOYAGE7]\n,[DelayCodeIndexVOYAGE8]\n,[DelayCodeIndexVOYAGE9]\n,[DelayCodeIndexVOYAGE10]\n,[DelayTimeVOYAGE1]\n,[DelayTimeVOYAGE2]\n,[DelayTimeVOYAGE3]\n,[DelayTimeVOYAGE4]\n,[DelayTimeVOYAGE5]\n,[DelayTimeVOYAGE6]\n,[DelayTimeVOYAGE7]\n,[DelayTimeVOYAGE8]\n,[DelayTimeVOYAGE9]\n,[DelayTimeVOYAGE10]\n,[SubDelayCodeIndexVOYAGE1]\n,[SubDelayCodeIndexVOYAGE2]\n,[SubDelayCodeIndexVOYAGE3]\n,[SubDelayCodeIndexVOYAGE4]\n,[SubDelayCodeIndexVOYAGE5]\n,[SubDelayCodeIndexVOYAGE6]\n,[SubDelayCodeIndexVOYAGE7]\n,[SubDelayCodeIndexVOYAGE8]\n,[SubDelayCodeIndexVOYAGE9]\n,[SubDelayCodeIndexVOYAGE10]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightDelays_Stage]\n where tfilename = '@{pipeline().parameters.InputFileName}'",
+							"value": "SELECT [AircraftRegistrationId]\n,[CarrierIndex]\n,[FlightNumber]\n,[FlightNumberSuffix]\n,[OperationDay]\n,convert(datetime,concat(substring(ScheduledTimeOfDeparture,1,2),'/',substring(ScheduledTimeOfDeparture,3,2),'/',SUBSTRING(ScheduledTimeOfDeparture,5,4),' ',ScheduledTimeOfDepartureTime),103) as [ScheduledTimeOfDeparture]\n,[DepartureStation]\n,[ScheduledTimeOfArrival]\n,[ArrivalStation]\n,null as FlightServiceType\n,[DelayCodeIndex1]\n,[DelayCodeIndex2]\n,[DelayCodeIndex3]\n,[DelayCodeIndex4]\n,[DelayCodeIndex5]\n,[DelayCodeIndex6]\n,[DelayCodeIndex7]\n,[DelayCodeIndex8]\n,[DelayCodeIndex9]\n,[DelayCodeIndex10]\n,[DelayTime1]\n,[DelayTime2]\n,[DelayTime3]\n,[DelayTime4]\n,[DelayTime5]\n,[DelayTime6]\n,[DelayTime7]\n,[DelayTime8]\n,[DelayTime9]\n,[DelayTime10]\n,[SubDelayCodeIndexMVT1]\n,[SubDelayCodeIndexMVT2]\n,[SubDelayCodeIndexMVT3]\n,[SubDelayCodeIndexMVT4]\n,[SubDelayCodeIndexMVT5]\n,[SubDelayCodeIndexMVT6]\n,[SubDelayCodeIndexMVT7]\n,[SubDelayCodeIndexMVT8]\n,[SubDelayCodeIndexMVT9]\n,[SubDelayCodeIndexMVT10]\n,[DelayCodeIndexVOYAGE1]\n,[DelayCodeIndexVOYAGE2]\n,[DelayCodeIndexVOYAGE3]\n,[DelayCodeIndexVOYAGE4]\n,[DelayCodeIndexVOYAGE5]\n,[DelayCodeIndexVOYAGE6]\n,[DelayCodeIndexVOYAGE7]\n,[DelayCodeIndexVOYAGE8]\n,[DelayCodeIndexVOYAGE9]\n,[DelayCodeIndexVOYAGE10]\n,[DelayTimeVOYAGE1]\n,[DelayTimeVOYAGE2]\n,[DelayTimeVOYAGE3]\n,[DelayTimeVOYAGE4]\n,[DelayTimeVOYAGE5]\n,[DelayTimeVOYAGE6]\n,[DelayTimeVOYAGE7]\n,[DelayTimeVOYAGE8]\n,[DelayTimeVOYAGE9]\n,[DelayTimeVOYAGE10]\n,[SubDelayCodeIndexVOYAGE1]\n,[SubDelayCodeIndexVOYAGE2]\n,[SubDelayCodeIndexVOYAGE3]\n,[SubDelayCodeIndexVOYAGE4]\n,[SubDelayCodeIndexVOYAGE5]\n,[SubDelayCodeIndexVOYAGE6]\n,[SubDelayCodeIndexVOYAGE7]\n,[SubDelayCodeIndexVOYAGE8]\n,[SubDelayCodeIndexVOYAGE9]\n,[SubDelayCodeIndexVOYAGE10]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightDelays_Stage]\n where tfilename = '@{pipeline().parameters.FlightDelaysInputFileName}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -1961,19 +1968,155 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfAims].[FlightDelays_Stage]\nwhere tfilename = ''',pipeline().parameters.InputFileName,''';')",
+								"value": "@concat('delete FROM [BcAdfAims].[FlightDelays_Stage]\nwhere tfilename = ''',pipeline().parameters.FlightDelaysInputFileName,''';')",
 								"type": "Expression"
 							}
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
 				}
+			},
+			{
+				"name": "Copy_FlightSchedule_MST_Stage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.FlightSchedule_MSTInputFileName",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 1
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AIMS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightSchedule_MST_Stage"
+						}
+					}
+				]
 			}
 		],
 		"parameters": {
-			"InputFileName": {
+			"FlightDelaysInputFileName": {
 				"type": "string",
 				"defaultValue": "Delays.txt_2023-11-28T094119+0100.txt"
+			},
+			"FlightSchedule_MSTInputFileName": {
+				"type": "string",
+				"defaultValue": "FlightSchedule_MST_2023-11-28T094029+0100.txt"
 			}
 		},
 		"variables": {

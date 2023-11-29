@@ -1,5 +1,5 @@
 {
-	"name": "AIMS_FlightDelays",
+	"name": "AIMS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "OFP_xml",
