@@ -1,0 +1,433 @@
+{
+	"name": "Airports",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "IataAirportCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IcaoAirportCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IcaoCountryCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TerminalPerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CoTerminalAirportCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AirportName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Longitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Latitude",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Frequencies1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Frequencies2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiversionAlternateAirport1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiversionAlternateAirportDistance1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiversionAlternateAirport2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiversionAlternateAirportDistance2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiversionAlternateAirport3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiversionAlternateAirportDistance3",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiversionAlternateAirport4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiversionAlternateAirportDistance4",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ScrOrSmaRequirements",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HistoricalSlot",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EffectiveDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EffectiveType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AirportZoneNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UseActiveRepresentationForMessageType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AirportZoneArea",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SitaAddressOfCoordinator1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SitaAddressOfCoordinator2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PortCategories",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UsualTaxiDepartureTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UsualTaxiArrivalTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Overseas",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DeclarationCopies",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ManifestCopies",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DeclarationCopiesBitFlagsForReqDocs",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BitFlagsForVariableGroundsEquipment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FlightNumbersFrom",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FlightNumbersTo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MinumumRunwayLength",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FireCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FuelCurrency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FuelUnit",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CabinLanguageReqLangNumber1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangIndex1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangPosition1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangNumber2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangIndex2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangPosition2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangNumber3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangIndex3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangPosition3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangNumber4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangIndex4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinLanguageReqLangPosition4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CoordinaltorSlotTimes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxFreeSalary1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxFreeSalary2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TaxFreeSalary3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ElavationInFeet",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IvrName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModifierUserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AircraftHomeBaseForSmsModule",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ivr4LetterCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportRepDebriefingTimesRepTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportRepDebriefingTimesDebriefingTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportRepDebriefingTimesRepTimes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportRepDebriefingTimesDebriefingTimes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportPARepDebriefingTimesRepTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportPARepDebriefingTimesDebriefingTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportPGRepDebriefingTimesRepTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitAirportPGRepDebriefingTimesDebriefingTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportRepDebriefingTimesRepTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportRepDebriefingTimesDebriefingTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportRepDebriefingTimesRepTimes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportRepDebriefingTimesDebriefingTimes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportPARepDebriefingTimesRepTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportPARepDebriefingTimesDebriefingTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportPGRepDebriefingTimesRepTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CabinAirportPGRepDebriefingTimesDebriefingTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MinimumConnectionTimes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MinimumCargoTimes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumberOfValidRunways",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayActiveFlag",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RunwayId8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IvrName2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Ivr4LetterCodeForFrench",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Lang1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Lang2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SmsUnusedSlotTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LandingRequired",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BriefingRequired",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "Airports"
+		}
+	}
+}

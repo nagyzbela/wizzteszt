@@ -1,0 +1,28 @@
+{
+	"name": "Aims_Airports",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OFP_xml",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Airports_STD_2023-11-28T090304+0100.txt",
+				"container": "aims"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "100       EP                                                    E018275840   N54223925                          WAW       0 POZ       0           0           0          2          0 20020708          0          1          0                     0                              00:00 00:00          0      0      0          0         17      0      0   2800          7         0          0          0 <BLOB>              0          0 <BLOB>              0          0 <BLOB>              0          0 <BLOB>              0                                                                   488                                               1          0               0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 00:00 00:00                                              0          0 00:00          0          0 ",
+				"type": "String"
+			}
+		]
+	}
+}

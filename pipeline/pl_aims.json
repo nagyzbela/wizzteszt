@@ -386,6 +386,8 @@
 			{
 				"name": "Copy Aircrafts Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait1",
@@ -509,8 +511,10 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy Aircrafts",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy Aircrafts Stage",
@@ -1328,6 +1332,1388 @@
 				"outputs": [
 					{
 						"referenceName": "Aircrafts",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Airports Stage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@variables('v_loaddate')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@variables('v_createdid')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "100       EP                                                    E018275840   N54223925                          WAW       0 POZ       0           0           0          2          0 20020708          0          1          0                     0                              00:00 00:00          0      0      0          0         17      0      0   2800          7         0          0          0 <BLOB>              0          0 <BLOB>              0          0 <BLOB>              0          0 <BLOB>              0                                                                   488                                               1          0               0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 00:00 00:00                                              0          0 00:00          0          0 ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Aims_Airports",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Airports_Stage",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy Airports",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Airports Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "select SUBSTRING(RawData,1,4) as IataAirportCode\n,SUBSTRING(RawData,6,4) as IcaoAirportCode\n,SUBSTRING(RawData,11,2) as IcaoCountryCode\n,SUBSTRING(RawData,14,4) as TerminalPerCode\n,SUBSTRING(RawData,19,4) as CoTerminalAirportCode\n,SUBSTRING(RawData,24,40) as AirportName\n,SUBSTRING(RawData,65,12) as Longitude\n,SUBSTRING(RawData,78,12) as Latitude\n,SUBSTRING(RawData,91,10) as Frequencies1\n,SUBSTRING(RawData,102,10) as Frequencies2\n,SUBSTRING(RawData,113,4) as DiversionAlternateAirport1\n,SUBSTRING(RawData,118,6) as DiversionAlternateAirportDistance1\n,SUBSTRING(RawData,125,4) as DiversionAlternateAirport2\n,SUBSTRING(RawData,130,6) as DiversionAlternateAirportDistance2\n,SUBSTRING(RawData,137,4) as DiversionAlternateAirport3\n,SUBSTRING(RawData,142,6) as DiversionAlternateAirportDistance3\n,SUBSTRING(RawData,149,4) as DiversionAlternateAirport4\n,SUBSTRING(RawData,154,6) as DiversionAlternateAirportDistance4\n,SUBSTRING(RawData,161,10) as ScrOrSmaRequirements\n,SUBSTRING(RawData,172,10) as HistoricalSlot\n,cast(SUBSTRING(RawData,183,8) as datetime) as EffectiveDate\n,SUBSTRING(RawData,192,10) as EffectiveType\n,SUBSTRING(RawData,203,10) as AirportZoneNumber\n,SUBSTRING(RawData,214,10) as UseActiveRepresentationForMessageType\n,SUBSTRING(RawData,225,1) as AirportZoneArea\n,SUBSTRING(RawData,227,8) as SitaAddressOfCoordinator1\n,SUBSTRING(RawData,236,8) as SitaAddressOfCoordinator2\n,SUBSTRING(RawData,245,30) as PortCategories\n,SUBSTRING(RawData,276,5) as UsualTaxiDepartureTime\n,SUBSTRING(RawData,282,5) as UsualTaxiArrivalTime\n,SUBSTRING(RawData,288,10) as Overseas\n,SUBSTRING(RawData,299,6) as DeclarationCopies\n,SUBSTRING(RawData,306,6) as ManifestCopies\n,SUBSTRING(RawData,313,10) as DeclarationCopiesBitFlagsForReqDocs\n,SUBSTRING(RawData,324,10) as BitFlagsForVariableGroundsEquipment\n,SUBSTRING(RawData,335,6) as FlightNumbersFrom\n,SUBSTRING(RawData,342,6) as FlightNumbersTo\n,SUBSTRING(RawData,349,6) as MinumumRunwayLength\n,SUBSTRING(RawData,356,10) as FireCategory\n,SUBSTRING(RawData,367,2) as FuelCurrency\n,SUBSTRING(RawData,370,6) as FuelUnit\n,SUBSTRING(RawData,377,10) as CabinLanguageReqLangNumber1\n,SUBSTRING(RawData,388,10) as CabinLanguageReqLangIndex1\n,SUBSTRING(RawData,399,10) as CabinLanguageReqLangPosition1\n,SUBSTRING(RawData,410,10) as CabinLanguageReqLangNumber2\n,SUBSTRING(RawData,421,10) as CabinLanguageReqLangIndex2\n,SUBSTRING(RawData,432,10) as CabinLanguageReqLangPosition2\n,SUBSTRING(RawData,443,10) as CabinLanguageReqLangNumber3\n,SUBSTRING(RawData,454,10) as CabinLanguageReqLangIndex3\n,SUBSTRING(RawData,465,10) as CabinLanguageReqLangPosition3\n,SUBSTRING(RawData,476,10) as CabinLanguageReqLangNumber4\n,SUBSTRING(RawData,487,10) as CabinLanguageReqLangIndex4\n,SUBSTRING(RawData,498,10) as CabinLanguageReqLangPosition4\n,SUBSTRING(RawData,509,10) as CoordinaltorSlotTimes\n,SUBSTRING(RawData,520,20) as TaxFreeSalary1\n,SUBSTRING(RawData,541,20) as TaxFreeSalary2\n,SUBSTRING(RawData,562,20) as TaxFreeSalary3\n,SUBSTRING(RawData,583,6) as ElavationInFeet\n,SUBSTRING(RawData,590,40) as IvrName\n,SUBSTRING(RawData,631,6) as Modified_by\n,SUBSTRING(RawData,638,10) as AircraftHomeBaseForSmsModule\n,SUBSTRING(RawData,649,4) as Ivr4LetterCode\n,SUBSTRING(RawData,654,10) as CockpitAirportRepDebriefingTimesRepTimes1\n,SUBSTRING(RawData,665,10) as CockpitAirportRepDebriefingTimesDebriefingTimes1\n,SUBSTRING(RawData,676,10) as CockpitAirportRepDebriefingTimesRepTimes2\n,SUBSTRING(RawData,687,10) as CockpitAirportRepDebriefingTimesDebriefingTimes2\n,SUBSTRING(RawData,698,10) as CockpitAirportPARepDebriefingTimesRepTimes1\n,SUBSTRING(RawData,709,10) as CockpitAirportPARepDebriefingTimesDebriefingTimes1\n,SUBSTRING(RawData,720,10) as CockpitAirportPGRepDebriefingTimesRepTimes1\n,SUBSTRING(RawData,731,10) as CabinAirportRepDebriefingTimesRepTimes1\n,SUBSTRING(RawData,742,10) as CabinAirportRepDebriefingTimesDebriefingTimes1\n,SUBSTRING(RawData,753,10) as CabinAirportRepDebriefingTimesRepTimes2\n,SUBSTRING(RawData,764,10) as CabinAirportRepDebriefingTimesDebriefingTimes2\n,SUBSTRING(RawData,775,10) as CabinAirportPARepDebriefingTimesRepTimes1\n,SUBSTRING(RawData,786,10) as CabinAirportPARepDebriefingTimesDebriefingTimes1\n,SUBSTRING(RawData,797,10) as CabinAirportPGRepDebriefingTimesRepTimes1\n,SUBSTRING(RawData,808,10) as CabinAirportPGRepDebriefingTimesDebriefingTimes1\n,SUBSTRING(RawData,819,5) as MinimumConnectionTimes\n,SUBSTRING(RawData,825,5) as MinimumCargoTimes\n,SUBSTRING(RawData,831,30) as IvrName2\n,SUBSTRING(RawData,862,4) as Ivr4LetterCodeForFrench\n,SUBSTRING(RawData,867,10) as Lang1\n,SUBSTRING(RawData,878,10) as Lang2\n,SUBSTRING(RawData,889,5) as SmsUnusedSlotTime\n,SUBSTRING(RawData,895,10) as LandingRequired\n,SUBSTRING(RawData,906,10) as BriefingRequired\n,null as CockpitAirportPGRepDebriefingTimesDebriefingTimes1\n,null as NumberOfValidRunways\n,null as RunwayActiveFlag\n,null as RunwayId1\n,null as RunwayId2\n,null as RunwayId3\n,null as RunwayId4\n,null as RunwayId5\n,null as RunwayId6\n,null as RunwayId7\n,null as RunwayId8\n,TCreatedId\n,TLoadDate\n,TFileName\n from  [BcAdfAims].[Airports_Stage]\n;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "IataAirportCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IataAirportCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IcaoAirportCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IcaoAirportCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IcaoCountryCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IcaoCountryCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TerminalPerCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TerminalPerCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CoTerminalAirportCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CoTerminalAirportCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Longitude",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Longitude",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Latitude",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Latitude",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequencies1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Frequencies1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequencies2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Frequencies2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirport1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirport1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirportDistance1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirportDistance1",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirport2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirport2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirportDistance2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirportDistance2",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirport3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirport3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirportDistance3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirportDistance3",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirport4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirport4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DiversionAlternateAirportDistance4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DiversionAlternateAirportDistance4",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ScrOrSmaRequirements",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ScrOrSmaRequirements",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "HistoricalSlot",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "HistoricalSlot",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EffectiveDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "EffectiveDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "EffectiveType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "EffectiveType",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportZoneNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportZoneNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "UseActiveRepresentationForMessageType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "UseActiveRepresentationForMessageType",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportZoneArea",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportZoneArea",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SitaAddressOfCoordinator1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SitaAddressOfCoordinator1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SitaAddressOfCoordinator2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SitaAddressOfCoordinator2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PortCategories",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PortCategories",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "UsualTaxiDepartureTime",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "UsualTaxiDepartureTime",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "UsualTaxiArrivalTime",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "UsualTaxiArrivalTime",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Overseas",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Overseas",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DeclarationCopies",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DeclarationCopies",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ManifestCopies",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ManifestCopies",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DeclarationCopiesBitFlagsForReqDocs",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DeclarationCopiesBitFlagsForReqDocs",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BitFlagsForVariableGroundsEquipment",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BitFlagsForVariableGroundsEquipment",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumbersFrom",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightNumbersFrom",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumbersTo",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightNumbersTo",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "MinumumRunwayLength",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinumumRunwayLength",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FireCategory",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FireCategory",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelCurrency",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelCurrency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FuelUnit",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangNumber1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangNumber1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangIndex1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangIndex1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangPosition1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangPosition1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangNumber2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangNumber2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangIndex2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangIndex2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangPosition2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangPosition2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangNumber3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangNumber3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangIndex3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangIndex3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangPosition3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangPosition3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangNumber4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangNumber4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangIndex4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangIndex4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinLanguageReqLangPosition4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinLanguageReqLangPosition4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CoordinaltorSlotTimes",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CoordinaltorSlotTimes",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxFreeSalary1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxFreeSalary1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxFreeSalary2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxFreeSalary2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TaxFreeSalary3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TaxFreeSalary3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ElavationInFeet",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ElavationInFeet",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "IvrName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IvrName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Modified_by",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ModifierUserID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftHomeBaseForSmsModule",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftHomeBaseForSmsModule",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Ivr4LetterCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Ivr4LetterCode",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportRepDebriefingTimesRepTimes2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportRepDebriefingTimesRepTimes2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportRepDebriefingTimesDebriefingTimes2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportRepDebriefingTimesDebriefingTimes2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportPARepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportPARepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportPARepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportPARepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportPGRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitAirportPGRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitAirportPGRepDebriefingTimesDebriefingTimes1",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "CockpitAirportPGRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportRepDebriefingTimesRepTimes2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportRepDebriefingTimesRepTimes2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportRepDebriefingTimesDebriefingTimes2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportRepDebriefingTimesDebriefingTimes2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportPARepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportPARepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportPARepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportPARepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportPGRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportPGRepDebriefingTimesRepTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CabinAirportPGRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CabinAirportPGRepDebriefingTimesDebriefingTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumConnectionTimes",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumConnectionTimes",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MinimumCargoTimes",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MinimumCargoTimes",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NumberOfValidRunways",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "NumberOfValidRunways",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayActiveFlag",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayActiveFlag",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId1",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId2",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId3",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId4",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId5",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId6",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId7",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RunwayId8",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "RunwayId8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IvrName2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IvrName2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Ivr4LetterCodeForFrench",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Ivr4LetterCodeForFrench",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Lang1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Lang1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Lang2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Lang2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SmsUnusedSlotTime",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SmsUnusedSlotTime",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LandingRequired",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LandingRequired",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BriefingRequired",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "BriefingRequired",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Airports_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Airports",
 						"type": "DatasetReference"
 					}
 				]
