@@ -2725,6 +2725,8 @@
 			{
 				"name": "Copy CityPairs Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait1",
@@ -2851,6 +2853,8 @@
 			{
 				"name": "Copy CityPairs",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy CityPairs Stage",
@@ -4172,6 +4176,332 @@
 				"outputs": [
 					{
 						"referenceName": "Citypairs",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy FlightCrew Stage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@variables('v_loaddate')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@variables('v_createdid')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "14   CCAR   25112023AUH DXB  00:00 01:30                     CP D   00027268NIAZI Shamaila                SF D   00029843GHANEM Naser Osama            ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Aims_FlightCrew",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "FlightCrew_Stage",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy FlightCrewFlights",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy FlightCrew Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT  case when SUBSTRING(RawData,1,4) = '' then null else SUBSTRING(RawData,1,4) end as FlightNumber\n, case when SUBSTRING(RawData,6,4) = '' then null else SUBSTRING(RawData,6,4) end as CarrierCodeICAO\n, case when SUBSTRING(RawData,11,1) = '' then null else SUBSTRING(RawData,11,1) end as FlightLegCode\n,cast(concat(SUBSTRING(RawData,17,4),SUBSTRING(RawData,15,2),SUBSTRING(RawData,13,2)) as date) as OperationDay\n, case when SUBSTRING(RawData,21,4) = '' then null else SUBSTRING(RawData,21,4) end as ArrivalStation\n, case when SUBSTRING(RawData,25,4) = '' then null else SUBSTRING(RawData,25,4) end as DepartureStation\n, case when SUBSTRING(RawData,30,5) = '' then null else SUBSTRING(RawData,30,5) end as ScheduledTimeOfDeparture\n, case when SUBSTRING(RawData,36,5) = '' then null else SUBSTRING(RawData,36,5) end as ScheduledTimeOfArrival\n, case when SUBSTRING(RawData,42,20) = '' then null else SUBSTRING(RawData,42,20) end as AircraftRegistrationID\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightCrew_Stage]\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CarrierCodeICAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CarrierCodeICAO",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightLegCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightLegCode",
+									"type": "String",
+									"physicalType": "char"
+								}
+							},
+							{
+								"source": {
+									"name": "OperationDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "OperationDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfArrival",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfArrival",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "AircraftRegistrationID",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftRegistrationID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Airports_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "FlightCrewFlights",
 						"type": "DatasetReference"
 					}
 				]

@@ -1,0 +1,56 @@
+{
+	"name": "FlightCrewMembers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FlightCrewFlightID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Position",
+				"type": "varchar"
+			},
+			{
+				"name": "Role",
+				"type": "char"
+			},
+			{
+				"name": "CrewPax",
+				"type": "char"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "FlightCrewMembers"
+		}
+	}
+}

@@ -1,0 +1,69 @@
+{
+	"name": "FlightCrewFlights",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "FlightNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CarrierCodeICAO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FlightLegCode",
+				"type": "char"
+			},
+			{
+				"name": "OperationDay",
+				"type": "date"
+			},
+			{
+				"name": "DepartureStation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ArrivalStation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ScheduledTimeOfDeparture",
+				"type": "time",
+				"scale": 5
+			},
+			{
+				"name": "ScheduledTimeOfArrival",
+				"type": "time",
+				"scale": 5
+			},
+			{
+				"name": "AircraftRegistrationID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "FlightCrewFlights"
+		}
+	}
+}

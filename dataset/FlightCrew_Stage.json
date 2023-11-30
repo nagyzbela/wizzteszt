@@ -1,0 +1,35 @@
+{
+	"name": "FlightCrew_Stage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "RawData",
+				"type": "varchar"
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "FlightCrew_Stage"
+		}
+	}
+}
