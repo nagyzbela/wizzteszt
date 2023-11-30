@@ -1339,6 +1339,8 @@
 			{
 				"name": "Copy Airports Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait1",
@@ -1465,6 +1467,8 @@
 			{
 				"name": "Copy Airports",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy Airports Stage",
@@ -2714,6 +2718,1460 @@
 				"outputs": [
 					{
 						"referenceName": "Airports",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy CityPairs Stage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@variables('v_loaddate')",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@variables('v_createdid')",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "0  0 0    0                                       0          0 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00:00          0          0     0          0          0          0          0          0          0          0          0          0          0          0          0          0     0          0     0          0     0          0     0          0      0          1          1          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0                      0      0 ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Aims_CityPairs",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CityPairs_Stage",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy CityPairs",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy CityPairs Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "SELECT case when SUBSTRING(RawData,1,4) = '' then null else SUBSTRING(RawData,1,4) end as AirportCode1\n, case when SUBSTRING(RawData,6,4) = '' then null else SUBSTRING(RawData,6,4) end as AirportCode2\n, case when SUBSTRING(RawData,11,30) = '' then null else SUBSTRING(RawData,11,30) end as Category\n, case when SUBSTRING(RawData,42,10) = '' then null else SUBSTRING(RawData,42,10) end as ReportingTimeCategory\n, case when SUBSTRING(RawData,53,10) = '' then null else SUBSTRING(RawData,53,10) end as NoTrafficRights\n, case when SUBSTRING(RawData,64,5) = '' then null else SUBSTRING(RawData,64,5) end as SunsetTimes1\n, case when SUBSTRING(RawData,70,5) = '' then null else SUBSTRING(RawData,70,5) end as SunsetTimes2\n, case when SUBSTRING(RawData,76,5) = '' then null else SUBSTRING(RawData,76,5) end as SunsetTimes3\n, case when SUBSTRING(RawData,82,5) = '' then null else SUBSTRING(RawData,82,5) end as SunsetTimes4\n, case when SUBSTRING(RawData,88,5) = '' then null else SUBSTRING(RawData,88,5) end as SunsetTimes5\n, case when SUBSTRING(RawData,94,5) = '' then null else SUBSTRING(RawData,94,5) end as SunsetTimes6\n, case when SUBSTRING(RawData,100,5) = '' then null else SUBSTRING(RawData,100,5) end as SunsetTimes7\n, case when SUBSTRING(RawData,106,5) = '' then null else SUBSTRING(RawData,106,5) end as SunsetTimes8\n, case when SUBSTRING(RawData,112,5) = '' then null else SUBSTRING(RawData,112,5) end as SunsetTimes9\n, case when SUBSTRING(RawData,118,5) = '' then null else SUBSTRING(RawData,118,5) end as SunsetTimes10\n, case when SUBSTRING(RawData,124,5) = '' then null else SUBSTRING(RawData,124,5) end as SunsetTimes11\n, case when SUBSTRING(RawData,130,5) = '' then null else SUBSTRING(RawData,130,5) end as SunsetTimes12\n, case when SUBSTRING(RawData,136,5) = '' then null else SUBSTRING(RawData,136,5) end as SunriseTimes1\n, case when SUBSTRING(RawData,142,5) = '' then null else SUBSTRING(RawData,142,5) end as SunriseTimes2\n, case when SUBSTRING(RawData,148,5) = '' then null else SUBSTRING(RawData,148,5) end as SunriseTimes3\n, case when SUBSTRING(RawData,154,5) = '' then null else SUBSTRING(RawData,154,5) end as SunriseTimes4\n, case when SUBSTRING(RawData,160,5) = '' then null else SUBSTRING(RawData,160,5) end as SunriseTimes5\n, case when SUBSTRING(RawData,166,5) = '' then null else SUBSTRING(RawData,166,5) end as SunriseTimes6\n, case when SUBSTRING(RawData,172,5) = '' then null else SUBSTRING(RawData,172,5) end as SunriseTimes7\n, case when SUBSTRING(RawData,178,5) = '' then null else SUBSTRING(RawData,178,5) end as SunriseTimes8\n, case when SUBSTRING(RawData,184,5) = '' then null else SUBSTRING(RawData,184,5) end as SunriseTimes9\n, case when SUBSTRING(RawData,190,5) = '' then null else SUBSTRING(RawData,190,5) end as SunriseTimes10\n, case when SUBSTRING(RawData,196,5) = '' then null else SUBSTRING(RawData,196,5) end as SunriseTimes11\n, case when SUBSTRING(RawData,202,5) = '' then null else SUBSTRING(RawData,202,5) end as SunriseTimes12\n, case when SUBSTRING(RawData,208,10) = '' then null else SUBSTRING(RawData,208,10) end as AllowGeneraitonFerryFlights\n, case when SUBSTRING(RawData,219,10) = '' then null else SUBSTRING(RawData,219,10) end as DistanceUnit\n, case when SUBSTRING(RawData,230,5) = '' then null else SUBSTRING(RawData,230,5) end as DistanceBetweenAirports\n, case when SUBSTRING(RawData,236,10) = '' then null else SUBSTRING(RawData,236,10) end as CockpitCabinType1\n, case when SUBSTRING(RawData,247,10) = '' then null else SUBSTRING(RawData,247,10) end as ServiceTypeDayOfWeek1\n, case when SUBSTRING(RawData,258,10) = '' then null else SUBSTRING(RawData,258,10) end as IndeToCrewComplements1\n, case when SUBSTRING(RawData,269,10) = '' then null else SUBSTRING(RawData,269,10) end as CockpitCabinType2\n, case when SUBSTRING(RawData,280,10) = '' then null else SUBSTRING(RawData,280,10) end as ServiceTypeDayOfWeek2\n, case when SUBSTRING(RawData,291,10) = '' then null else SUBSTRING(RawData,291,10) end as IndeToCrewComplements2\n, case when SUBSTRING(RawData,302,10) = '' then null else SUBSTRING(RawData,302,10) end as CockpitCabinType3\n, case when SUBSTRING(RawData,313,10) = '' then null else SUBSTRING(RawData,313,10) end as ServiceTypeDayOfWeek3\n, case when SUBSTRING(RawData,324,10) = '' then null else SUBSTRING(RawData,324,10) end as IndeToCrewComplements3\n, case when SUBSTRING(RawData,335,10) = '' then null else SUBSTRING(RawData,335,10) end as CockpitCabinType4\n, case when SUBSTRING(RawData,346,10) = '' then null else SUBSTRING(RawData,346,10) end as ServiceTypeDayOfWeek4\n, case when SUBSTRING(RawData,357,10) = '' then null else SUBSTRING(RawData,357,10) end as IndeToCrewComplements4\n, case when SUBSTRING(RawData,368,10) = '' then null else SUBSTRING(RawData,368,10) end as IndexInTables1\n, case when SUBSTRING(RawData,379,5) = '' then null else SUBSTRING(RawData,379,5) end as RelatedDistance1\n, case when SUBSTRING(RawData,385,10) = '' then null else SUBSTRING(RawData,385,10) end as IndexInTables2\n, case when SUBSTRING(RawData,396,5) = '' then null else SUBSTRING(RawData,396,5) end as RelatedDistance2\n, case when SUBSTRING(RawData,402,10) = '' then null else SUBSTRING(RawData,402,10) end as IndexInTables3\n, case when SUBSTRING(RawData,413,5) = '' then null else SUBSTRING(RawData,413,5) end as RelatedDistance3\n, case when SUBSTRING(RawData,419,10) = '' then null else SUBSTRING(RawData,419,10) end as IndexInTables4\n, case when SUBSTRING(RawData,430,5) = '' then null else SUBSTRING(RawData,430,5) end as RelatedDistance4\n, case when SUBSTRING(RawData,436,10) = '' then null else SUBSTRING(RawData,436,10) end as FlatfeeType\n, case when SUBSTRING(RawData,447,6) = '' then null else SUBSTRING(RawData,447,6) end as CurrencyCode\n, case when SUBSTRING(RawData,454,10) = '' then null else SUBSTRING(RawData,454,10) end as CrewComplement1\n, case when SUBSTRING(RawData,465,10) = '' then null else SUBSTRING(RawData,465,10) end as CrewComplement2\n, case when SUBSTRING(RawData,476,10) = '' then null else SUBSTRING(RawData,476,10) end as CrewComplement3\n, case when SUBSTRING(RawData,487,10) = '' then null else SUBSTRING(RawData,487,10) end as CrewComplement4\n, case when SUBSTRING(RawData,498,10) = '' then null else SUBSTRING(RawData,498,10) end as CrewComplement5\n, case when SUBSTRING(RawData,509,10) = '' then null else SUBSTRING(RawData,509,10) end as CrewComplement6\n, case when SUBSTRING(RawData,520,10) = '' then null else SUBSTRING(RawData,520,10) end as CrewComplement7\n, case when SUBSTRING(RawData,531,10) = '' then null else SUBSTRING(RawData,531,10) end as CrewComplement8\n, case when SUBSTRING(RawData,542,10) = '' then null else SUBSTRING(RawData,542,10) end as CrewComplement9\n, case when SUBSTRING(RawData,553,10) = '' then null else SUBSTRING(RawData,553,10) end as CrewComplement10\n, case when SUBSTRING(RawData,564,10) = '' then null else SUBSTRING(RawData,564,10) end as CrewComplement11\n, case when SUBSTRING(RawData,575,10) = '' then null else SUBSTRING(RawData,575,10) end as CrewComplement12\n, case when SUBSTRING(RawData,586,10) = '' then null else SUBSTRING(RawData,586,10) end as CrewComplement13\n, case when SUBSTRING(RawData,597,10) = '' then null else SUBSTRING(RawData,597,10) end as CrewComplement14\n, case when SUBSTRING(RawData,608,10) = '' then null else SUBSTRING(RawData,608,10) end as CrewComplement15\n, case when SUBSTRING(RawData,619,10) = '' then null else SUBSTRING(RawData,619,10) end as CrewComplement16\n, case when SUBSTRING(RawData,630,10) = '' then null else SUBSTRING(RawData,630,10) end as CrewComplement17\n, case when SUBSTRING(RawData,641,10) = '' then null else SUBSTRING(RawData,641,10) end as CrewComplement18\n, case when SUBSTRING(RawData,652,10) = '' then null else SUBSTRING(RawData,652,10) end as CrewComplement19\n, case when SUBSTRING(RawData,663,10) = '' then null else SUBSTRING(RawData,663,10) end as CrewComplement20\n, case when SUBSTRING(RawData,674,10) = '' then null else SUBSTRING(RawData,674,10) end as CrewComplement21\n, case when SUBSTRING(RawData,685,10) = '' then null else SUBSTRING(RawData,685,10) end as CrewComplement22\n, case when SUBSTRING(RawData,696,10) = '' then null else SUBSTRING(RawData,696,10) end as CrewComplement23\n, case when SUBSTRING(RawData,707,10) = '' then null else SUBSTRING(RawData,707,10) end as CrewComplement24\n, case when SUBSTRING(RawData,718,10) = '' then null else SUBSTRING(RawData,718,10) end as CrewComplement25\n, case when SUBSTRING(RawData,729,10) = '' then null else SUBSTRING(RawData,729,10) end as CrewComplement26\n, case when SUBSTRING(RawData,740,10) = '' then null else SUBSTRING(RawData,740,10) end as CrewComplement27\n, case when SUBSTRING(RawData,751,10) = '' then null else SUBSTRING(RawData,751,10) end as CrewComplement28\n, case when SUBSTRING(RawData,762,10) = '' then null else SUBSTRING(RawData,762,10) end as CrewComplement29\n, case when SUBSTRING(RawData,773,10) = '' then null else SUBSTRING(RawData,773,10) end as CrewComplement30\n, case when SUBSTRING(RawData,784,10) = '' then null else SUBSTRING(RawData,784,10) end as CrewComplement31\n, case when SUBSTRING(RawData,795,10) = '' then null else SUBSTRING(RawData,795,10) end as CrewComplement32\n, case when SUBSTRING(RawData,806,10) = '' then null else SUBSTRING(RawData,806,10) end as CrewComplement33\n, case when SUBSTRING(RawData,817,10) = '' then null else SUBSTRING(RawData,817,10) end as CrewComplement34\n, case when SUBSTRING(RawData,828,10) = '' then null else SUBSTRING(RawData,828,10) end as CrewComplement35\n, case when SUBSTRING(RawData,839,10) = '' then null else SUBSTRING(RawData,839,10) end as CrewComplement36\n, case when SUBSTRING(RawData,850,10) = '' then null else SUBSTRING(RawData,850,10) end as CrewComplement37\n, case when SUBSTRING(RawData,861,10) = '' then null else SUBSTRING(RawData,861,10) end as CrewComplement38\n, case when SUBSTRING(RawData,872,10) = '' then null else SUBSTRING(RawData,872,10) end as CrewComplement39\n, case when SUBSTRING(RawData,883,10) = '' then null else SUBSTRING(RawData,883,10) end as CrewComplement40\n, case when SUBSTRING(RawData,894,10) = '' then null else SUBSTRING(RawData,894,10) end as Overfiles\n, case when SUBSTRING(RawData,905,2) = '' then null else SUBSTRING(RawData,905,2) end as OverfilesContryApis1\n, case when SUBSTRING(RawData,908,2) = '' then null else SUBSTRING(RawData,908,2) end as OverfilesContryApis2\n, case when SUBSTRING(RawData,911,2) = '' then null else SUBSTRING(RawData,911,2) end as OverfilesContryApis3\n, case when SUBSTRING(RawData,914,2) = '' then null else SUBSTRING(RawData,914,2) end as OverfilesContryApis4\n, case when SUBSTRING(RawData,917,1) = '' then null else SUBSTRING(RawData,917,1) end as SsimTrafficRestricitionCode1\n, case when SUBSTRING(RawData,919,1) = '' then null else SUBSTRING(RawData,919,1) end as SsimTrafficRestricitionCode2\n, case when SUBSTRING(RawData,921,6) = '' then null else SUBSTRING(RawData,921,6) end as MiscellaneousFlags\n, case when SUBSTRING(RawData,928,6) = '' then null else SUBSTRING(RawData,928,6) end as Modified_by\n\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[CityPairs_Stage]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AirportCode1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportCode1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AirportCode2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AirportCode2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Category",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ReportingTimeCategory",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ReportingTimeCategory",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NoTrafficRights",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NoTrafficRights",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes5",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes6",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes7",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes8",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes9",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes10",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes11",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunsetTimes12",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunsetTimes12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes5",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes6",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes7",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes8",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes9",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes10",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes11",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SunriseTimes12",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SunriseTimes12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "AllowGeneraitonFerryFlights",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AllowGeneraitonFerryFlights",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DistanceUnit",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DistanceUnit",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DistanceBetweenAirports",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DistanceBetweenAirports",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitCabinType1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitCabinType1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceTypeDayOfWeek1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ServiceTypeDayOfWeek1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndeToCrewComplements1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndeToCrewComplements1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitCabinType2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitCabinType2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceTypeDayOfWeek2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ServiceTypeDayOfWeek2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndeToCrewComplements2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndeToCrewComplements2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitCabinType3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitCabinType3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceTypeDayOfWeek3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ServiceTypeDayOfWeek3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndeToCrewComplements3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndeToCrewComplements3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CockpitCabinType4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CockpitCabinType4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ServiceTypeDayOfWeek4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ServiceTypeDayOfWeek4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndeToCrewComplements4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndeToCrewComplements4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndexInTables1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndexInTables1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RelatedDistance1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RelatedDistance1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndexInTables2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndexInTables2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RelatedDistance2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RelatedDistance2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndexInTables3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndexInTables3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RelatedDistance3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RelatedDistance3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "IndexInTables4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "IndexInTables4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RelatedDistance4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "RelatedDistance4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FlatfeeType",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlatfeeType",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CurrencyCode",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CurrencyCode",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement5",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement5",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement6",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement6",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement7",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement7",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement8",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement8",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement9",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement9",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement10",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement10",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement11",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement11",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement12",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement12",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement13",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement13",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement14",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement14",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement15",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement15",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement16",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement16",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement17",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement17",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement18",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement18",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement19",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement19",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement20",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement20",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement21",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement21",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement22",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement22",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement23",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement23",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement24",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement24",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement25",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement25",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement26",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement26",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement27",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement27",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement28",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement28",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement29",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement29",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement30",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement30",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement31",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement31",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement32",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement32",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement33",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement33",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement34",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement34",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement35",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement35",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement36",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement36",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement37",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement37",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement38",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement38",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement39",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement39",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewComplement40",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewComplement40",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Overfiles",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Overfiles",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OverfilesContryApis1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OverfilesContryApis1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OverfilesContryApis2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OverfilesContryApis2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OverfilesContryApis3",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OverfilesContryApis3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OverfilesContryApis4",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "OverfilesContryApis4",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SsimTrafficRestricitionCode1",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SsimTrafficRestricitionCode1",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SsimTrafficRestricitionCode2",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SsimTrafficRestricitionCode2",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MiscellaneousFlags",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "MiscellaneousFlags",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Modified_by",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ModifierUserID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Airports_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Citypairs",
 						"type": "DatasetReference"
 					}
 				]

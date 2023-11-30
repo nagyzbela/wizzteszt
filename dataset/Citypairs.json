@@ -1,0 +1,446 @@
+{
+	"name": "Citypairs",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "AirportCode1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AirportCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReportingTimeCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NoTrafficRights",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunsetTimes12",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SunriseTimes12",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AllowGeneraitonFerryFlights",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DistanceUnit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DistanceBetweenAirports",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitCabinType1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceTypeDayOfWeek1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndeToCrewComplements1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitCabinType2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceTypeDayOfWeek2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndeToCrewComplements2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitCabinType3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceTypeDayOfWeek3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndeToCrewComplements3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CockpitCabinType4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceTypeDayOfWeek4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndeToCrewComplements4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndexInTables1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RelatedDistance1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndexInTables2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RelatedDistance2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndexInTables3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RelatedDistance3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IndexInTables4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RelatedDistance4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FlatfeeType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CrewComplement1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement11",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement12",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement13",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement14",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement15",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement16",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement17",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement18",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement19",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement20",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement21",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement22",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement23",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement24",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement25",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement26",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement27",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement28",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement29",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement30",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement31",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement32",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement33",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement34",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement35",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement36",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement37",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement38",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement39",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CrewComplement40",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Overfiles",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverfilesContryApis1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverfilesContryApis2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverfilesContryApis3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OverfilesContryApis4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SsimTrafficRestricitionCode1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SsimTrafficRestricitionCode2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MiscellaneousFlags",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ModifierUserID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TCreatedId",
+				"type": "varchar"
+			},
+			{
+				"name": "TLoadDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TFileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "BcAdfAims",
+			"table": "CityPairs"
+		}
+	}
+}
