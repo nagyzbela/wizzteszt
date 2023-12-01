@@ -4220,6 +4220,13 @@
 									"value": "@variables('v_createdid')",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "TRowId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -4248,6 +4255,17 @@
 								},
 								"sink": {
 									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TRowId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TRowId",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -4528,7 +4546,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "select FlightCrewFlightID\n,substring(Names,1,2) as Position \n,substring(Names,4,1) as CrewPax \n,substring(Names,5,1) as Role \n,substring(Names,8,8) as ID \n,substring(Names,16,30) as Name \n,TFileName\n,TCreatedId\n,TLoadDate\nfrom (\nSELECT FlightCrewFlightID,Names, Crew, TFileName, TCreatedId ,TLoadDate from \n(select \nSUBSTRING(RawData,1,4) FlightCrewFlightID\n, SUBSTRING(RawData,62,45) as Name1\n, SUBSTRING(RawData,107,45) as Name2\n, SUBSTRING(RawData,152,45) as Name3\n, SUBSTRING(RawData,197,45) as Name4\n, SUBSTRING(RawData,242,45) as Name5\n, SUBSTRING(RawData,287,45) as Name6\n, SUBSTRING(RawData,332,45) as Name7\n, SUBSTRING(RawData,377,45) as Name8\n, SUBSTRING(RawData,422,45) as Name9\n, SUBSTRING(RawData,422,45) as Name10\n, SUBSTRING(RawData,467,45) as Name11\n, SUBSTRING(RawData,512,45) as Name12\n, SUBSTRING(RawData,557,45) as Name13\n, SUBSTRING(RawData,602,45) as Name14\n, SUBSTRING(RawData,647,45) as Name15\n, SUBSTRING(RawData,692,45) as Name16\n, SUBSTRING(RawData,737,45) as Name17\n, SUBSTRING(RawData,782,45) as Name18\n, SUBSTRING(RawData,827,45) as Name19\n, SUBSTRING(RawData,872,45) as Name20\n,TFileName\n,TCreatedId\n,TLoadDate\n FROM [BcAdfAims].[FlightCrew_Stage]\n ) p\nUNPIVOT\n    (Names for Crew in \n        (Name1,Name2,Name3,Name4,Name5,Name6,Name7,Name8,Name9,Name10,\n        Name11,Name12,Name13,Name14,Name15,Name16,Name17,Name18,Name19,Name20) ) as unpvt\n) final\nwhere substring(Names,16,30) <>''",
+						"sqlReaderQuery": "select FlightCrewFlightID\n,substring(Names,1,2) as Position \n,substring(Names,4,1) as CrewPax \n,substring(Names,5,1) as Role \n,substring(Names,8,8) as ID \n,substring(Names,16,30) as Name \n,TFileName\n,TCreatedId\n,TLoadDate\n,TRowId\nfrom (\nSELECT FlightCrewFlightID,Names, Crew, TFileName, TCreatedId ,TLoadDate,TRowId from \n(select \nSUBSTRING(RawData,1,4) FlightCrewFlightID\n, SUBSTRING(RawData,62,45) as Name1\n, SUBSTRING(RawData,107,45) as Name2\n, SUBSTRING(RawData,152,45) as Name3\n, SUBSTRING(RawData,197,45) as Name4\n, SUBSTRING(RawData,242,45) as Name5\n, SUBSTRING(RawData,287,45) as Name6\n, SUBSTRING(RawData,332,45) as Name7\n, SUBSTRING(RawData,377,45) as Name8\n, SUBSTRING(RawData,422,45) as Name9\n, SUBSTRING(RawData,422,45) as Name10\n, SUBSTRING(RawData,467,45) as Name11\n, SUBSTRING(RawData,512,45) as Name12\n, SUBSTRING(RawData,557,45) as Name13\n, SUBSTRING(RawData,602,45) as Name14\n, SUBSTRING(RawData,647,45) as Name15\n, SUBSTRING(RawData,692,45) as Name16\n, SUBSTRING(RawData,737,45) as Name17\n, SUBSTRING(RawData,782,45) as Name18\n, SUBSTRING(RawData,827,45) as Name19\n, SUBSTRING(RawData,872,45) as Name20\n,TFileName\n,TCreatedId\n,TLoadDate\n,TRowId\n FROM [BcAdfAims].[FlightCrew_Stage]\n ) p\nUNPIVOT\n    (Names for Crew in \n        (Name1,Name2,Name3,Name4,Name5,Name6,Name7,Name8,Name9,Name10,\n        Name11,Name12,Name13,Name14,Name15,Name16,Name17,Name18,Name19,Name20) ) as unpvt\n) final\nwhere substring(Names,16,30) <>''",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -4543,7 +4561,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "FlightCrewFlightID",
+									"name": "TRowId",
 									"type": "String",
 									"physicalType": "varchar"
 								},
@@ -4615,7 +4633,7 @@
 							},
 							{
 								"source": {
-									"name": "TCreatedId",
+									"name": "FlightCrewFlightID",
 									"type": "String",
 									"physicalType": "varchar"
 								},
