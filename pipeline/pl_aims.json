@@ -4328,7 +4328,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlDWSource",
-						"sqlReaderQuery": "SELECT  case when SUBSTRING(RawData,1,4) = '' then null else SUBSTRING(RawData,1,4) end as FlightNumber\n, case when SUBSTRING(RawData,6,4) = '' then null else SUBSTRING(RawData,6,4) end as CarrierCodeICAO\n, case when SUBSTRING(RawData,11,1) = '' then null else SUBSTRING(RawData,11,1) end as FlightLegCode\n,cast(concat(SUBSTRING(RawData,17,4),SUBSTRING(RawData,15,2),SUBSTRING(RawData,13,2)) as date) as OperationDay\n, case when SUBSTRING(RawData,21,4) = '' then null else SUBSTRING(RawData,21,4) end as ArrivalStation\n, case when SUBSTRING(RawData,25,4) = '' then null else SUBSTRING(RawData,25,4) end as DepartureStation\n, case when SUBSTRING(RawData,30,5) = '' then null else SUBSTRING(RawData,30,5) end as ScheduledTimeOfDeparture\n, case when SUBSTRING(RawData,36,5) = '' then null else SUBSTRING(RawData,36,5) end as ScheduledTimeOfArrival\n, case when SUBSTRING(RawData,42,20) = '' then null else SUBSTRING(RawData,42,20) end as AircraftRegistrationID\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightCrew_Stage]\n",
+						"sqlReaderQuery": "SELECT  case when SUBSTRING(RawData,1,4) = '' then null else SUBSTRING(RawData,1,4) end as FlightNumber\n, case when SUBSTRING(RawData,6,4) = '' then null else SUBSTRING(RawData,6,4) end as CarrierCodeICAO\n, case when SUBSTRING(RawData,11,1) = '' then null else SUBSTRING(RawData,11,1) end as FlightLegCode\n,cast(concat(SUBSTRING(RawData,17,4),SUBSTRING(RawData,15,2),SUBSTRING(RawData,13,2)) as date) as OperationDay\n, case when SUBSTRING(RawData,21,4) = '' then null else SUBSTRING(RawData,21,4) end as ArrivalStation\n, case when SUBSTRING(RawData,25,4) = '' then null else SUBSTRING(RawData,25,4) end as DepartureStation\n, cast(case when SUBSTRING(RawData,30,5) = '' then null else SUBSTRING(RawData,30,5) end as time) as ScheduledTimeOfDeparture\n, cast(case when SUBSTRING(RawData,36,5) = '' then null else SUBSTRING(RawData,36,5) end as time) as ScheduledTimeOfArrival\n, case when SUBSTRING(RawData,42,20) = '' then null else SUBSTRING(RawData,42,20) end as AircraftRegistrationID\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightCrew_Stage]\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -4416,8 +4416,8 @@
 							{
 								"source": {
 									"name": "ScheduledTimeOfDeparture",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								},
 								"sink": {
 									"name": "ScheduledTimeOfDeparture",
@@ -4428,8 +4428,8 @@
 							{
 								"source": {
 									"name": "ScheduledTimeOfArrival",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "TimeSpan",
+									"physicalType": "time"
 								},
 								"sink": {
 									"name": "ScheduledTimeOfArrival",
@@ -4502,6 +4502,170 @@
 				"outputs": [
 					{
 						"referenceName": "FlightCrewFlights",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy FlightCrewMembers",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy FlightCrew Stage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "select FlightCrewFlightID\n,substring(Names,1,2) as Position \n,substring(Names,4,1) as CrewPax \n,substring(Names,5,1) as Role \n,substring(Names,8,8) as ID \n,substring(Names,16,30) as Name \n,TFileName\n,TCreatedId\n,TLoadDate\nfrom (\nSELECT FlightCrewFlightID,Names, Crew, TFileName, TCreatedId ,TLoadDate from \n(select \nSUBSTRING(RawData,1,4) FlightCrewFlightID\n, SUBSTRING(RawData,62,45) as Name1\n, SUBSTRING(RawData,107,45) as Name2\n, SUBSTRING(RawData,152,45) as Name3\n, SUBSTRING(RawData,197,45) as Name4\n, SUBSTRING(RawData,242,45) as Name5\n, SUBSTRING(RawData,287,45) as Name6\n, SUBSTRING(RawData,332,45) as Name7\n, SUBSTRING(RawData,377,45) as Name8\n, SUBSTRING(RawData,422,45) as Name9\n, SUBSTRING(RawData,422,45) as Name10\n, SUBSTRING(RawData,467,45) as Name11\n, SUBSTRING(RawData,512,45) as Name12\n, SUBSTRING(RawData,557,45) as Name13\n, SUBSTRING(RawData,602,45) as Name14\n, SUBSTRING(RawData,647,45) as Name15\n, SUBSTRING(RawData,692,45) as Name16\n, SUBSTRING(RawData,737,45) as Name17\n, SUBSTRING(RawData,782,45) as Name18\n, SUBSTRING(RawData,827,45) as Name19\n, SUBSTRING(RawData,872,45) as Name20\n,TFileName\n,TCreatedId\n,TLoadDate\n FROM [BcAdfAims].[FlightCrew_Stage]\n ) p\nUNPIVOT\n    (Names for Crew in \n        (Name1,Name2,Name3,Name4,Name5,Name6,Name7,Name8,Name9,Name10,\n        Name11,Name12,Name13,Name14,Name15,Name16,Name17,Name18,Name19,Name20) ) as unpvt\n) final\nwhere substring(Names,16,30) <>''",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FlightCrewFlightID",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightCrewFlightID",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "ID",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Position",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Position",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Role",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Role",
+									"type": "String",
+									"physicalType": "char"
+								}
+							},
+							{
+								"source": {
+									"name": "CrewPax",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CrewPax",
+									"type": "String",
+									"physicalType": "char"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Airports_Stage",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "FlightCrewMembers",
 						"type": "DatasetReference"
 					}
 				]
