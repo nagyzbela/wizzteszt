@@ -2843,8 +2843,8 @@
 								},
 								"sink": {
 									"name": "ScheduledTimeOfDeparture",
-									"type": "TimeSpan",
-									"physicalType": "time"
+									"type": "DateTime",
+									"physicalType": "datetime"
 								}
 							},
 							{
