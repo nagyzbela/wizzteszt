@@ -5,6 +5,8 @@
 			{
 				"name": "Copy_FlightDelays_Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -948,6 +950,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Delete_FlightSlot_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -976,7 +984,7 @@
 							"key": "log_output",
 							"value": {
 								"type": "Expression",
-								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfAims.FlightDelays\",\n    \"result\": \"',activity('Copy_FlightDelays').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightDelays').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightDelays').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfAims.FlightSchedule_MST\",\n    \"result\": \"',activity('Copy_FlightSchedule_MST').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightSchedule_MST').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightSchedule_MST').output.rowsCopied,0),'\n}]\n'))"
+								"content": "@json(\nconcat(\n'[{\n    \"table_name\":\"BcAdfAims.FlightDelays\",\n    \"result\": \"',activity('Copy_FlightDelays').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightDelays').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightDelays').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfAims.FlightSchedule_MST\",\n    \"result\": \"',activity('Copy_FlightSchedule_MST').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightSchedule_MST').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightSchedule_MST').output.rowsCopied,0),'\n},\n{\n    \"table_name\":\"BcAdfAims.FlightSlot\",\n    \"result\": \"',activity('Copy_FlightSlot').output.executionDetails[0].status,'\",\n    \"rowcount\":', if(equals(activity('Copy_FlightSlot').output.executionDetails[0].status,'Succeeded'),activity('Copy_FlightSlot').output.rowsCopied,0),'\n}]\n'))"
 							}
 						}
 					],
@@ -1030,7 +1038,7 @@
 					"source": {
 						"type": "SqlDWSource",
 						"sqlReaderQuery": {
-							"value": "SELECT [AircraftRegistrationId]\n,[CarrierIndex]\n,[FlightNumber]\n,[FlightNumberSuffix]\n,[OperationDay]\n,convert(datetime,concat(substring(ScheduledTimeOfDeparture,1,2),'/',substring(ScheduledTimeOfDeparture,3,2),'/',SUBSTRING(ScheduledTimeOfDeparture,5,4),' ',ScheduledTimeOfDepartureTime),103) as [ScheduledTimeOfDeparture]\n,[DepartureStation]\n,[ScheduledTimeOfArrival]\n,[ArrivalStation]\n,null as FlightServiceType\n,[DelayCodeIndex1]\n,[DelayCodeIndex2]\n,[DelayCodeIndex3]\n,[DelayCodeIndex4]\n,[DelayCodeIndex5]\n,[DelayCodeIndex6]\n,[DelayCodeIndex7]\n,[DelayCodeIndex8]\n,[DelayCodeIndex9]\n,[DelayCodeIndex10]\n,[DelayTime1]\n,[DelayTime2]\n,[DelayTime3]\n,[DelayTime4]\n,[DelayTime5]\n,[DelayTime6]\n,[DelayTime7]\n,[DelayTime8]\n,[DelayTime9]\n,[DelayTime10]\n,[SubDelayCodeIndexMVT1]\n,[SubDelayCodeIndexMVT2]\n,[SubDelayCodeIndexMVT3]\n,[SubDelayCodeIndexMVT4]\n,[SubDelayCodeIndexMVT5]\n,[SubDelayCodeIndexMVT6]\n,[SubDelayCodeIndexMVT7]\n,[SubDelayCodeIndexMVT8]\n,[SubDelayCodeIndexMVT9]\n,[SubDelayCodeIndexMVT10]\n,[DelayCodeIndexVOYAGE1]\n,[DelayCodeIndexVOYAGE2]\n,[DelayCodeIndexVOYAGE3]\n,[DelayCodeIndexVOYAGE4]\n,[DelayCodeIndexVOYAGE5]\n,[DelayCodeIndexVOYAGE6]\n,[DelayCodeIndexVOYAGE7]\n,[DelayCodeIndexVOYAGE8]\n,[DelayCodeIndexVOYAGE9]\n,[DelayCodeIndexVOYAGE10]\n,[DelayTimeVOYAGE1]\n,[DelayTimeVOYAGE2]\n,[DelayTimeVOYAGE3]\n,[DelayTimeVOYAGE4]\n,[DelayTimeVOYAGE5]\n,[DelayTimeVOYAGE6]\n,[DelayTimeVOYAGE7]\n,[DelayTimeVOYAGE8]\n,[DelayTimeVOYAGE9]\n,[DelayTimeVOYAGE10]\n,[SubDelayCodeIndexVOYAGE1]\n,[SubDelayCodeIndexVOYAGE2]\n,[SubDelayCodeIndexVOYAGE3]\n,[SubDelayCodeIndexVOYAGE4]\n,[SubDelayCodeIndexVOYAGE5]\n,[SubDelayCodeIndexVOYAGE6]\n,[SubDelayCodeIndexVOYAGE7]\n,[SubDelayCodeIndexVOYAGE8]\n,[SubDelayCodeIndexVOYAGE9]\n,[SubDelayCodeIndexVOYAGE10]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightDelays_Stage]\n where tfilename = '@{pipeline().parameters.FlightDelaysInputFileName}'",
+							"value": "SELECT [AircraftRegistrationId]\n,[CarrierIndex]\n,[FlightNumber]\n,[FlightNumberSuffix]\n,[OperationDay]\n,convert(datetime,concat(substring(ScheduledTimeOfDeparture,1,2),'/',substring(ScheduledTimeOfDeparture,3,2),'/',SUBSTRING(ScheduledTimeOfDeparture,5,4),' ',ScheduledTimeOfDepartureTime),103) as [ScheduledTimeOfDeparture]\n,[DepartureStation]\n,[ScheduledTimeOfArrival]\n,[ArrivalStation]\n,null as FlightServiceType\n,[DelayCodeIndex1]\n,[DelayCodeIndex2]\n,[DelayCodeIndex3]\n,[DelayCodeIndex4]\n,[DelayCodeIndex5]\n,[DelayCodeIndex6]\n,[DelayCodeIndex7]\n,[DelayCodeIndex8]\n,[DelayCodeIndex9]\n,[DelayCodeIndex10]\n,DATEDIFF(SECOND,0,[DelayTime1]) as [DelayTime1]\n,DATEDIFF(SECOND,0,[DelayTime2]) as [DelayTime2]\n,DATEDIFF(SECOND,0,[DelayTime3]) as [DelayTime3]\n,DATEDIFF(SECOND,0,[DelayTime4]) as [DelayTime4]\n,DATEDIFF(SECOND,0,[DelayTime5]) as [DelayTime5]\n,DATEDIFF(SECOND,0,[DelayTime6]) as [DelayTime6]\n,DATEDIFF(SECOND,0,[DelayTime7]) as [DelayTime7]\n,DATEDIFF(SECOND,0,[DelayTime8]) as [DelayTime8]\n,DATEDIFF(SECOND,0,[DelayTime9]) as [DelayTime9]\n,DATEDIFF(SECOND,0,[DelayTime10]) as [DelayTime10]\n,[SubDelayCodeIndexMVT1]\n,[SubDelayCodeIndexMVT2]\n,[SubDelayCodeIndexMVT3]\n,[SubDelayCodeIndexMVT4]\n,[SubDelayCodeIndexMVT5]\n,[SubDelayCodeIndexMVT6]\n,[SubDelayCodeIndexMVT7]\n,[SubDelayCodeIndexMVT8]\n,[SubDelayCodeIndexMVT9]\n,[SubDelayCodeIndexMVT10]\n,[DelayCodeIndexVOYAGE1]\n,[DelayCodeIndexVOYAGE2]\n,[DelayCodeIndexVOYAGE3]\n,[DelayCodeIndexVOYAGE4]\n,[DelayCodeIndexVOYAGE5]\n,[DelayCodeIndexVOYAGE6]\n,[DelayCodeIndexVOYAGE7]\n,[DelayCodeIndexVOYAGE8]\n,[DelayCodeIndexVOYAGE9]\n,[DelayCodeIndexVOYAGE10]\n,[DelayTimeVOYAGE1]\n,[DelayTimeVOYAGE2]\n,[DelayTimeVOYAGE3]\n,[DelayTimeVOYAGE4]\n,[DelayTimeVOYAGE5]\n,[DelayTimeVOYAGE6]\n,[DelayTimeVOYAGE7]\n,[DelayTimeVOYAGE8]\n,[DelayTimeVOYAGE9]\n,[DelayTimeVOYAGE10]\n,[SubDelayCodeIndexVOYAGE1]\n,[SubDelayCodeIndexVOYAGE2]\n,[SubDelayCodeIndexVOYAGE3]\n,[SubDelayCodeIndexVOYAGE4]\n,[SubDelayCodeIndexVOYAGE5]\n,[SubDelayCodeIndexVOYAGE6]\n,[SubDelayCodeIndexVOYAGE7]\n,[SubDelayCodeIndexVOYAGE8]\n,[SubDelayCodeIndexVOYAGE9]\n,[SubDelayCodeIndexVOYAGE10]\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n FROM [BcAdfAims].[FlightDelays_Stage]\n where tfilename = '@{pipeline().parameters.FlightDelaysInputFileName}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -1989,6 +1997,8 @@
 			{
 				"name": "Copy_FlightSchedule_MST_Stage",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Wait",
@@ -2121,6 +2131,8 @@
 			{
 				"name": "Copy_FlightSchedule_MST",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_FlightSchedule_MST_Stage",
@@ -2558,6 +2570,8 @@
 			{
 				"name": "Delete_FlightSchedule_MST_Stage",
 				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Copy_FlightSchedule_MST",
@@ -2583,7 +2597,432 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "@concat('delete FROM [BcAdfAims].[FlightSchedule_Stage]\nwhere tfilename = ''',pipeline().parameters.FlightSchedule_MSTInputFileName,''';')",
+								"value": "@concat('delete FROM [BcAdfAims].[FlightSchedule_MST_Stage]\nwhere tfilename = ''',pipeline().parameters.FlightSchedule_MSTInputFileName,''';')",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Copy_FlightSlot_Stage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Wait",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "TFileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "TCreatedId",
+								"value": {
+									"value": "@guid()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "TLoadDate",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.FlightSlotInputFileName",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 1
+								},
+								"sink": {
+									"name": "RawData",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AIMS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightSlot_Stage"
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy_FlightSlot",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightSlot_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": {
+							"value": "SELECT \nSUBSTRING(RawData,50,6) as AircraftRegistrationId\n,SUBSTRING(RawData,1,6) as CarrierID\n,SUBSTRING(RawData,7,7) as FlightNumber\n,convert(date,SUBSTRING(RawData,25,10),103) as OperationDay\n,SUBSTRING(RawData,17,4) as DepartureStation\n,SUBSTRING(RawData,21,4) as ArrivalStation\n,SUBSTRING(RawData,62,7) as SlotTime\n,[TCreatedId]\n,[TLoadDate]\n,[TFileName]\n,null as FlightNumberSuffix\n,convert(date,null,103) as ScheduledTimeOfDeparture\n,null as ScheduledTimeOfDepartureField\n,convert(date,null,103) as EstimatedTimeOfDeparture\n,null as EstimatedTimeOfDepartureField\n,null as SlotTimeField\nFROM [BcAdfAims].[FlightSlot_Stage]\nwhere tfilename = '@{pipeline().parameters.FlightSlotInputFileName}'",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"writeBehavior": "Insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AircraftRegistrationId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "AircraftRegistrationId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CarrierID",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CarrierID",
+									"type": "Byte",
+									"physicalType": "tinyint"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FlightNumber",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "FlightNumberSuffix",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FlightNumberSuffix",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "OperationDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "OperationDay",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDeparture",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "ScheduledTimeOfDepartureField",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ScheduledTimeOfDepartureField",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DepartureStation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ArrivalStation",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedTimeOfDeparture",
+									"type": "DateTime",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "EstimatedTimeOfDeparture",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "EstimatedTimeOfDepartureField",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "EstimatedTimeOfDepartureField",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SlotTime",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "SlotTime",
+									"type": "TimeSpan",
+									"physicalType": "time"
+								}
+							},
+							{
+								"source": {
+									"name": "SlotTimeField",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SlotTimeField",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TCreatedId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "TLoadDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TFileName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightSlot_Stage"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_BcAdfAims",
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "FlightSlot"
+						}
+					}
+				]
+			},
+			{
+				"name": "Delete_FlightSlot_Stage",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy_FlightSlot",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": {
+								"value": "@concat('delete FROM [BcAdfAims].[FlightSlot_Stage]\nwhere tfilename = ''',pipeline().parameters.FlightSlotInputFileName,''';')",
 								"type": "Expression"
 							}
 						}
@@ -2600,6 +3039,10 @@
 			"FlightSchedule_MSTInputFileName": {
 				"type": "string",
 				"defaultValue": "FlightSchedule_MST_2023-11-28T094029+0100.txt"
+			},
+			"FlightSlotInputFileName": {
+				"type": "string",
+				"defaultValue": "FlightSlot_2023-11-28T094605+0100.txt"
 			}
 		},
 		"variables": {
